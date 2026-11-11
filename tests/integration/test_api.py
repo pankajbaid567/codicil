@@ -107,3 +107,11 @@ async def test_web_ui_is_served_at_root(make_app):
     async with httpx.AsyncClient(transport=httpx.ASGITransport(app=make_app()), base_url="http://t") as c:
         r = await c.get("/")
     assert r.status_code == 200 and "text/html" in r.headers["content-type"] and "Codicil" in r.text
+
+
+async def test_ui_offers_both_modes_and_index_reports_llm_availability(make_app):
+    app = make_app()
+    page = (await get(app, "/")).text
+    assert 'value="extractive"' in page and 'value="llm"' in page and "use_llm" in page
+    assert (await get(app, "/v1/index")).json()["llm"] is None  # the UI disables the LLM option in this case
+    assert (await get(make_app(generator=DownLLM()), "/v1/index")).json()["llm"] == "down"
