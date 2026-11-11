@@ -12,15 +12,15 @@ Corpus: 17 RBI Directions, 2,277 chunks, index `44820762e91c`. Questions: 148 (6
 | bm25 | 52 | 0.385 | 0.683 | 0.721 | 0.779 | 0.534 | 0.576 (0.46 to 0.69) |
 | dense-bge | 52 | 0.404 | 0.702 | 0.740 | 0.837 | 0.543 | 0.588 (0.48 to 0.70) |
 | hybrid-bge | 52 | 0.490 | 0.769 | 0.798 | 0.798 | 0.636 | 0.669 (0.56 to 0.77) |
-| dense-e5 | 52 | 0.519 | 0.779 | 0.817 | 0.865 | 0.644 | 0.681 (0.57 to 0.78) |
-| hybrid-e5 | 52 | 0.442 | 0.788 | 0.837 | 0.837 | 0.621 | 0.670 (0.57 to 0.76) |
-| hybrid-e5-routed | 52 | 0.500 | 0.808 | 0.837 | 0.837 | 0.656 | 0.697 (0.59 to 0.79) |
+| dense-e5 | 52 | 0.538 | 0.798 | 0.817 | 0.885 | 0.660 | 0.694 (0.59 to 0.79) |
+| hybrid-e5 | 52 | 0.442 | 0.798 | 0.837 | 0.837 | 0.616 | 0.666 (0.56 to 0.76) |
+| hybrid-e5-routed | 52 | 0.500 | 0.798 | 0.837 | 0.837 | 0.654 | 0.695 (0.59 to 0.79) |
 | hybrid-bge-routed | 52 | 0.490 | 0.750 | 0.798 | 0.798 | 0.634 | 0.667 (0.56 to 0.77) |
-| hybrid-e5-routed-rerank | 52 | 0.538 | 0.788 | 0.837 | 0.837 | 0.675 | 0.710 (0.61 to 0.81) |
-| hybrid-e5-routed-rerank-en | 52 | 0.596 | 0.827 | 0.837 | 0.837 | 0.722 | 0.746 (0.64 to 0.84) |
+| hybrid-e5-routed-rerank | 52 | 0.538 | 0.788 | 0.837 | 0.837 | 0.670 | 0.705 (0.60 to 0.80) |
+| hybrid-e5-routed-rerank-en | 52 | 0.596 | 0.827 | 0.837 | 0.837 | 0.716 | 0.741 (0.64 to 0.83) |
 | hybrid-bge-rerank | 52 | 0.519 | 0.769 | 0.798 | 0.798 | 0.651 | 0.682 (0.58 to 0.79) |
 | hybrid-bge-nonorm | 52 | 0.433 | 0.692 | 0.721 | 0.760 | 0.564 | 0.595 (0.48 to 0.71) |
-| hybrid-e5-nonorm | 52 | 0.481 | 0.750 | 0.798 | 0.817 | 0.625 | 0.663 (0.55 to 0.76) |
+| hybrid-e5-nonorm | 52 | 0.481 | 0.740 | 0.798 | 0.837 | 0.624 | 0.662 (0.55 to 0.76) |
 
 ### Hinglish (romanised Hindi)
 | config | n | R@1 | R@5 | R@10 | R@20 | MRR@10 | nDCG@10 (95% CI) |
@@ -28,15 +28,15 @@ Corpus: 17 RBI Directions, 2,277 chunks, index `44820762e91c`. Questions: 148 (6
 | bm25 | 10 | 0.200 | 0.600 | 0.600 | 0.700 | 0.353 | 0.415 (0.18 to 0.65) |
 | dense-bge | 10 | 0.100 | 0.600 | 0.600 | 0.800 | 0.308 | 0.382 (0.17 to 0.59) |
 | hybrid-bge | 10 | 0.300 | 0.600 | 0.700 | 0.700 | 0.464 | 0.523 (0.27 to 0.76) |
-| dense-e5 | 10 | 0.400 | 0.500 | 0.600 | 0.700 | 0.460 | 0.492 (0.20 to 0.76) |
-| hybrid-e5 | 10 | 0.300 | 0.700 | 0.700 | 0.700 | 0.475 | 0.532 (0.27 to 0.77) |
-| hybrid-e5-routed | 10 | 0.300 | 0.700 | 0.700 | 0.700 | 0.475 | 0.532 (0.27 to 0.77) |
+| dense-e5 | 10 | 0.500 | 0.500 | 0.600 | 0.800 | 0.511 | 0.530 (0.23 to 0.80) |
+| hybrid-e5 | 10 | 0.300 | 0.700 | 0.700 | 0.700 | 0.467 | 0.526 (0.28 to 0.76) |
+| hybrid-e5-routed | 10 | 0.300 | 0.700 | 0.700 | 0.700 | 0.467 | 0.526 (0.28 to 0.76) |
 | hybrid-bge-routed | 10 | 0.300 | 0.600 | 0.700 | 0.700 | 0.464 | 0.523 (0.27 to 0.76) |
-| hybrid-e5-routed-rerank | 10 | 0.200 | 0.600 | 0.700 | 0.700 | 0.367 | 0.448 (0.24 to 0.68) |
-| hybrid-e5-routed-rerank-en | 10 | 0.300 | 0.700 | 0.700 | 0.700 | 0.475 | 0.532 (0.27 to 0.77) |
+| hybrid-e5-routed-rerank | 10 | 0.200 | 0.600 | 0.700 | 0.700 | 0.364 | 0.446 (0.23 to 0.67) |
+| hybrid-e5-routed-rerank-en | 10 | 0.300 | 0.700 | 0.700 | 0.700 | 0.467 | 0.526 (0.28 to 0.76) |
 | hybrid-bge-rerank | 10 | 0.200 | 0.600 | 0.700 | 0.700 | 0.386 | 0.462 (0.24 to 0.69) |
 | hybrid-bge-nonorm | 10 | 0.000 | 0.300 | 0.400 | 0.600 | 0.114 | 0.183 (0.04 to 0.33) |
-| hybrid-e5-nonorm | 10 | 0.200 | 0.400 | 0.500 | 0.600 | 0.311 | 0.356 (0.13 to 0.62) |
+| hybrid-e5-nonorm | 10 | 0.200 | 0.400 | 0.500 | 0.700 | 0.311 | 0.356 (0.13 to 0.62) |
 
 ### Hindi (Devanagari)
 | config | n | R@1 | R@5 | R@10 | R@20 | MRR@10 | nDCG@10 (95% CI) |
@@ -45,7 +45,7 @@ Corpus: 17 RBI Directions, 2,277 chunks, index `44820762e91c`. Questions: 148 (6
 | dense-bge | 4 | 0.000 | 0.000 | 0.250 | 0.250 | 0.036 | 0.083 (0.00 to 0.25) |
 | hybrid-bge | 4 | 0.000 | 0.250 | 0.250 | 0.250 | 0.062 | 0.108 (0.00 to 0.32) |
 | dense-e5 | 4 | 0.750 | 0.750 | 0.750 | 0.750 | 0.750 | 0.750 (0.25 to 1.00) |
-| hybrid-e5 | 4 | 0.000 | 0.500 | 0.750 | 0.750 | 0.292 | 0.405 (0.16 to 0.63) |
+| hybrid-e5 | 4 | 0.000 | 0.750 | 0.750 | 0.750 | 0.258 | 0.379 (0.12 to 0.57) |
 | hybrid-e5-routed | 4 | 0.750 | 0.750 | 0.750 | 0.750 | 0.750 | 0.750 (0.25 to 1.00) |
 | hybrid-bge-routed | 4 | 0.000 | 0.000 | 0.250 | 0.250 | 0.036 | 0.083 (0.00 to 0.25) |
 | hybrid-e5-routed-rerank | 4 | 0.250 | 0.500 | 0.750 | 0.750 | 0.406 | 0.487 (0.16 to 0.83) |
@@ -60,56 +60,84 @@ Corpus: 17 RBI Directions, 2,277 chunks, index `44820762e91c`. Questions: 148 (6
 | bm25 | 33 | 0.515 | 0.788 | 0.848 | 0.879 | 0.652 | 0.701 (0.57 to 0.82) |
 | dense-bge | 33 | 0.576 | 0.848 | 0.879 | 0.939 | 0.683 | 0.730 (0.60 to 0.85) |
 | hybrid-bge | 33 | 0.636 | 0.909 | 0.909 | 0.909 | 0.753 | 0.792 (0.68 to 0.89) |
-| dense-e5 | 33 | 0.576 | 0.879 | 0.909 | 0.939 | 0.694 | 0.747 (0.62 to 0.85) |
-| hybrid-e5 | 33 | 0.576 | 0.879 | 0.909 | 0.909 | 0.713 | 0.762 (0.65 to 0.86) |
-| hybrid-e5-routed | 33 | 0.576 | 0.879 | 0.909 | 0.909 | 0.713 | 0.762 (0.65 to 0.86) |
+| dense-e5 | 33 | 0.576 | 0.909 | 0.909 | 0.939 | 0.706 | 0.756 (0.64 to 0.86) |
+| hybrid-e5 | 33 | 0.576 | 0.879 | 0.909 | 0.909 | 0.713 | 0.762 (0.65 to 0.87) |
+| hybrid-e5-routed | 33 | 0.576 | 0.879 | 0.909 | 0.909 | 0.713 | 0.762 (0.65 to 0.87) |
 | hybrid-bge-routed | 33 | 0.636 | 0.909 | 0.909 | 0.909 | 0.753 | 0.792 (0.68 to 0.89) |
-| hybrid-e5-routed-rerank | 33 | 0.727 | 0.909 | 0.909 | 0.909 | 0.813 | 0.838 (0.72 to 0.93) |
-| hybrid-e5-routed-rerank-en | 33 | 0.727 | 0.909 | 0.909 | 0.909 | 0.813 | 0.838 (0.72 to 0.93) |
+| hybrid-e5-routed-rerank | 33 | 0.727 | 0.909 | 0.909 | 0.909 | 0.806 | 0.832 (0.72 to 0.93) |
+| hybrid-e5-routed-rerank-en | 33 | 0.727 | 0.909 | 0.909 | 0.909 | 0.806 | 0.832 (0.72 to 0.93) |
 | hybrid-bge-rerank | 33 | 0.727 | 0.909 | 0.909 | 0.909 | 0.808 | 0.834 (0.72 to 0.93) |
 | hybrid-bge-nonorm | 33 | 0.636 | 0.909 | 0.909 | 0.909 | 0.753 | 0.792 (0.68 to 0.89) |
-| hybrid-e5-nonorm | 33 | 0.576 | 0.879 | 0.909 | 0.909 | 0.713 | 0.762 (0.65 to 0.86) |
+| hybrid-e5-nonorm | 33 | 0.576 | 0.879 | 0.909 | 0.909 | 0.713 | 0.762 (0.65 to 0.87) |
 
-Decisions taken from this table (rules in `docs/DESIGN.md`): hybrid beats either retriever alone; the two embedders tie on nDCG (0.669 vs 0.670 hybrid) so the multilingual one is chosen for its Hindi behaviour; BM25 is dropped for Devanagari queries because it cannot match them; the English cross-encoder helps English and hurts Hinglish and Hindi, so it is applied to English only.
+Decisions taken from this table (rules in `docs/DESIGN.md`): hybrid beats either retriever alone; the two embedders tie on nDCG (0.669 vs 0.666 hybrid) so the multilingual one is chosen for its Hindi behaviour; BM25 is dropped for Devanagari queries because it cannot match them; the English cross-encoder helps English and hurts Hinglish and Hindi, so it is applied to English only.
 
 ## Held-out test split (run once, final configuration frozen on dev)
 | config | n | R@1 | R@5 | R@10 | R@20 | MRR@10 | nDCG@10 (95% CI) |
 |---|---|---|---|---|---|---|---|
 | bm25 | 46 | 0.511 | 0.717 | 0.804 | 0.880 | 0.627 | 0.663 (0.55 to 0.77) |
-| dense-e5 | 46 | 0.554 | 0.772 | 0.870 | 0.924 | 0.663 | 0.706 (0.60 to 0.81) |
-| hybrid-e5 | 46 | 0.587 | 0.837 | 0.891 | 0.967 | 0.686 | 0.735 (0.63 to 0.83) |
-| hybrid-e5-routed | 46 | 0.587 | 0.837 | 0.913 | 0.967 | 0.686 | 0.740 (0.64 to 0.83) |
-| hybrid-e5-routed-rerank-en | 46 | 0.587 | 0.870 | 0.957 | 0.967 | 0.718 | 0.773 (0.69 to 0.86) |
+| dense-bge | 46 | 0.630 | 0.826 | 0.859 | 0.902 | 0.724 | 0.747 (0.65 to 0.85) |
+| hybrid-bge | 46 | 0.630 | 0.848 | 0.870 | 0.935 | 0.713 | 0.753 (0.65 to 0.85) |
+| dense-e5 | 46 | 0.522 | 0.739 | 0.870 | 0.924 | 0.628 | 0.682 (0.58 to 0.79) |
+| hybrid-e5 | 46 | 0.565 | 0.815 | 0.891 | 0.989 | 0.677 | 0.729 (0.63 to 0.82) |
+| hybrid-e5-routed | 46 | 0.565 | 0.837 | 0.913 | 0.989 | 0.678 | 0.734 (0.64 to 0.83) |
+| hybrid-bge-routed | 46 | 0.630 | 0.848 | 0.870 | 0.913 | 0.713 | 0.753 (0.65 to 0.85) |
+| hybrid-e5-routed-rerank | 46 | 0.565 | 0.826 | 0.935 | 0.989 | 0.698 | 0.753 (0.66 to 0.84) |
+| hybrid-e5-routed-rerank-en | 46 | 0.609 | 0.891 | 0.957 | 0.989 | 0.735 | 0.787 (0.70 to 0.87) |
+| hybrid-bge-rerank | 46 | 0.609 | 0.815 | 0.935 | 0.935 | 0.711 | 0.762 (0.67 to 0.85) |
+| hybrid-bge-nonorm | 46 | 0.543 | 0.783 | 0.826 | 0.891 | 0.636 | 0.683 (0.57 to 0.79) |
+| hybrid-e5-nonorm | 46 | 0.587 | 0.793 | 0.891 | 0.967 | 0.681 | 0.731 (0.63 to 0.82) |
 
 Single-clause English:
 
 | config | n | R@1 | R@5 | R@10 | R@20 | MRR@10 | nDCG@10 (95% CI) |
 |---|---|---|---|---|---|---|---|
 | bm25 | 27 | 0.519 | 0.778 | 0.852 | 0.889 | 0.642 | 0.694 (0.55 to 0.82) |
-| dense-e5 | 27 | 0.667 | 0.852 | 0.963 | 1.000 | 0.744 | 0.796 (0.67 to 0.91) |
-| hybrid-e5 | 27 | 0.667 | 0.852 | 0.926 | 1.000 | 0.752 | 0.794 (0.66 to 0.91) |
-| hybrid-e5-routed | 27 | 0.667 | 0.852 | 0.926 | 1.000 | 0.752 | 0.794 (0.66 to 0.91) |
-| hybrid-e5-routed-rerank-en | 27 | 0.741 | 0.926 | 1.000 | 1.000 | 0.826 | 0.868 (0.77 to 0.95) |
+| dense-bge | 27 | 0.815 | 0.963 | 1.000 | 1.000 | 0.880 | 0.909 (0.83 to 0.98) |
+| hybrid-bge | 27 | 0.704 | 0.926 | 0.926 | 1.000 | 0.780 | 0.816 (0.69 to 0.93) |
+| dense-e5 | 27 | 0.630 | 0.852 | 0.963 | 1.000 | 0.730 | 0.786 (0.66 to 0.89) |
+| hybrid-e5 | 27 | 0.667 | 0.852 | 0.926 | 1.000 | 0.753 | 0.795 (0.66 to 0.91) |
+| hybrid-e5-routed | 27 | 0.667 | 0.852 | 0.926 | 1.000 | 0.753 | 0.795 (0.66 to 0.91) |
+| hybrid-bge-routed | 27 | 0.704 | 0.926 | 0.926 | 1.000 | 0.780 | 0.816 (0.69 to 0.93) |
+| hybrid-e5-routed-rerank | 27 | 0.741 | 0.926 | 1.000 | 1.000 | 0.833 | 0.873 (0.78 to 0.95) |
+| hybrid-e5-routed-rerank-en | 27 | 0.741 | 0.926 | 1.000 | 1.000 | 0.833 | 0.873 (0.78 to 0.95) |
+| hybrid-bge-rerank | 27 | 0.778 | 0.926 | 1.000 | 1.000 | 0.851 | 0.886 (0.79 to 0.96) |
+| hybrid-bge-nonorm | 27 | 0.741 | 0.926 | 0.926 | 1.000 | 0.805 | 0.835 (0.71 to 0.94) |
+| hybrid-e5-nonorm | 27 | 0.704 | 0.852 | 0.926 | 1.000 | 0.772 | 0.809 (0.68 to 0.92) |
 
 Hinglish:
 
 | config | n | R@1 | R@5 | R@10 | R@20 | MRR@10 | nDCG@10 (95% CI) |
 |---|---|---|---|---|---|---|---|
 | bm25 | 12 | 0.750 | 0.833 | 0.917 | 1.000 | 0.806 | 0.832 (0.64 to 1.00) |
-| dense-e5 | 12 | 0.500 | 0.750 | 0.750 | 0.833 | 0.600 | 0.637 (0.39 to 0.86) |
-| hybrid-e5 | 12 | 0.667 | 1.000 | 1.000 | 1.000 | 0.753 | 0.812 (0.66 to 0.95) |
-| hybrid-e5-routed | 12 | 0.667 | 1.000 | 1.000 | 1.000 | 0.753 | 0.812 (0.66 to 0.95) |
-| hybrid-e5-routed-rerank-en | 12 | 0.500 | 1.000 | 1.000 | 1.000 | 0.694 | 0.771 (0.63 to 0.90) |
+| dense-bge | 12 | 0.417 | 0.833 | 0.833 | 1.000 | 0.547 | 0.617 (0.40 to 0.81) |
+| hybrid-bge | 12 | 0.750 | 1.000 | 1.000 | 1.000 | 0.847 | 0.886 (0.77 to 1.00) |
+| dense-e5 | 12 | 0.500 | 0.583 | 0.750 | 0.750 | 0.540 | 0.588 (0.34 to 0.83) |
+| hybrid-e5 | 12 | 0.583 | 0.917 | 1.000 | 1.000 | 0.718 | 0.786 (0.63 to 0.92) |
+| hybrid-e5-routed | 12 | 0.583 | 0.917 | 1.000 | 1.000 | 0.718 | 0.786 (0.63 to 0.92) |
+| hybrid-bge-routed | 12 | 0.750 | 1.000 | 1.000 | 1.000 | 0.847 | 0.886 (0.77 to 1.00) |
+| hybrid-e5-routed-rerank | 12 | 0.500 | 0.917 | 1.000 | 1.000 | 0.694 | 0.771 (0.63 to 0.91) |
+| hybrid-e5-routed-rerank-en | 12 | 0.583 | 1.000 | 1.000 | 1.000 | 0.746 | 0.809 (0.67 to 0.94) |
+| hybrid-bge-rerank | 12 | 0.583 | 0.917 | 1.000 | 1.000 | 0.704 | 0.775 (0.62 to 0.92) |
+| hybrid-bge-nonorm | 12 | 0.417 | 0.833 | 0.917 | 1.000 | 0.580 | 0.662 (0.48 to 0.84) |
+| hybrid-e5-nonorm | 12 | 0.583 | 0.833 | 0.917 | 0.917 | 0.682 | 0.738 (0.54 to 0.92) |
 
 Hindi (n is 4, so treat as an anecdote):
 
 | config | n | R@1 | R@5 | R@10 | R@20 | MRR@10 | nDCG@10 (95% CI) |
 |---|---|---|---|---|---|---|---|
 | bm25 | 4 | 0.000 | 0.250 | 0.500 | 0.500 | 0.156 | 0.237 (0.00 to 0.47) |
-| dense-e5 | 4 | 0.250 | 0.500 | 0.750 | 0.750 | 0.375 | 0.464 (0.12 to 0.84) |
-| hybrid-e5 | 4 | 0.250 | 0.500 | 0.500 | 0.750 | 0.375 | 0.408 (0.00 to 0.81) |
-| hybrid-e5-routed | 4 | 0.250 | 0.500 | 0.750 | 0.750 | 0.375 | 0.464 (0.12 to 0.84) |
-| hybrid-e5-routed-rerank-en | 4 | 0.250 | 0.500 | 0.750 | 0.750 | 0.375 | 0.464 (0.12 to 0.84) |
+| dense-bge | 4 | 0.250 | 0.250 | 0.250 | 0.250 | 0.250 | 0.250 (0.00 to 0.75) |
+| hybrid-bge | 4 | 0.250 | 0.250 | 0.250 | 0.500 | 0.250 | 0.250 (0.00 to 0.75) |
+| dense-e5 | 4 | 0.250 | 0.750 | 0.750 | 1.000 | 0.383 | 0.472 (0.12 to 0.85) |
+| hybrid-e5 | 4 | 0.250 | 0.500 | 0.500 | 1.000 | 0.375 | 0.408 (0.00 to 0.81) |
+| hybrid-e5-routed | 4 | 0.250 | 0.750 | 0.750 | 1.000 | 0.383 | 0.472 (0.12 to 0.85) |
+| hybrid-bge-routed | 4 | 0.250 | 0.250 | 0.250 | 0.250 | 0.250 | 0.250 (0.00 to 0.75) |
+| hybrid-e5-routed-rerank | 4 | 0.000 | 0.250 | 0.500 | 1.000 | 0.104 | 0.197 (0.00 to 0.39) |
+| hybrid-e5-routed-rerank-en | 4 | 0.250 | 0.750 | 0.750 | 1.000 | 0.383 | 0.472 (0.12 to 0.85) |
+| hybrid-bge-rerank | 4 | 0.000 | 0.250 | 0.500 | 0.500 | 0.111 | 0.200 (0.00 to 0.40) |
+| hybrid-bge-nonorm | 4 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 (0.00 to 0.00) |
+| hybrid-e5-nonorm | 4 | 0.250 | 0.500 | 0.750 | 1.000 | 0.400 | 0.480 (0.14 to 0.82) |
 
 ## Answer and abstention (extractive mode, e5 profile)
 
@@ -148,7 +176,7 @@ Unanswerable Hinglish and Hindi questions are translations of English ones (same
  "mean_ms": 286
 }
 ```
-In-process pipeline time over the 148 eval questions: p50 324 ms, p95 446 ms. Most of it is the cross-encoder (20 passages). RSS is flat under load once ONNX Runtime's arena uses `kSameAsRequested` (the default arena grew from 400 to 670 MB on the same run). 445 MB leaves little room under a 512 MB limit, so the free Render tier may restart the service; if it does, the same image runs unchanged on a larger free host. Nothing here is a claim about the free hosting tier.
+In-process pipeline time over the 148 eval questions: p50 324 ms, p95 446 ms. Most of it is the cross-encoder (20 passages). RSS is flat under load once ONNX Runtime's arena uses `kSameAsRequested` (the default arena grew from 400 to 670 MB on the same run). The first deployment attempt on a 512 MB host was killed for exceeding memory at startup (about 568 MB peak): the Hugging Face tokenizer for multilingual-e5 alone keeps about 290 MB resident, so the service uses the original SentencePiece model instead (same token ids on every chunk and question; ADR-023). The latency table above was measured before that swap; the tokenizer itself costs 0.006 ms per query against 0.1 ms for the Hugging Face one, so latency is not expected to rise, but it has not been re-measured on a quiet machine, and memory after the swap is the 402 MB peak (maximum resident, `/usr/bin/time -l`), not the 445 MB shown. Nothing here is a claim about the free hosting tier.
 
 ## Optional LLM phrasing (measured on a small sample)
 
@@ -157,4 +185,4 @@ In-process pipeline time over the 148 eval questions: p50 324 ms, p95 446 ms. Mo
 A difference of one question is noise at this size. The coverage proxy rewards verbatim text, so it cannot show whether LLM phrasing reads better; no improvement is claimed. Free-tier rate limits (HTTP 429) and provider overload (503) were seen during these runs, which is why the service falls back to extractive.
 
 ## Tests
-63 tests; mutation check: **15/15 mutants caught** (the first run caught 10 of 14; the four survivors exposed gaps in the tests, which were then closed, and the table is from the rerun). See `scripts/mutation_check.py`.
+66 tests; mutation check: **15/15 mutants caught** (the first run caught 10 of 14; the four survivors exposed gaps in the tests, which were then closed, and the table is from the rerun). See `scripts/mutation_check.py`.

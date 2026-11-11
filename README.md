@@ -11,12 +11,12 @@ All numbers come from `docs/results.md`, which is generated from raw files in `e
 | | Held-out test split (46 answerable) |
 |---|---|
 | BM25 only | nDCG@10 0.663, R@10 0.804 |
-| Dense only (multilingual-e5-small) | nDCG@10 0.706, R@10 0.870 |
-| Hybrid (RRF) + English cross-encoder rerank (final) | **nDCG@10 0.773, R@10 0.957** |
+| Dense only (multilingual-e5-small) | nDCG@10 0.682, R@10 0.870 |
+| Hybrid (RRF) + English cross-encoder rerank (final) | **nDCG@10 0.787, R@10 0.957** |
 
 - **Abstention works for English, not for Hinglish.** English uses the cross-encoder score with a threshold chosen on dev only: test precision 1.00, recall 0.81 on 16 unanswerable questions (the first version, a dense-cosine threshold, scored 0.71 / 0.31 and missed the targets). Hinglish has no usable threshold (AUC 0.63 to 0.76), so it never abstains on score; Hindi has 4 unanswerable questions per split. Unanswerable Hinglish and Hindi questions are translations of English ones. Details and caveats in `docs/results.md`.
 - **Extractive answers** contain the gold sentence in about 77% of served answerable test questions; the cited clause is always shown in full.
-- **Local latency** (Apple M3, closed loop): p50 338 ms, p95 432 ms; RSS 445 MB, flat under load. Free-tier hosting is not benchmarked.
+- **Local latency** (Apple M3, closed loop, quiet machine, measured before the tokenizer change below): p50 338 ms, p95 432 ms. **Memory**: peak 402 MB maximum resident after loading and answering (was 568 MB at startup until the 290 MB Hugging Face tokenizer of e5 was replaced by SentencePiece, which gives identical token ids; ADR-023). Free-tier hosting speed is not benchmarked.
 - **Tests**: 63 tests, `mypy --strict` and `ruff` clean, and a mutation check where 15 of 15 injected bugs are caught (10 of 14 on the first run; the 4 survivors exposed test gaps that were then closed).
 
 Confidence intervals are wide (n is small); differences under about 0.05 nDCG are ties. See `docs/evaluation.md` for threats to validity.
@@ -57,7 +57,7 @@ Rebuild everything: `make corpus` (polite fetch of the RBI HTML pages, hashes in
 
 ## Deploy (free)
 
-`Dockerfile` and `render.yaml` are provided (one container, models baked in at build, index committed). The measured 445 MB resident size is close to Render's 512 MB free limit, so a restart loop there is possible; if so, run the same image on any host with 1 GB. I could not run `docker build` on the development machine (the Docker daemon was unavailable), so the image is **unverified** until CI builds it.
+`Dockerfile` and `render.yaml` are provided (one container, models baked in at build, index committed). The first build on Render's free 512 MB plan compiled fine but was killed for memory at startup (about 568 MB peak); replacing the e5 tokenizer (ADR-023) brought the peak to about 402 MB. Whether the free plan then stays up under load is checked after redeploy and noted in `docs/deployment.md`. The free plan sleeps after about 15 minutes idle, so the first request after a pause takes tens of seconds.
 
 ## Limits
 

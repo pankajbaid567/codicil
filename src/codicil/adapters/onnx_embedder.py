@@ -9,6 +9,7 @@ import numpy as np
 import onnxruntime as ort
 from tokenizers import Tokenizer
 
+from codicil.adapters.sp_tokenizer import SentencePieceTokenizer
 from codicil.application.ports import Matrix
 
 # model id -> (query prefix, passage prefix, pooling)
@@ -27,9 +28,13 @@ class OnnxEmbedder:
         if self.model_id not in _SPECS:
             raise ValueError(f"unknown embedding model {self.model_id!r}; known: {sorted(_SPECS)}")
         self._qp, self._pp, self._pool = _SPECS[self.model_id]
-        self._tok = Tokenizer.from_file(str(model_dir / "tokenizer.json"))
-        self._tok.enable_truncation(max_length=max_len)
-        self._tok.enable_padding()
+        sp_model = model_dir / "sentencepiece.bpe.model"
+        if sp_model.exists():  # same ids as tokenizer.json, a fraction of the memory (see sp_tokenizer.py)
+            self._tok: SentencePieceTokenizer | Tokenizer = SentencePieceTokenizer(sp_model, max_len)
+        else:
+            self._tok = Tokenizer.from_file(str(model_dir / "tokenizer.json"))
+            self._tok.enable_truncation(max_length=max_len)
+            self._tok.enable_padding()
         opts = ort.SessionOptions()
         opts.intra_op_num_threads = threads
         opts.enable_mem_pattern = False  # variable-length inputs make the shape-pattern cache useless

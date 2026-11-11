@@ -23,11 +23,15 @@ def main(names: list[str]) -> int:
         spec = lock[name]
         dest = ROOT / "data/models" / name
         snapshot_download(spec["repo"], revision=spec["revision"], allow_patterns=[*spec["files"], "config.json", "tokenizer_config.json"], local_dir=dest)
-        for rel, want in spec["files"].items():
-            got = hashlib.sha256((dest / rel).read_bytes()).hexdigest()
-            if got != want:
-                print(f"CHECKSUM MISMATCH {name}/{rel}", file=sys.stderr)
-                return 1
+        sources = [spec, *spec.get("extra", [])]  # extra: files pinned from a second repo (e5's SentencePiece model)
+        for src in sources[1:]:
+            snapshot_download(src["repo"], revision=src["revision"], allow_patterns=list(src["files"]), local_dir=dest)
+        for src in sources:
+            for rel, want in src["files"].items():
+                got = hashlib.sha256((dest / rel).read_bytes()).hexdigest()
+                if got != want:
+                    print(f"CHECKSUM MISMATCH {name}/{rel}", file=sys.stderr)
+                    return 1
         print(f"ok  {name} @ {spec['revision'][:10]}")
     return 0
 

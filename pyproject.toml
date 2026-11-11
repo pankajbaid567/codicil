@@ -7,6 +7,7 @@ dependencies = [
   "numpy>=2.0",
   "onnxruntime>=1.20",
   "tokenizers>=0.20",
+  "sentencepiece>=0.2",
   "pypdf>=5.0",
   "pdfminer.six>=20240706",
   "snowballstemmer>=2.2",

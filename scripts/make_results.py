@@ -58,7 +58,8 @@ def main() -> None:
     o.append("### Hindi (Devanagari)\n" + table(dev, "hi", names))
     o.append("### Single-clause English\n" + table(dev, "single", names))
     o.append(
-        "Decisions taken from this table (rules in `docs/DESIGN.md`): hybrid beats either retriever alone; the two embedders tie on nDCG (0.669 vs 0.670 hybrid) so the multilingual one is chosen "
+        "Decisions taken from this table (rules in `docs/DESIGN.md`): hybrid beats either retriever alone; the two embedders tie on nDCG "
+        f"({dev['hybrid-bge']['ALL']['ndcg@10'][0]:.3f} vs {dev['hybrid-e5']['ALL']['ndcg@10'][0]:.3f} hybrid) so the multilingual one is chosen "
         "for its Hindi behaviour; BM25 is dropped for Devanagari queries because it cannot match them; the English cross-encoder helps English and hurts Hinglish and Hindi, so it is applied to English only.\n"
     )
     o.append(
@@ -115,8 +116,8 @@ def main() -> None:
     o.append(
         f"## Latency and memory (local, Apple M3, 8 GB, closed loop, one client)\n```\n{json.dumps(lat, indent=1)}\n```\n"
         f"In-process pipeline time over the {len(ms)} eval questions: p50 {st.median(ms):.0f} ms, p95 {sorted(ms)[int(0.95 * len(ms)) - 1]:.0f} ms. Most of it is the cross-encoder (20 passages). "
-        "RSS is flat under load once ONNX Runtime's arena uses `kSameAsRequested` (the default arena grew from 400 to 670 MB on the same run). 445 MB leaves little room under a 512 MB limit, so the "
-        "free Render tier may restart the service; if it does, the same image runs unchanged on a larger free host. Nothing here is a claim about the free hosting tier.\n"
+        "RSS is flat under load once ONNX Runtime's arena uses `kSameAsRequested` (the default arena grew from 400 to 670 MB on the same run). The first deployment attempt on a 512 MB host was killed for exceeding memory at startup (about 568 MB peak): the Hugging Face tokenizer for multilingual-e5 alone keeps about 290 MB "
+        "resident, so the service uses the original SentencePiece model instead (same token ids on every chunk and question; ADR-023). The latency table above was measured before that swap; the tokenizer itself costs 0.006 ms per query against 0.1 ms for the Hugging Face one, so latency is not expected to rise, but it has not been re-measured on a quiet machine, and memory after the swap is the 402 MB peak (maximum resident, `/usr/bin/time -l`), not the 445 MB shown. Nothing here is a claim about the free hosting tier.\n"
     )
     llm_files = sorted(R.glob("llm-*.json"))
     llm_rows = [(f, json.loads(f.read_text())) for f in llm_files]
