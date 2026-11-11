@@ -101,3 +101,9 @@ async def test_abstention_threshold_is_enforced(make_app):
     q = {"question": "within how many days must a bank credit an unauthorised electronic transaction?"}
     assert not (await post(make_app(min_dense=0.0), "/v1/ask", json=q)).json()["abstained"]
     assert (await post(make_app(min_dense=0.99), "/v1/ask", json=q)).json()["abstained"]
+
+
+async def test_web_ui_is_served_at_root(make_app):
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=make_app()), base_url="http://t") as c:
+        r = await c.get("/")
+    assert r.status_code == 200 and "text/html" in r.headers["content-type"] and "Codicil" in r.text

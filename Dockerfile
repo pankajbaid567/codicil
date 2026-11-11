@@ -18,6 +18,8 @@ RUN python scripts/fetch_models.py
 COPY src ./src
 COPY pyproject.toml ./
 RUN pip install --no-deps .
+# fail the build if the web UI did not make it into the installed package (it once did not)
+RUN python -c "from codicil.api.app import STATIC; assert (STATIC / 'index.html').exists(), STATIC"
 COPY index/multilingual-e5-small ./index/multilingual-e5-small
 
 RUN useradd -m app && chown -R app /app
