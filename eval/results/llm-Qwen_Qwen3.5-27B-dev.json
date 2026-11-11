@@ -1,0 +1,52 @@
+[
+ {
+  "id": "q001",
+  "language": "en",
+  "mode": "extractive",
+  "abstained": false,
+  "why": "llm failed, extractive fallback: generation failed: provider status 402: '{\"error\":\"Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get monthly included credits.\"'",
+  "hit": true,
+  "ms": 1522.6236249436624,
+  "answer": "A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: The bank may also, at its discretion, decide to waive off any customer liability in case of unauthorised electronic banking transactions even in cases of customer negligence. The credit shall be value dated to be as of the date of the unauthorised transaction."
+ },
+ {
+  "id": "q003",
+  "language": "en",
+  "mode": "extractive",
+  "abstained": false,
+  "why": "llm failed, extractive fallback: generation failed: provider status 402: '{\"error\":\"Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get monthly included credits.\"'",
+  "hit": true,
+  "ms": 1265.6934580300003,
+  "answer": "A bank shall have a Customer Compensation Policy, approved by its Board or a Committee to which powers have been delegated by the Board, which shall at a minimum, incorporate the following aspects: (viii) Customer compensation policy; (1) Policy / Guidelines\n  (i) Citizen's charter\n  (ii) Deposit policy\n  (iii) Deceased depositors policy along with nomination rules\n  (iv) Cheque collection policy\n  (v) Fair Practices Code for lenders\n  (vi) Code of conduct for direct selling agents\n  (vii) Code for collection of dues and repossession of security\n(2) Complaints\n  (i) Grievance redressal mechanism\n  (ii) Information relating to Reserve Bank Integrated Ombudsman Scheme (RB-IOS), 2026\n  (iii) Information relating to customer service centres (for Public Sector Banks)\n(3) Opening of Accounts\n  (i) Account opening forms\n  (ii) Terms and conditions\n  (iii) Service charges for various types of services – should cover typical common services including courier charges – what services are available without any charges."
+ },
+ {
+  "id": "q006",
+  "language": "en",
+  "mode": "extractive",
+  "abstained": false,
+  "why": "llm failed, extractive fallback: generation failed: provider status 402: '{\"error\":\"Purchase pre-paid credits to continue using Inference Providers. Alternatively, subscribe to PRO to get monthly included credits.\"'",
+  "hit": true,
+  "ms": 1306.6397919901647,
+  "answer": "All communications issued by recovery agents must contain the name, email-id, telephone number and address of the concerned senior officer of the card-issuer whom the customer can contact. The bank shall provide a loan card to the borrower which shall incorporate the following: An NBFC shall provide a loan card to the borrower which shall incorporate the following:"
+ },
+ {
+  "id": "q007",
+  "language": "en",
+  "mode": "extractive",
+  "abstained": false,
+  "why": "llm failed, extractive fallback: circuit open",
+  "hit": true,
+  "ms": 446.45675003994256,
+  "answer": "A bank shall invariably offer passbook facility to all its savings bank account holders (individuals) and in case the bank offers the facility of sending statement of account and the customer chooses to get statement of account, the bank shall issue monthly statement of accounts. The cost of providing such passbook or statement of account shall not be charged to the customer. A bank shall ensure adherence to monthly periodicity while sending statement of accounts."
+ },
+ {
+  "id": "q008",
+  "language": "en",
+  "mode": "extractive",
+  "abstained": false,
+  "why": "llm failed, extractive fallback: circuit open",
+  "hit": true,
+  "ms": 328.07391695678234,
+  "answer": "In the matter of recovery of loans, the bank shall not resort to undue harassment, viz., persistently bothering the borrower(s) at odd hours, use of muscle power for recovery of loans, etc. In the matter of recovery of loans, an NBFC shall not resort to undue harassment viz., persistently bothering the borrowers at odd hours, use muscle power for recovery of loans, etc. As complaints from customers also include rude behaviour from the staff of the companies, an NBFC shall ensure that the staff is adequately trained to deal with the customers in an appropriate manner. In the matter of recovery of loans, NBFC-P2P shall ensure that the staff are adequately trained to deal with the participants in an appropriate manner and shall not resort to harassment viz., persistently bothering the borrowers at odd hours, use of coercion for recovery of loans, etc."
+ }
+]

@@ -1,0 +1,21 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: astral-sh/setup-uv@v3
+      - run: uv venv --python 3.12 .venv && uv pip install -e . --group dev
+      - run: .venv/bin/python -m ruff check src tests eval scripts
+      - run: .venv/bin/python -m ruff format --check src tests
+      - run: .venv/bin/python -m mypy src
+      # model-dependent contract tests skip themselves when models are absent; the index artifact is committed
+      - run: .venv/bin/python -m pytest --cov=codicil --cov-fail-under=85
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t codicil .

@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: codicil
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: CODICIL_RATE_LIMIT_PER_MIN
+        value: "30"
+      # optional, set in the dashboard to enable LLM phrasing (the service works without them, in extractive mode):
+      # CODICIL_LLM_BASE_URL, CODICIL_LLM_API_KEY, CODICIL_LLM_MODEL

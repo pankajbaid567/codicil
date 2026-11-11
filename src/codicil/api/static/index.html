@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codicil: RBI Directions Q&A</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--muted:#6a6a64;--line:#e3e0d6;--card:#fff;--accent:#7a2e1d;--warn:#8a5a00;--warnbg:#fff4d6;--ok:#1f6b3a}
+@media (prefers-color-scheme:dark){:root{--bg:#161614;--fg:#ecebe6;--muted:#a09f96;--line:#33322e;--card:#1e1e1b;--accent:#e08a6d;--warn:#f0c36a;--warnbg:#3a2f12;--ok:#7fd49a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Georgia,'Iowan Old Style',serif}
+main{max-width:760px;margin:0 auto;padding:28px 16px 80px}
+h1{font-size:1.7rem;margin:0 0 4px;letter-spacing:-.01em}h1 span{color:var(--accent)}
+.sub{color:var(--muted);margin:0 0 20px;font-family:system-ui,sans-serif;font-size:.95rem}
+form{display:flex;gap:8px}textarea{flex:1;min-height:64px;padding:10px 12px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);resize:vertical}
+button{font:600 .95rem system-ui,sans-serif;padding:0 18px;border:0;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer}button:disabled{opacity:.5}
+.ex{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 18px}.ex button{background:transparent;color:var(--fg);border:1px solid var(--line);padding:4px 10px;font-weight:400;font-size:.85rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+.ans p{margin:.2em 0 .7em}sup a{color:var(--accent);text-decoration:none;font-family:system-ui,sans-serif;font-size:.75em}
+.cite{font-family:system-ui,sans-serif;font-size:.88rem}.cite b{display:block}.cite .path{color:var(--muted)}.cite blockquote{margin:.5em 0 0;padding-left:10px;border-left:3px solid var(--line);font-family:Georgia,serif;font-size:.92rem}
+.abstain{border-color:var(--warn);background:var(--warnbg)}.abstain h2{margin:0 0 4px;font-size:1.05rem;color:var(--warn)}
+.notice{font:.8rem system-ui,sans-serif;color:var(--muted);margin-top:14px}.meta{font:.8rem system-ui,sans-serif;color:var(--muted)}
+details{font:.85rem system-ui,sans-serif;margin-top:10px}pre{overflow:auto;background:var(--bg);padding:8px;border-radius:6px}
+.sr{position:absolute;left:-9999px}.stale{color:var(--warn)}
+</style>
+</head>
+<body><main>
+<h1>Cod<span>i</span>cil</h1>
+<p class="sub">Ask about Indian banking rules in English, Hindi or Hinglish. Answers quote the current RBI Directions, or say so when they cannot.</p>
+<form id="f"><label class="sr" for="q">Question</label><textarea id="q" maxlength="500" placeholder="e.g. How soon must a bank reverse an unauthorised electronic transaction?" required></textarea><button id="go">Ask</button></form>
+<div class="ex" id="ex"></div>
+<div id="out" aria-live="polite"></div>
+<p class="notice">Informational only; not legal or financial advice. Check the cited RBI text. Built from 17 RBI Directions fetched from rbi.org.in.</p>
+</main>
+<script>
+const EX=["How soon must a bank reverse an unauthorised electronic transaction?","recurring payment mein kitne rupaye tak AFA ke bina auto debit ho sakta hai?","क्रेडिट कार्ड के रिफंड को देय राशि में कैसे समायोजित किया जाता है?","What is the maximum maturity of a peer-to-peer loan?","What is the current repo rate?"];
+const $=s=>document.querySelector(s),out=$("#out"),q=$("#q");
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+EX.forEach(t=>{const b=document.createElement("button");b.type="button";b.textContent=t.length>48?t.slice(0,46)+"…":t;b.onclick=()=>{q.value=t;ask()};$("#ex").append(b)});
+$("#f").onsubmit=e=>{e.preventDefault();ask()};
+async function ask(){
+  const go=$("#go");go.disabled=true;out.innerHTML='<div class="card meta">Searching the Directions… (the free server may take ~30 s to wake up)</div>';
+  try{
+    const r=await fetch("/v1/ask",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:q.value,debug:true})});
+    const j=await r.json();
+    if(!r.ok){out.innerHTML=`<div class="card abstain"><h2>${esc(j.title||"Error")}</h2>${esc(j.detail||"")}</div>`;return}
+    render(j);
+  }catch(e){out.innerHTML='<div class="card abstain"><h2>Could not reach the server</h2>It may be waking up. Try again in a few seconds.</div>'}
+  finally{go.disabled=false}
+}
+function cite(c,i){const stale=c.status!=="in_force"?' <span class="stale">(superseded)</span>':"";
+  return `<div class="card cite" id="c${i}"><b>[${i+1}] ${esc(c.document)}${stale}</b><span class="path">${esc(c.path)}</span><br><span class="meta">updated as on ${esc(c.updated_as_on||"n/a")}</span><blockquote>${esc(c.quote)}</blockquote></div>`}
+function render(j){
+  const idx={};j.citations.forEach((c,i)=>idx[c.id]=i);let h="";
+  if(j.abstained){
+    h+=`<div class="card abstain"><h2>Not found in these Directions</h2>${esc(j.reason||"")}. Nothing below is an answer; these are the closest passages.</div>`;
+    h+=(j.closest||[]).map((c,i)=>`<div class="card cite"><b>${esc(c.document)}</b><span class="path">${esc(c.path)}</span><blockquote>${esc(c.quote)}</blockquote></div>`).join("");
+  }else{
+    h+='<div class="card ans">'+j.answer.map(s=>`<p>${esc(s.text)}${s.citations.map(id=>`<sup><a href="#c${idx[id]}">[${idx[id]+1}]</a></sup>`).join("")}</p>`).join("")+`<div class="meta">mode: ${esc(j.mode)} · index ${esc(j.index_sha)}</div></div>`;
+    h+=j.citations.map(cite).join("");
+  }
+  if(j.timings_ms)h+=`<details><summary>How this was answered</summary><pre>${esc(j.timings_ms.map(t=>t.stage.padEnd(10)+String(t.ms).padStart(8)+" ms  "+t.note).join("\n")+"\n\nsignals "+JSON.stringify(j.signals))}</pre></details>`;
+  out.innerHTML=h;
+}
+</script>
+</body></html>

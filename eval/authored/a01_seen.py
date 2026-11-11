@@ -1,0 +1,113 @@
+# (id, question, doc_key, verbatim phrase from the answering clause[, slice, lang, source])
+ITEMS = [
+    (
+        "q001",
+        "In what situations is a customer entitled to zero liability for an unauthorised transaction?",
+        "rbc",
+        "A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs",
+    ),
+    (
+        "q002",
+        "What must a bank communicate to the borrower when gold or silver pledged as collateral is lost or found deteriorated?",
+        "rbc",
+        "loss of gold or silver collateral and any deterioration or discrepancy in quantity or purity",
+    ),
+    (
+        "q003",
+        "What should a bank's Customer Compensation Policy cover at a minimum?",
+        "rbc",
+        "Customer Compensation Policy, approved by its Board or a Committee",
+    ),
+    ("q004", "How often must banks provide Form 15G or 15H to senior citizens?", "rbc", "The bank shall provide Form 15G / H to senior citizens"),
+    (
+        "q005",
+        "When an account is to be moved to another branch, how quickly must the bank act on the customer's instruction?",
+        "rbc",
+        "Instructions of a customer for transfer of her / his account to another branch shall be carried out immediately",
+    ),
+    (
+        "q006",
+        "What information must a bank's loan card contain?",
+        "rbc",
+        "The bank shall provide a loan card to the borrower which shall incorporate the following",
+    ),
+    (
+        "q007",
+        "Is a bank required to offer a passbook on a savings account and when must it send a statement instead?",
+        "rbc",
+        "A bank shall invariably offer passbook facility to all its savings bank account holders",
+    ),
+    (
+        "q008",
+        "Is it permitted for a bank's recovery agents to call a borrower at odd hours?",
+        "rbc",
+        "the bank shall not resort to undue harassment, viz., persistently bothering the borrower(s) at odd hours",
+    ),
+    (
+        "q009",
+        "After a loan is repaid, can the bank keep the securities, and what must it do if it claims a right of set-off?",
+        "rbc",
+        "The bank shall release all securities on receiving payment of loan or realisation of loan",
+    ),
+    (
+        "q010",
+        "What does the bank have to disclose about a deposit when it renews an overdue term deposit?",
+        "rbc",
+        "The terms and conditions of renewal including interest rates shall be notified to the customer at the time of acceptance of deposit",
+    ),
+    (
+        "q011",
+        "What happens to a nomination if one of several nominees dies before receiving the deposit?",
+        "rbc",
+        "if any nominee dies prior to receiving the deposit from a bank, the nomination in respect of such nominee alone shall become ineffective",
+    ),
+    ("q012", "What details must a term deposit receipt show?", "rbc", "A bank shall issue a term deposit receipt indicating therein full details"),
+    (
+        "q013",
+        "Can a bank raise the spread on an existing borrower's MCLR-linked loan?",
+        "adv",
+        "The spread charged to an existing borrower shall not be increased except on account of deterioration in the credit risk profile",
+    ),
+    (
+        "q014",
+        "How must a refund or reversed transaction credit be treated on a credit card bill before the due date?",
+        "cc",
+        "shall be immediately adjusted against the ‘payment due’ and notified to the cardholder",
+    ),
+    (
+        "q015",
+        "Do credit card issuers have to tell customers that their data is being shared with credit information companies?",
+        "cc",
+        "the card-issuer shall explicitly bring to the notice of the customer that such information is being provided",
+    ),
+    (
+        "q016",
+        "Within how many days must a card issuer update the credit bureau after a defaulting cardholder settles dues?",
+        "cc",
+        "the card-issuer shall update the status with CIC within 30 days from the date of settlement",
+    ),
+    (
+        "q017",
+        "Does RBI require insurance cover on credit and debit cards?",
+        "cc",
+        "The Reserve Bank has not prescribed any requirement for insurance cover on credit and debit cards",
+    ),
+    (
+        "q018",
+        "What must a card issuer disclose about revenue sharing in a co-branding arrangement?",
+        "cc",
+        "the information relating to revenue sharing between the card-issuer and the cobranding partner entity shall be indicated to the cardholder",
+    ),
+    (
+        "q019",
+        "Can a co-branding partner see the transaction data of a co-branded card?",
+        "cc",
+        "shall not have access to information relating to transactions undertaken through the co-branded card",
+    ),
+    (
+        "q020",
+        "What payment period applies to business credit cards where the company bears the liability?",
+        "cc",
+        "timeframe provided for payment of dues and adjustment of refunds may be as agreed between the card-issuer and the principal account holder",
+    ),
+]

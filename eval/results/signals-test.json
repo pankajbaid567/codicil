@@ -1,0 +1,1226 @@
+[
+ {
+  "id": "q002",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8833668828010559,
+   "coverage": 0.6153846153846154,
+   "top_score": 4.214677810668945,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Post pledging, cases involving loss of gold or silver collateral and any deterioration or discrepancy in quantity or purity observed during internal audit or otherwise including at the time of return or auction of collateral shall be recorded and communicated promptly to the borrower(s) / legal heir(s). Post pledging, cases involving loss of gold or silver collateral and any deterioration or discrepancy in quantity or purity observed during internal audit or otherwise including at the time of return or auction of collateral shall be recorded and communicated promptly to the borrower(s)/ legal heir(s). As part of internal audit, the bank shall carry out periodic surprise verification of the gold and silver collateral pledged with it and shall maintain a record thereof.",
+  "ms": 324.310666997917,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q004",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8918535113334656,
+   "coverage": 0.7272727272727273,
+   "top_score": 7.448781967163086,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "118.The bank shall provide Form 15G / H to senior citizens and differently abled persons once in a year (preferably in April) to enable them to submit the same, where applicable, within the stipulated time. A bank is not required to deduct TDS from depositors who submit declaration in Form 15-G / 15-H under Income-tax Rules, 1962. A bank shall provide a clearly identifiable dedicated counter or a counter which provides priority to senior citizens and people who are differently abled, including visually impaired persons.",
+  "ms": 297.9509169817902,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q005",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8847222328186035,
+   "coverage": 0.5,
+   "top_score": 2.345041275024414,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Instructions of a customer for transfer of her / his account to another branch shall be carried out immediately on receipt of, and in accordance with her / his instructions. When a branch receives an enquiry from a customer regarding the receipt of her / his account on transfer from another branch, it shall take up the matter with the transferor branch by electronic means, in case it has not received the balance of the account and / or other related papers even after a reasonable transit time. (8) clearly spell out the circumstances in which a customer is permitted to act on behalf of another person / entity.",
+  "ms": 378.1135000172071,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q009",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8909504413604736,
+   "coverage": 0.5833333333333334,
+   "top_score": 3.5423474311828613,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "If such right of set off is to be exercised, the borrower(s) shall be given notice about the same with full particulars about the remaining claims and the documents under which the bank is entitled to retain the securities till the relevant claim is settled / paid. If such right of set off is to be exercised, the borrower shall be given notice about the same with full particulars about the remaining claims and the conditions under which the NBFC is entitled to retain the securities till the relevant claim is settled / paid. The bank shall release all securities on receiving payment of loan or realisation of loan subject to any legitimate right or lien for any other claim it may have against the borrower.",
+  "ms": 402.2398749948479,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q010",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8716719746589661,
+   "coverage": 0.5555555555555556,
+   "top_score": 4.135105133056641,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "All aspects concerning renewal of overdue term deposits shall be laid down in a transparent policy. The rate of interest to be paid on renewal of overdue term deposits shall be subject to the stipulation contained in the paragraph 7 of these Directions. (2) In all other cases of renewal, interest rates for the overdue period on the renewed amount shall be determined by treating it as a fresh term deposit.",
+  "ms": 355.7712089968845,
+  "answer_hit": false,
+  "closest_hit": true
+ },
+ {
+  "id": "q011",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8842766284942627,
+   "coverage": 0.5,
+   "top_score": 5.406404495239258,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "In case of simultaneous nomination, if any nominee dies prior to receiving the deposit from a bank, the nomination in respect of such nominee alone shall become ineffective. If a sole locker hirer nominates an individual(s) to receive the contents in the locker in case of her / his death, the bank shall give access to the locker to such nominee(s) with liberty to remove the contents of the locker. A deposit account where a depositor had made nomination in terms of the provisions of the Banking Regulation Act, 1949 or where the account was opened with survivorship clause, the payment of the outstanding balance upon the death of the depositor(s) to the nominee(s) / survivor(s) shall be considered a valid discharge\n(3) it has been made clear in writing to the nominee(s) / survivor(s) that they would be receiving the payment from the bank as a trustee of the legal heirs of the deceased depositor(s), i.e., such payment to them shall not affect the right or claim which any person may have against the nominee(s) / survivor(s) to the extent of the payment made to them.",
+  "ms": 343.33791700191796,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q013",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.9052751064300537,
+   "coverage": 0.875,
+   "top_score": 5.653620719909668,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Provided that existing borrowers shall have the option to move to the MCLR linked loan at mutually acceptable terms. The spread charged to an existing borrower shall not be increased except on account of deterioration in the credit risk profile of the customer. Existing loans and credit limits linked to the Base Rate / BPLR shall continue till repayment or renewal, as the case may be.",
+  "ms": 307.53329198341817,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q014",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.9049903154373169,
+   "coverage": 0.6666666666666666,
+   "top_score": 4.888260841369629,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Any credit amount arising out of refund / failed / reversed transactions or similar transactions before the due date of payment for which payment has not been made by the cardholder, shall be immediately adjusted against the ‘payment due’ and notified to the cardholder. Scenario 2 – Credit of refund / failed / reversed transaction post generation of bill but before making payment of the dues\n• Purchase transaction date - October 29, 2023 • Refund on November 04, 2023 - For cancellation of purchase dated October 29, 2023 | The bill is generated on October 30, 2023, however, the payment towards the dues has not been made till the date of refund. Further, late payment fee and other charges relating to delay in payment shall be levied only on the outstanding amount (adjusted for payments / refunds / reversed transactions as and when credited) after the payment due date and not on the total amount due.",
+  "ms": 402.4170000338927,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q015",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.878065288066864,
+   "coverage": 0.7777777777777778,
+   "top_score": 7.109776973724365,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Further, in case where the customers give explicit consent for sharing the information provided by them with other agencies, card-issuers shall clearly state and explain to the customer the full meaning / implications of the disclosure clause. Further, the card-issuers shall not share card data (including transaction data) of the cardholders with the outsourcing partners unless sharing of such data is essential to discharge the functions assigned to the latter. Card-issuers shall not reveal any information relating to customers obtained at the time of opening the account or issuing the card to any other person or organization without obtaining their explicit consent, with regard to the purpose/s for which the information will be used and the organizations with whom the information will be shared.",
+  "ms": 287.41274995263666,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "q020",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8622219562530518,
+   "coverage": 0.45454545454545453,
+   "top_score": 4.485260486602783,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "For business credit cards wherein the liability rests fully with the corporate or business entity (principal account holder), timeframe provided for payment of dues and adjustment of refunds may be as agreed between the card-issuer and the principal account holder. Similarly, while issuing corporate credit cards, the responsibilities and liabilities of the corporate and its employees shall be clearly specified. Further, the responsibility for making payments in case of business credit cards shall be governed by the terms and conditions agreed upon.",
+  "ms": 332.6588339987211,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q021",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8873469829559326,
+   "coverage": 0.5454545454545454,
+   "top_score": 0.8510684370994568,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The Video-based Customer Identification Process (V-CIP), as detailed in Department of Regulation’s Master Direction on KYC dated February 25, 2016 (as amended from time to time), can be used to open full-KYC PPIs as well as to convert Small PPIs of paragraph 9.1 into full-KYC PPIs; Notwithstanding anything contained in paragraph 23 and as an alternative thereto, in case an individual who desires to open a bank account, the bank shall open a ‘Small Account’, which entails the following limitations: Provided that if the bank renders any account ineligible for being classified as a small account due to credits / balance in the account exceeding the permissible limits, the bank may allow withdrawals within the limit prescribed for small accounts where the limits thereof have not been breached.",
+  "ms": 361.7417920031585,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q022",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8953225016593933,
+   "coverage": 0.5714285714285714,
+   "top_score": 4.367040157318115,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "A bank shall convert a fully KYC compliant account automatically into a ‘Senior Citizen Account’ based on the date of birth available in its records. Also, whenever the bank obtains additional or updated information from any customer as per clause (10) below in this paragraph or Rule 9 (1C) of the PML Rules, the bank shall within seven days or within such period as may be notified by the Central Government, furnish the updated information to CKYCR, which shall update the KYC records of the existing customer in CKYCR. CDD Procedure and sharing KYC information with Central KYC Records Registry (CKYCR)\n(8) In order to ensure that all KYC records are incrementally uploaded on to CKYCR, the bank shall upload / update the KYC data pertaining to accounts of individual customers and LEs opened prior to the above-mentioned dates as per clauses (5) and (6), respectively, at the time of periodic updation as specified in paragraph 42 of these Directions, or earlier, when the updated KYC information is obtained / received from the customer.",
+  "ms": 365.6591250328347,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "q025",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8499687910079956,
+   "coverage": 0.8,
+   "top_score": 2.8774054050445557,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "(d) Equivalent e-document of Officially Valid Documents (OVDs) including documents issued through DigiLocker. Further, in case the validity of the CDD documents available with the bank has expired at the time of periodic updation of KYC, the bank shall undertake the KYC process equivalent to that applicable for onboarding a new customer. (i) The bank has customer’s KYC document as per the current CDD standards available with it.",
+  "ms": 366.38174997642636,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "q033",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8778039216995239,
+   "coverage": 0.375,
+   "top_score": 4.073811054229736,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "For redressal of his / her grievance, the customer must first approach the concerned card-issuer. The change in terms shall be notified to the cardholder through all the communication channels available. (a) An issuer shall send a pre-transaction notification to the customer, at least 24 hours prior to the actual charge / debit.",
+  "ms": 319.8828339809552,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q034",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8944138288497925,
+   "coverage": 0.5714285714285714,
+   "top_score": 6.79154109954834,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "All digital payment transactions in India are required to meet the norm of two factors of authentication. All digital payment transactions shall be authenticated by at least two distinct factors of authentication as defined in paragraph-5(f), unless exempted. While no specific factor was mandated for authentication, the digital payments ecosystem has primarily adopted SMS-based One Time Password (OTP) as the additional factor.",
+  "ms": 258.8672499987297,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q035",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8400537967681885,
+   "coverage": 0.3333333333333333,
+   "top_score": 3.43316650390625,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "No financial information of the customer shall be retrieved, shared or transferred by the NBFC-AA without the explicit consent of the customer. NBFC-AA shall also provide its customers a functionality to revoke consent to obtain information that is rendered accessible by a consent artefact, including the ability to revoke consent to obtain parts of such information. Upon revocation, a fresh consent artefact shall be shared with the Financial Information provider.",
+  "ms": 384.7187089850195,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q036",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8683157563209534,
+   "coverage": 0.5,
+   "top_score": 5.384726047515869,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The aggregate exposure of a lender to all borrowers at any point of time, across all NBFC-P2P platforms, shall be subject to a cap of ₹50,00,000/- provided that the amount lent by the lenders on NBFC-P2P platforms is consistent with their net-worth. In case, the amount lent by a lender is more than ₹10,00,000/- across P2P platforms, the lender shall produce a certificate to NBFC-P2P platforms from a practicing Chartered Accountant certifying minimum networth of ₹50,00,000. The exposure of a single lender to the same borrower, across all NBFC-P2Ps, shall not exceed ₹50,000/-.",
+  "ms": 345.46383301494643,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q039",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8815897107124329,
+   "coverage": 0.8,
+   "top_score": 6.062849044799805,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "(1) Interest shall be calculated on a daily product basis as under: Interest on savings deposit shall be credited by a bank at quarterly or shorter intervals. Interest on the deposits accepted under the Scheme shall be calculated on the basis of 360 days to a year.",
+  "ms": 345.65462497994304,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q040",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.9123343825340271,
+   "coverage": 0.8888888888888888,
+   "top_score": 8.710978507995605,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Penalties for premature withdrawal of NRE term deposits. (2) No penalty shall be levied for premature withdrawal of NRE term deposits for conversion into RFC account. There shall be a comprehensive policy on penalties for premature withdrawal of NRE term deposits approved by the Board of Directors or any Committee of the Board to which powers have been delegated, subject to the following:",
+  "ms": 317.0657499576919,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q042",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.918964147567749,
+   "coverage": 1.0,
+   "top_score": 7.931614398956299,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "A resident individual can open a foreign currency account with a bank outside India for the purpose of sending remittances under the Liberalized Remittance Scheme. A person resident in India who has gone abroad for studies may open a foreign currency account with a bank outside India during his stay abroad. A person resident in India who is on a visit to a foreign country may open a foreign currency account with a bank outside India during his stay abroad.",
+  "ms": 307.9220409854315,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q044",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8730099201202393,
+   "coverage": 0.5833333333333334,
+   "top_score": 5.338414192199707,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "(1) Complainants shall be entitled to a compensation of ₹100 per calendar day in case their complaint is not resolved within a period of thirty calendar days from the date of the initial filing of the complaint by the complainant with a CI / CIC. (ii) Rule 20 (3) (c) of CIC Rules, 2006 provides that the CI shall forward the corrected particulars of the credit information to the CIC or complainant within a period of 21 days from the date when the CI was informed of the inaccuracy in the credit information. (i) Section 21 (3) of CICRA, 2005 provides that a complainant may request a CIC or CI to update the credit information by making an appropriate correction, addition or otherwise, and on such request the CI or CIC shall take steps to update the credit information within 30 days after being requested to do so.",
+  "ms": 403.71004201006144,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q045",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.9046535491943359,
+   "coverage": 0.6666666666666666,
+   "top_score": 7.943806171417236,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The interest rate under external benchmark shall be reset at least once in three months. In case of loans linked to an external benchmark under the External Benchmark Lending Rate (EBLR) regime, the bank shall follow extant instructions and also put in place adequate information systems to monitor transmission of changes in the benchmark rate to the lending rate. In case of loans linked to an external benchmark, the NBFC shall put in place adequate information systems to monitor transmission of changes in the benchmark rate to the lending rate.",
+  "ms": 264.3717500031926,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q050",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.880588173866272,
+   "coverage": 0.5833333333333334,
+   "top_score": 6.034544467926025,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The customers shall be advised to notify their bank of any unauthorised electronic banking transaction at the earliest after the occurrence of such transaction and informed that the longer the time taken to notify the bank, the higher will be the risk of loss to the bank / customer. The bank may also, at its discretion, decide to waive off any customer liability in case of unauthorised electronic banking transactions even in cases of customer negligence. The credit shall be value dated to be as of the date of the unauthorised transaction.",
+  "ms": 380.69499999983236,
+  "answer_hit": false,
+  "closest_hit": true
+ },
+ {
+  "id": "q051",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.889013946056366,
+   "coverage": 0.8571428571428571,
+   "top_score": 5.814373970031738,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The Basic Savings Bank Deposit (BSBD) Account is designed as a savings account to provide affordable banking facilities to the public at large. A bank shall offer the following basic minimum facilities in a BSBD account, free of charge, without any requirement of minimum balance to be maintained in such an account. The bank shall also convey the differences between a BSBD account and various savings bank account variants offered by it when a customer approaches it to open a deposit account.",
+  "ms": 295.7129169953987,
+  "answer_hit": false,
+  "closest_hit": true
+ },
+ {
+  "id": "q053",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8679020404815674,
+   "coverage": 0.875,
+   "top_score": 5.652919292449951,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "It is the responsibility of a bank to take all steps for the safety and security of the premises in which the safe deposit vaults are housed. The area housing the lockers shall remain adequately guarded at all times. NBFCs offering safe deposit locker facility or intending to offer it, shall disclose to their customers that the activity is not regulated by the Reserve Bank.",
+  "ms": 360.4854170116596,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q056",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8747001886367798,
+   "coverage": 0.7777777777777778,
+   "top_score": 5.681478023529053,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The NBFC shall ensure that the DSA / DMA / recovery agents are properly trained to handle their responsibilities with care and sensitivity, particularly aspects such as soliciting customers, hours of calling, privacy of customer information and conveying the correct terms and conditions of the products on offer, etc. The bank shall ensure that the recovery agents are properly trained to handle with care and sensitivity, their responsibilities particularly aspects like hours of calling, privacy of customer information, etc. The NBFC shall strictly ensure that it or its agents do not resort to intimidation or harassment of any kind, either verbal or physical, against any person in their debt collection efforts, including acts intended to humiliate publicly or intrude upon the privacy of the debtors' family members, referees and friends, sending inappropriate messages either on mobile or through social media, making threatening and/ or anonymous calls, persistently calling the borrower and/ or calling the borrower before 8:00 a.m. and after 7:00 p.m. for recovery of overdue loans, making false and misleading representations, etc. These directions shall not be applicable to microfinance loans.",
+  "ms": 300.44249998172745,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "q059",
+  "slice": "single",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8850783109664917,
+   "coverage": 0.8,
+   "top_score": 6.499134540557861,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Personal information provided by the cardholder but not required for recovery purposes shall not be released by the card-issuer. The card-issuer shall ensure that the DSAs / DMAs / recovery agents do not transfer or misuse any customer information during marketing of credit card products. Further, card-issuers shall provide the name and contact details of the recovery agent to the cardholder immediately upon assigning the agent to the cardholder.",
+  "ms": 314.35012503061444,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "u02",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8578331470489502,
+   "coverage": 0.6666666666666666,
+   "top_score": 0.6846083998680115,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "A bank may, at its discretion, formulate term deposit schemes specifically for resident Indian senior citizens, offering higher and fixed rates of interest as compared to normal deposits of any size. (5) The benefit of additional interest rate on deposits on account of being bank’s own staff or senior citizens shall not be available to NRE and NRO deposits. A bank may, at its discretion, give its resident Indian retired staffs, who are senior citizens, the benefit of additional interest rates as admissible to senior citizens over and above the additional interest payable to them by virtue of their being retired members of the bank’s staff.",
+  "ms": 355.9258340392262,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u05",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.844262421131134,
+   "coverage": 0.25,
+   "top_score": -8.005050659179688,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "(iii) Passport No. and place/country of issue; (xiv) ‘Officially Valid Document (OVD)’ means the passport, the driving licence, proof of possession of Aadhaar number, the Voter's Identity Card that the Election Commission of India issues, the job card that NREGA issues and an officer of the State Government duly signs, and the letter that the National Population Register issues containing details of name and address. A bank shall obtain recent passport size photographs of locker-hirer(s) and individual(s) authorised by locker hirer(s) to operate the locker and preserve them in the records pertaining to locker-hirer being maintained in the bank branch.",
+  "ms": 329.0866670431569,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u07",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.853295087814331,
+   "coverage": 0.4,
+   "top_score": -4.668028354644775,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "A bank shall settle the claim up to the threshold limit based on: A bank shall settle claims involving ‘Will’ left behind by a deceased safe deposit locker hirer on the basis of Probate of Will / Letter of Administration, as applicable, in addition to documents mentioned at paragraph 309(1) to 309(3) above. In cases falling under the simplified procedure, a bank shall obtain the following documents to settle the claim without obtaining any legal documents such as Succession Certificate, Letter of Administration, court order, etc. (1) Claim form, as given in Annex VI, duly filled and signed by the claimant legal heir(s);",
+  "ms": 406.50887502124533,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u08",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8285406231880188,
+   "coverage": 0.5555555555555556,
+   "top_score": -3.0624899864196777,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "An NBFC-P2P shall maintain a Leverage Ratio not exceeding two. Till September 30, 2021, the existing PPI issuer shall continue to maintain the capital requirements applicable to it at the time of its authorisation. Leverage ratio refers to outside liabilities on the balance sheet of an NBFC-P2P Platform that it can raise, divided by its owned funds.",
+  "ms": 308.4820829681121,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u09",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8567079305648804,
+   "coverage": 0.3333333333333333,
+   "top_score": -2.2499890327453613,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Keeping deposits with an Indian company by persons resident outside India, in accordance with section 160 of the Companies Act, 2013, is a current account (payment) transaction and, as such, does not require any approval from Reserve Bank. An NBFC-P2P shall maintain a Leverage Ratio not exceeding two. Leverage ratio refers to outside liabilities on the balance sheet of an NBFC-P2P Platform that it can raise, divided by its owned funds.",
+  "ms": 344.2995839868672,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u10",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.863563060760498,
+   "coverage": 0.7142857142857143,
+   "top_score": 5.188411712646484,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "(3) “Non-Performing Asset” (NPA) means a loan where interest and / or installment of principal remain overdue for a period of more than 90 days. These may include approval or disallowance of facilities, such as, drawings beyond the sanctioned limits, honouring cheques issued for the purpose other than specifically agreed to in the credit sanction, and disallowing drawing on a borrowal account on its classification as a non-performing asset or on account of non-compliance with the terms of sanction. (iv) portfolio performance including share of non-performing assets (NPAs) on a monthly basis and segregation by age.",
+  "ms": 250.4690839559771,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u11",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8403823375701904,
+   "coverage": 0.14285714285714285,
+   "top_score": -1.5599853992462158,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "(11) Regulated Entities (REs), for the limited purpose of this Direction, shall mean\n  (i) Scheduled Commercial Banks (SCBs) / Regional Rural Banks (RRBs) / Local Area Banks (LABs) / All Primary (Urban) Co-operative Banks (UCBs) / State and Central Co-operative Banks (StCBs / CCBs) / Small Finance Banks, Payment Banks and any other entity which has been licenced under Section 22 of Banking Regulation Act, 1949\n  (ii) All India Financial Institutions (AIFIs)\n  (iii) Non-Banking Finance Companies and Housing Finance Companies All floating rate personal or retail loans (housing, auto, etc.), and floating rate loans extended by banks to Micro, Small and Medium Enterprises (MSME) shall be benchmarked to an External Benchmark Rate. The maturity of the loans shall not exceed 36 months.",
+  "ms": 335.0510000018403,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u12",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.846082329750061,
+   "coverage": 0.375,
+   "top_score": -1.471269965171814,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Shall consist of ‘paid up equity capital, preference shares which are compulsorily convertible into equity capital, free reserves, balance in share premium account and capital reserves representing surplus arising out of sale proceeds of assets but not reserves created by revaluation of assets’ adjusted for ‘accumulated loss balance, book value of intangible assets and deferred revenue expenditure, if any’. Till September 30, 2021, the existing PPI issuer shall continue to maintain the capital requirements applicable to it at the time of its authorisation. Thereafter, the minimum positive net-worth of Rs.15 crore shall be maintained at all times.",
+  "ms": 324.46095801424235,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u16",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8585540056228638,
+   "coverage": 0.5,
+   "top_score": -0.4772243797779083,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "(1) Disclosure of service charges: Disclosure and notification of service charges: These charges shall be reasonable and not out of line with the average cost of providing these services.",
+  "ms": 377.4927500053309,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u19",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8422277569770813,
+   "coverage": 0.5,
+   "top_score": -5.06711483001709,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "All floating rate rupee loans sanctioned and renewed between July 1, 2010 and March 31, 2016 shall be priced with reference to the Base Rate which will be the internal benchmark for such purposes. Rupee deposits of non-residents under NRE and NRO deposits shall be accepted only by those banks that are authorised under Foreign Exchange Management Act,1999 (FEMA) by Reserve Bank of India from time to time. Rupee Vostro Accounts of Exchange Houses\nOpening of Rupee accounts in the name of Exchange Houses for facilitating private remittances into India requires approval of the Reserve Bank.",
+  "ms": 321.0935409879312,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u20",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8372474908828735,
+   "coverage": 0.42857142857142855,
+   "top_score": -1.517818570137024,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "(c) Intermediary bank shall take reasonable measures to identify cross- border wire transfers that lack required originator information or required beneficiary information. Wire Transfer\n(a) The bank processing an intermediary element of a chain of wire transfers shall ensure that all originator and beneficiary information accompanying a wire transfer is retained with the transfer. In case of such pre-registered beneficiaries, the funds transfer limit shall not exceed Rs.2,00,000/- per month per beneficiary.",
+  "ms": 436.52379198465496,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u21",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8250167369842529,
+   "coverage": 0.42857142857142855,
+   "top_score": -9.573770523071289,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "A bank may provide the facility for online lodgement of such claims. The issuer shall provide the customer with a facility to modify the validity period or withdraw the e-mandate at any point of time. Upon a claimant uploading the claim form along with the required documents, the bank shall send acknowledgement / confirmation through appropriate channels and also make available the provision for online tracking of the status of the claim.",
+  "ms": 384.27654100814834,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u23",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.9012264609336853,
+   "coverage": 0.6666666666666666,
+   "top_score": 6.744163990020752,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The process of registration as an NBFC-AA is as under: (ii) NBFC-Factor registered with the RBI under the provisions of the Factoring Regulation Act, 2011; (1) NBFC-D registered with the RBI under the provisions of the RBI Act, 1934;",
+  "ms": 336.6154169780202,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u24",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8789734840393066,
+   "coverage": 0.45454545454545453,
+   "top_score": -1.9927752017974854,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "As complaints received against NBFCs generally pertain to charging of high interest / penal charges, an NBFC shall mention the penalties charged for late repayment in bold in the loan agreement. Borrowers may not be fully aware of the terms and conditions of the loans including rate of interest at the time of sanction of loans, either because the NBFC does not provide details of the same or the borrower has no time to look into detailed agreement. (1) At the time of sanction, an NBFC shall clearly communicate to the borrowers about the possible impact of change in benchmark interest rate on the loan leading to changes in EMI and / or tenor or both.",
+  "ms": 369.2208330030553,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u28",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8243803977966309,
+   "coverage": 0.375,
+   "top_score": -7.7375640869140625,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "An NBFC shall prominently display the minimum, maximum and average interest rates charged on microfinance loans in all its offices, in the literature (information booklets/ pamphlets) issued by it and details on its website. The bank shall prominently display the minimum, maximum and average interest rates charged on microfinance loans in all its offices, in the literature (information booklets / pamphlets) issued by it and details on its website. All limits in the value of instruments stated in this MD, indicate the maximum value of such instruments denominated in INR that shall be issued.",
+  "ms": 340.8500000368804,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "u30",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.83937668800354,
+   "coverage": 0.42857142857142855,
+   "top_score": -2.9458670616149902,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The Banking Companies (Nomination) Rules, 2025 (the Rules) have also been notified which along with amended provisions of the Act came into force from November 1, 2025. Accordingly, these Directions are issued to banks to implement the nomination facility and shall be read with sections 45ZA to 45ZG of the Banking Regulation Act, 1949 and the Nomination Rules framed thereunder. A bank shall offer nomination facility in deposit accounts in accordance with the provisions of sections 45ZA, 45ZB and 45ZG of the Act and the Rules.",
+  "ms": 463.77062500687316,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "h03",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8517733812332153,
+   "coverage": 0.3157894736842105,
+   "top_score": 0.03278688524590164,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "If such right of set off is to be exercised, the borrower(s) shall be given notice about the same with full particulars about the remaining claims and the documents under which the bank is entitled to retain the securities till the relevant claim is settled / paid. If such right of set off is to be exercised, the borrower shall be given notice about the same with full particulars about the remaining claims and the conditions under which the NBFC is entitled to retain the securities till the relevant claim is settled / paid. The bank shall release all securities on receiving payment of loan or realisation of loan subject to any legitimate right or lien for any other claim it may have against the borrower.",
+  "ms": 45.60800001490861,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "h04",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8592846393585205,
+   "coverage": 0.3333333333333333,
+   "top_score": 0.03200204813108039,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "To determine the range of spread for a given category of borrower / type of loan. To determine the quantum of each component of spread. The spread charged to an existing borrower shall not be increased except on account of deterioration in the credit risk profile of the customer.",
+  "ms": 29.060875007417053,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "h07",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8422077298164368,
+   "coverage": 0.3,
+   "top_score": -8.986834526062012,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "(d) Pre-transaction notification is not required for e-mandates registered to auto-replenish balances of FASTag, and National Common Mobility Card (NCMC). (a) An issuer shall send a pre-transaction notification to the customer, at least 24 hours prior to the actual charge / debit. (b) The pre-transaction notification shall, at the minimum, inform the customer about the merchant’s name, transaction amount, date / time of debit, reference number of e-mandate, reason for debit, i.e., e-mandate registered by the customer.",
+  "ms": 502.31150002218783,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "h08",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8825322985649109,
+   "coverage": 0.5,
+   "top_score": 0.03278688524590164,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "All digital payment transactions shall be authenticated by at least two distinct factors of authentication as defined in paragraph-5(f), unless exempted. All digital payment transactions in India are required to meet the norm of two factors of authentication. While no specific factor was mandated for authentication, the digital payments ecosystem has primarily adopted SMS-based One Time Password (OTP) as the additional factor.",
+  "ms": 66.71258300775662,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "h09",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8747792840003967,
+   "coverage": 0.2857142857142857,
+   "top_score": 0.03278688524590164,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "In case, the amount lent by a lender is more than ₹10,00,000/- across P2P platforms, the lender shall produce a certificate to NBFC-P2P platforms from a practicing Chartered Accountant certifying minimum networth of ₹50,00,000. The aggregate exposure of a lender to all borrowers at any point of time, across all NBFC-P2P platforms, shall be subject to a cap of ₹50,00,000/- provided that the amount lent by the lenders on NBFC-P2P platforms is consistent with their net-worth. An NBFC-P2P shall be required to obtain explicit declaration from the lenders stating that they have understood all the risks associated with the lending transactions and that the NBFC-P2P platform does not assure return of principal / payment of interest.",
+  "ms": 9.471125027630478,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "h11",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8943526744842529,
+   "coverage": 0.46153846153846156,
+   "top_score": 0.03278688524590164,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "A resident individual can open a foreign currency account with a bank outside India for the purpose of sending remittances under the Liberalized Remittance Scheme. A person resident in India may maintain a foreign currency account outside India if he had maintained it when he was resident outside India or inherited it from a person resident outside India. 4) The balances in the Non-Resident External (NRE) Account and Foreign Currency Bank [FCNR (B)] Account can be credited to the RFC account when the residential status of the non-resident Indian (NRI) or person of Indian origin (PIO) changes to that of a Resident.",
+  "ms": 11.112791951745749,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "h12",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8547853231430054,
+   "coverage": 0.21428571428571427,
+   "top_score": 0.031054405392392875,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "A CI shall implement the following compensation mechanism for delayed updation/ rectification of credit information: In respect of the delay in affording credit in respect of credit advices complete in all respects, the compensation stipulated by FEDAI should be paid to the exporter client, without waiting for a demand from the exporter. Bank Holidays\nBanking Glossary\nCitizen's Charter\nComplaints\nContact Us\nCOVID-19 Measures\nE-LMS\nEvents\nFAQs\nFinancial Education\nForms\nIFSC/MICR Codes\nImportant Websites\nOpportunities@RBI\nRBI Clarifications\nRBI Kehta Hai\nRBI’s Vision and Values (652 kb)\nRight to Information Act\nTenders",
+  "ms": 12.440208985935897,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "h13",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8749476671218872,
+   "coverage": 0.4166666666666667,
+   "top_score": -2.469326972961426,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The interest rate under external benchmark shall be reset at least once in three months. In case of loans linked to an external benchmark under the External Benchmark Lending Rate (EBLR) regime, the bank shall follow extant instructions and also put in place adequate information systems to monitor transmission of changes in the benchmark rate to the lending rate. In case of loans linked to an external benchmark, the NBFC shall put in place adequate information systems to monitor transmission of changes in the benchmark rate to the lending rate.",
+  "ms": 450.8037090417929,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "h15",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8618836402893066,
+   "coverage": 0.23529411764705882,
+   "top_score": 0.030536130536130537,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "The credit shall be value dated to be as of the date of the unauthorised transaction. On receipt of report of an unauthorised transaction from the customer, the bank shall take immediate steps to prevent further unauthorised transactions in the account. On being notified by the customer, the bank shall credit (shadow reversal) the amount involved in the unauthorised electronic transaction to the customer’s account within 10 working days from the date of such notification by the customer (without waiting for settlement of insurance claim, if any).",
+  "ms": 12.818749994039536,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "h16",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8464465141296387,
+   "coverage": 0.2727272727272727,
+   "top_score": 0.030886196246139225,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "The holder of a BSBD account shall not be eligible to open another BSBD account in the same bank or any other bank. Every bank shall offer a BSBD account which shall be considered a normal banking service available to all. The Basic Savings Bank Deposit (BSBD) Account is designed as a savings account to provide affordable banking facilities to the public at large.",
+  "ms": 9.188709023874253,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "h17",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8245739936828613,
+   "coverage": 0.25,
+   "top_score": -10.861212730407715,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "It has the responsibility to ensure that incidents like fire, theft / burglary / robbery, dacoity, building collapse do not occur in the bank’s premises due to its own shortcomings, negligence and by any act of omission / commission. For this purpose, the bank may adopt the model locker agreement framed by IBA. The bank shall ensure that any unfair terms or conditions are not incorporated in its locker agreements.",
+  "ms": 340.715124970302,
+  "answer_hit": false,
+  "closest_hit": true
+ },
+ {
+  "id": "h22",
+  "slice": "hinglish",
+  "answerable": true,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8564935922622681,
+   "coverage": 0.3333333333333333,
+   "top_score": -7.53693962097168,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Notwithstanding anything contained in paragraph 23 and as an alternative thereto, in case an individual who desires to open a bank account, the bank shall open a ‘Small Account’, which entails the following limitations: Provided that if the bank renders any account ineligible for being classified as a small account due to credits / balance in the account exceeding the permissible limits, the bank may allow withdrawals within the limit prescribed for small accounts where the limits thereof have not been breached. The Video-based Customer Identification Process (V-CIP), as detailed in Department of Regulation’s Master Direction on KYC dated February 25, 2016 (as amended from time to time), can be used to open full-KYC PPIs as well as to convert Small PPIs of paragraph 9.1 into full-KYC PPIs;",
+  "ms": 369.9691249639727,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "d01",
+  "slice": "hi",
+  "answerable": true,
+  "language": "hi",
+  "signals": {
+   "top_dense": 0.8710355758666992,
+   "coverage": 0.16666666666666666,
+   "top_score": 0.01639344262295082,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "The bank shall intimate its customers, in advance, to update their KYC. Updation / Periodic Updation of KYC\n(7) Due Notices for Periodic Updation of KYC: The letter of intimation / reminder may, inter alia, contain easy-to-understand instructions for updating KYC, escalation mechanism for seeking help, if required, and the consequences, if any, of failure to update their KYC in time.",
+  "ms": 8.5491249919869,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "d04",
+  "slice": "hi",
+  "answerable": true,
+  "language": "hi",
+  "signals": {
+   "top_dense": 0.8439517021179199,
+   "coverage": 0.08333333333333333,
+   "top_score": 0.01639344262295082,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "(1) Interest shall be calculated on a daily product basis as under: Interest on savings deposit shall be credited by a bank at quarterly or shorter intervals. Interest on savings bank accounts, including those frozen by the enforcement authorities, shall be credited on regular basis, irrespective of the operational status of the account.",
+  "ms": 7.359999988693744,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "d07",
+  "slice": "hi",
+  "answerable": true,
+  "language": "hi",
+  "signals": {
+   "top_dense": 0.8212723135948181,
+   "coverage": 0.0,
+   "top_score": 0.01639344262295082,
+   "reranked": 0.0
+  },
+  "abstained_untuned": true,
+  "answer": "",
+  "ms": 5.507541005499661,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "d08",
+  "slice": "hi",
+  "answerable": true,
+  "language": "hi",
+  "signals": {
+   "top_dense": 0.8731034994125366,
+   "coverage": 0.17647058823529413,
+   "top_score": 0.01639344262295082,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "Card-issuers shall seek explicit consent of the cardholder to adjust credit amount beyond a cut-off, one percent of the credit limit or ₹5000, whichever is lower, arising out of refund / failed / reversed transactions or similar transactions against the credit limit for which payment has already been made by the cardholder. Scenario 2 – Credit of refund / failed / reversed transaction post generation of bill but before making payment of the dues\n• Purchase transaction date - October 29, 2023 • Refund on November 04, 2023 - For cancellation of purchase dated October 29, 2023 | The bill is generated on October 30, 2023, however, the payment towards the dues has not been made till the date of refund. Any credit amount arising out of refund / failed / reversed transactions or similar transactions before the due date of payment for which payment has not been made by the cardholder, shall be immediately adjusted against the ‘payment due’ and notified to the cardholder.",
+  "ms": 8.932000026106834,
+  "answer_hit": true,
+  "closest_hit": true
+ },
+ {
+  "id": "m02",
+  "slice": "multi",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8855988383293152,
+   "coverage": 0.5,
+   "top_score": 4.727590084075928,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "The NBFC shall obtain the undertaking of DSA / DMA / recovery agents to abide by the code of conduct. It is essential that the recovery agents refrain from any action that could damage the integrity and reputation of the NBFC and that they observe strict customer confidentiality. To ensure due notice and appropriate authorisation, an NBFC shall provide the details of recovery agents to the borrower while initiating the process of recovery.",
+  "ms": 305.90641702292487,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "m03",
+  "slice": "multi",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8827301263809204,
+   "coverage": 0.5454545454545454,
+   "top_score": 2.8177976608276367,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Card-issuers shall ensure that wrong bills are not raised and issued to cardholders. Card-issuers shall seek explicit consent of the cardholder to adjust credit amount beyond a cut-off, one percent of the credit limit or ₹5000, whichever is lower, arising out of refund / failed / reversed transactions or similar transactions against the credit limit for which payment has already been made by the cardholder.\nfor adjustment of the refund, then the refund amount will be credited to the bank account of the cardholder in line with paragraph 31. Card-issuers shall put in place a mechanism to ensure that the cardholder is in receipt of the billing statement.",
+  "ms": 372.18858301639557,
+  "answer_hit": true,
+  "closest_hit": false
+ },
+ {
+  "id": "m06",
+  "slice": "multi",
+  "answerable": true,
+  "language": "en",
+  "signals": {
+   "top_dense": 0.8846856355667114,
+   "coverage": 0.6666666666666666,
+   "top_score": 3.0590391159057617,
+   "reranked": 1.0
+  },
+  "abstained_untuned": false,
+  "answer": "Updation / Periodic Updation of KYC\n(7) Due Notices for Periodic Updation of KYC: Also, whenever the bank obtains additional or updated information from any customer as per clause (10) below in this paragraph or Rule 9 (1C) of the PML Rules, the bank shall within seven days or within such period as may be notified by the Central Government, furnish the updated information to CKYCR, which shall update the KYC records of the existing customer in CKYCR. Prior to the due date of periodic updation of KYC, the bank shall give at least three advance intimations, including at least one intimation by letter, at appropriate intervals to its customers through available communication options / channels for complying with the requirement of periodic updation of KYC.",
+  "ms": 394.13470798172057,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ux02",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8657132983207703,
+   "coverage": 0.4375,
+   "top_score": 0.03252247488101534,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "A bank may, at its discretion, formulate term deposit schemes specifically for resident Indian senior citizens, offering higher and fixed rates of interest as compared to normal deposits of any size. Income from interest on balances standing to the credit of NRE Accounts is exempt from Income Tax. Provided that this facility is not offered on the term deposit standing in the name of an HUF or the Karta of the HUF, even if the Karta is a resident Indian senior citizen.",
+  "ms": 8.9537090389058,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ux06",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8604559898376465,
+   "coverage": 0.13333333333333333,
+   "top_score": 0.02690501986276634,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "Bank Holidays\nBanking Glossary\nCitizen's Charter\nComplaints\nContact Us\nCOVID-19 Measures\nE-LMS\nEvents\nFAQs\nFinancial Education\nForms\nIFSC/MICR Codes\nImportant Websites\nOpportunities@RBI\nRBI Clarifications\nRBI Kehta Hai\nRBI’s Vision and Values (652 kb)\nRight to Information Act\nTenders Bank Holidays\nBanking Glossary\nCitizen's Charter\nComplaints\nContact Us\nCOVID-19 Measures\nE-LMS\nEvents\nFAQs\nFinancial Education\nForms\nIFSC/MICR Codes\nImportant Websites\nOpportunities@RBI\nRBI Clarifications\nRBI Kehta Hai\nRBI’s Vision and Values (652 KB)\nRight to Information Act\nTenders",
+  "ms": 9.155666979495436,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ux07",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8662224411964417,
+   "coverage": 0.23076923076923078,
+   "top_score": 0.03036576949620428,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "Bank Holidays\nBanking Glossary\nCitizen's Charter\nComplaints\nContact Us\nCOVID-19 Measures\nE-LMS\nEvents\nFAQs\nFinancial Education\nForms\nIFSC/MICR Codes\nImportant Websites\nOpportunities@RBI\nRBI Clarifications\nRBI Kehta Hai\nRBI’s Vision and Values (652 kb)\nRight to Information Act\nTenders Bank Holidays\nBanking Glossary\nCitizen's Charter\nComplaints\nContact Us\nCOVID-19 Measures\nE-LMS\nEvents\nFAQs\nFinancial Education\nForms\nIFSC/MICR Codes\nImportant Websites\nOpportunities@RBI\nRBI Clarifications\nRBI Kehta Hai\nRBI’s Vision and Values (652 KB)\nRight to Information Act\nTenders",
+  "ms": 8.369125018361956,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ux08",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8553852438926697,
+   "coverage": 0.375,
+   "top_score": 0.03278688524590164,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "Data of Self Help Group (SHG) members\n(ii) A CI shall monitor the NPA levels in the SHG segment on an ongoing basis and collect detailed information from SHG members availing loans exceeding a lower threshold of ₹20,000, if the Gross NPA in the SHG segment exceeds 10% or is higher than the gross NPA of the CI by 5 percentage points. Bank Holidays\nBanking Glossary\nCitizen's Charter\nComplaints\nContact Us\nCOVID-19 Measures\nE-LMS\nEvents\nFAQs\nFinancial Education\nForms\nIFSC/MICR Codes\nImportant Websites\nOpportunities@RBI\nRBI Clarifications\nRBI Kehta Hai\nRBI’s Vision and Values (652 kb)\nRight to Information Act\nTenders (iii) Non-adherence to the instructions by a CI shall result in exclusion of non-compliant SHG loan accounts from the loan portfolios eligible to be reckoned for the purpose of complying with the priority sector lending (PSL) targets.",
+  "ms": 5.9925829991698265,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ux11",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8529884815216064,
+   "coverage": 0.2727272727272727,
+   "top_score": 0.03021353930031804,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "The annual fees charged by the CICs from a CI shall not exceed ₹5,000 each. One-time membership fee charged by the CICs from a CI to become their members shall not exceed ₹10,000 each. (1) Fees and Charges\n  (i) Joining fees for primary cardholder and for add-on cardholder/s\n  (ii) Annual membership fees for primary and add-on cardholder/s\n  (iii) Cash advance fee\n  (iv) Service charges levied for transactions\n  (v) Interest free (grace) period - illustrated with examples\n  (vi) Finance charges for both revolving credit and cash advances\n  (vii) Overdue interest charges - to be given on monthly & annualised basis\n  (viii) Charges in case of default\n(2) Drawal Limits\n  (i) Credit limit\n  (ii) Available credit limit\n  (iii) Cash withdrawal limit\n(3) Billing\n  (i) Billing statements - periodicity and mode of sending\n  (ii) Minimum amount payable\n  (iii) Method of payment\n  (iv) Billing disputes resolution\n  (v) Complete postal address of card-issuer\n  (vi) Toll free number, email-id and dedicated telephone number for SMS for customer care services, contact details of Grievance Redressal Official",
+  "ms": 8.049624972045422,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ux12",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hinglish",
+  "signals": {
+   "top_dense": 0.8486221432685852,
+   "coverage": 0.3333333333333333,
+   "top_score": 0.02565359477124183,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "In case of such pre-registered beneficiaries, the funds transfer limit shall not exceed Rs.2,00,000/- per month per beneficiary. (a) ATM / Cash withdrawal / deposit\n    (b) RTGS / NEFT/ IMPS / UPI / AePS / ABPS transactions\n  (c) Internet banking transactions\n  (d) Debit card transactions\n    (e) Transfer of funds from / to the linked CBDC(e-Rupee) account\n    (f) Cheque clearing\n    (g) Remittance of funds by way of demand drafts\n    (h) Cash withdrawal by third party through cheque\n  (i) Standing instructions issued by the customer\n    (j) NACH debit / credits\n    (k) Term deposit interest / proceeds\n  (l) Dividend on shares / Interest on debentures or any other investment proceeds\n  (m) Direct Benefit Transfer (DBT) credits\n    (n) Refunds such as related to e-commerce payments, Income Tax Returns, etc. (o) National Electronic Toll Collection (NETC) debits\n      (10a) Digital Payment Transaction shall have the same meaning as “Electronic Funds Transfer” defined in Section 2(c) of the Payment and Settlement Systems Act, 2007. PPI issuer shall provide the facility of ‘pre-registered beneficiaries’ whereby the PPI holder can register the beneficiaries by providing their bank account details, details of PPIs issued by same issuer (or different issuer as and when permitted), etc.;",
+  "ms": 10.240042000077665,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ud04",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hi",
+  "signals": {
+   "top_dense": 0.8495742082595825,
+   "coverage": 0.058823529411764705,
+   "top_score": 0.01639344262295082,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "Bank Holidays\nBanking Glossary\nCitizen's Charter\nComplaints\nContact Us\nCOVID-19 Measures\nE-LMS\nEvents\nFAQs\nFinancial Education\nForms\nIFSC/MICR Codes\nImportant Websites\nOpportunities@RBI\nRBI Clarifications\nRBI Kehta Hai\nRBI’s Vision and Values (652 kb)\nRight to Information Act\nTenders",
+  "ms": 8.27366701560095,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ud05",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hi",
+  "signals": {
+   "top_dense": 0.8393462896347046,
+   "coverage": 0.07142857142857142,
+   "top_score": 0.01639344262295082,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "(ii) Illustrative Repayment Schedule under Equated Periodic Instalment for the above-mentioned hypothetical loan: Before taking a decision to recall / accelerate payment or performance under the agreement or seeking additional securities, the bank shall give notice to the borrower(s) as specified in the loan agreement or a reasonable period if no such condition exists in the loan agreement. All floating rate rupee loans sanctioned and renewed between July 1, 2010 and March 31, 2016 shall be priced with reference to the Base Rate which will be the internal benchmark for such purposes.",
+  "ms": 7.0390410255640745,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ud07",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hi",
+  "signals": {
+   "top_dense": 0.8456059098243713,
+   "coverage": 0.125,
+   "top_score": 0.01639344262295082,
+   "reranked": 0.0
+  },
+  "abstained_untuned": false,
+  "answer": "Disclosure and notification of service charges: These charges shall be reasonable and not out of line with the average cost of providing these services. It is imperative that the customers are made aware of the service charges upfront and the changes in service charges are implemented only with prior notice to the customers.",
+  "ms": 6.181333039421588,
+  "answer_hit": false,
+  "closest_hit": false
+ },
+ {
+  "id": "ud08",
+  "slice": "unanswerable",
+  "answerable": false,
+  "language": "hi",
+  "signals": {
+   "top_dense": 0.8259016275405884,
+   "coverage": 0.0,
+   "top_score": 0.01639344262295082,
+   "reranked": 0.0
+  },
+  "abstained_untuned": true,
+  "answer": "",
+  "ms": 7.52799998736009,
+  "answer_hit": false,
+  "closest_hit": false
+ }
+]

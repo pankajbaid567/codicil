@@ -1,0 +1,6 @@
+{
+ "abstain_precision": 0.7142857142857143,
+ "abstain_recall": 0.3125,
+ "answerable_served": 0.9565217391304348,
+ "answer_hit_given_served": 0.7727272727272727
+}

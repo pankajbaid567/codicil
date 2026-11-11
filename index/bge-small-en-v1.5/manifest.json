@@ -1,0 +1,9 @@
+{
+ "schema": 1,
+ "sha256": "71a19938aba74e2d9b67ef3abe003891af6f0871f6b8659635c0efd4765c8384",
+ "embedder": "bge-small-en-v1.5",
+ "dim": 384,
+ "n_chunks": 2277,
+ "n_parents": 1675,
+ "n_docs": 17
+}

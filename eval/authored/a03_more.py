@@ -1,0 +1,92 @@
+ITEMS = [
+    (
+        "q046",
+        "How long does a card issuer have to explain a bill that a cardholder disputes?",
+        "cc",
+        "In case, a cardholder protests any bill, the card-issuer shall provide explanation and, wherever applicable, documentary evidence shall be provided to the cardholder within a maximum period of 30 days",
+    ),
+    (
+        "q047",
+        "Can a bank offer a loan to a credit cardholder without asking for consent?",
+        "cc",
+        "Unsolicited loans or other credit facilities shall not be offered to the credit cardholders without seeking explicit consent",
+    ),
+    (
+        "q048",
+        "Can the minimum amount due on a credit card be set so that the outstanding keeps growing?",
+        "cc",
+        "The terms and conditions for payment of credit card dues, including the minimum amount due, shall be stipulated so as to ensure there is no negative amortization",
+    ),
+    (
+        "q049",
+        "Within how many days must a bank settle a deceased depositor's claim?",
+        "rbc",
+        "A bank shall settle a claim in respect of deposit accounts of a deceased customer within a period not exceeding 15 calendar days",
+    ),
+    (
+        "q050",
+        "How soon must the bank credit back an unauthorised electronic transaction after the customer reports it?",
+        "rbc",
+        "the bank shall credit (shadow reversal) the amount involved in the unauthorised electronic transaction to the customer’s account within 10 working days",
+    ),
+    (
+        "q051",
+        "Is a bank obliged to offer a basic savings bank deposit account?",
+        "rbc",
+        "Every bank shall offer a BSBD account which shall be considered a normal banking service available to all",
+    ),
+    (
+        "q052",
+        "After how many years of no operation does a deposit become an unclaimed deposit?",
+        "rbc",
+        "Unclaimed Deposit shall mean the credit balance in any deposit account maintained with banks, which has not been operated upon for ten years or more",
+    ),
+    (
+        "q053",
+        "Who is responsible for the safety of the premises housing safe deposit lockers?",
+        "rbc",
+        "It is the responsibility of a bank to take all steps for the safety and security of the premises in which the safe deposit vaults are housed",
+    ),
+    (
+        "q054",
+        "Can a non-bank prepaid wallet issuer move an expired wallet's balance to its own profit?",
+        "ppi",
+        "Non-bank PPI issuer cannot transfer the outstanding balance to its Profit & Loss account for at least three years from the expiry date of PPI",
+    ),
+    (
+        "q055",
+        "What rules apply to penal charges on loans given by NBFCs?",
+        "nbfcrbc",
+        "An NBFC shall adhere to the following instructions in respect of all the fresh loans availed from April 1, 2024 onwards",
+    ),
+    (
+        "q056",
+        "Must NBFCs train their recovery agents on calling hours and customer privacy?",
+        "nbfcrbc",
+        "properly trained to handle their responsibilities with care and sensitivity, particularly aspects such as soliciting customers, hours of calling",
+    ),
+    (
+        "q057",
+        "In which situations must a bank identify the customer under KYC?",
+        "kyc",
+        "The bank shall undertake identification of customers in the following cases",
+    ),
+    (
+        "q058",
+        "Must banks run an automated complaints management system that the Internal Ombudsman can access?",
+        "ombud",
+        "A fully automated Complaints Management System shall be put in place by the bank",
+    ),
+    (
+        "q059",
+        "Can a card issuer pass on a cardholder's personal information that recovery agents do not need?",
+        "nbfccc",
+        "Personal information provided by the cardholder but not required for recovery purposes shall not be released by the card-issuer",
+    ),
+    (
+        "q060",
+        "What must banks follow when charging for not maintaining a minimum balance in a savings account?",
+        "rbc",
+        "While levying charges for non-maintenance of minimum balance in savings bank accounts, a bank shall adhere to the following additional instructions",
+    ),
+]

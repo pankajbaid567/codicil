@@ -1,0 +1,8 @@
+top 8 settings with abstain precision >= 0.8 (dev):
+  tau_d=0.55 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.000  answerable_served=1.000  answer_hit_given_served=0.788
+  tau_d=0.56 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.000  answerable_served=1.000  answer_hit_given_served=0.788
+  tau_d=0.57 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.000  answerable_served=1.000  answer_hit_given_served=0.788
+  tau_d=0.58 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.000  answerable_served=1.000  answer_hit_given_served=0.788
+  tau_d=0.59 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.000  answerable_served=1.000  answer_hit_given_served=0.788
+top_dense: answerable median 0.760  unanswerable median 0.695
+coverage: answerable median 0.613  unanswerable median 0.600

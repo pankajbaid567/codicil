@@ -1,0 +1,17 @@
+CAUGHT   RRF: rank offset off by one (4s) tests/unit/test_bm25_fusion.py:43: AssertionError
+CAUGHT   RRF: duplicate ids in one list counted twice (3s) tests/unit/test_bm25_fusion.py:64: AssertionError
+CAUGHT   BM25: idf sign flipped (3s) tests/integration/test_api.py:41: AssertionError
+CAUGHT   verify: numbers no longer checked (5s) E       AssertionError: assert not True
+CAUGHT   abstention threshold ignored (3s) tests/integration/test_api.py:103: AssertionError
+CAUGHT   rerank abstention ignored (5s) E       AssertionError: assert (False)
+CAUGHT   chunker: last child group never flushed (3s) E           AssertionError: commercial-banks-responsible-business-conduct-directions-202
+CAUGHT   structure: unlabelled text starts a new paragraph instead of joining the clause (5s) E       ValueError: too many values to unpack (expected 2)
+CAUGHT   embedder: passage prefix dropped for e5 (3s) E       AssertionError: assert not True
+CAUGHT   cache key without index hash (3s) E       AssertionError: assert '109226762c053d44ac693689bf81ceb2ede380542e365ce76fae95b76d5c5873' != '10922676
+CAUGHT   glossary: original words dropped from normalised query (5s) E       AssertionError: assert 'permission' in 'unauthorised my account se paise debited'
+CAUGHT   retrieval: superseded documents not filtered (3s) E       AssertionError: assert [Scored(chunk...urce='fused')] == []
+CAUGHT   circuit breaker never opens (4s)             with pytest.raises(GenerationError):
+CAUGHT   rate limiter always allows (3s) tests/integration/test_api.py:62: AssertionError
+CAUGHT   index hash not verified on load (3s) >       with pytest.raises(IndexMismatchError, match="hash"):
+
+15/15 mutants caught

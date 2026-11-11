@@ -1,0 +1,10 @@
+{
+ "requests": 256,
+ "startup_s": 1.3,
+ "rss_idle_mb": 445,
+ "rss_peak_mb": 445,
+ "p50_ms": 338,
+ "p95_ms": 432,
+ "p99_ms": 464,
+ "mean_ms": 286
+}

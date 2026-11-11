@@ -1,0 +1,176 @@
+{
+  "issuer": "Reserve Bank of India",
+  "source": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx",
+  "documents": [
+    {
+      "doc_id": "commercial-banks-responsible-business-conduct-directions-202",
+      "title": "Reserve Bank of India (Commercial Banks - Responsible Business Conduct) Directions, 2025 (Updated as on October 1, 2026)",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13140",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/170MD.PDF",
+      "bytes": 804598,
+      "sha256": "2d3f119e0ce72ae7cc6f70fce8ae2f68dda6723448f88c1f0986136dfb65e558",
+      "retrieved_at": "2026-11-11T08:47:28Z"
+    },
+    {
+      "doc_id": "commercial-banks-interest-rates-on-advances-directions-2025",
+      "title": "Reserve Bank of India (Commercial Banks \u2013 Interest Rates on Advances) Directions, 2025",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13149",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/161MD.PDF",
+      "bytes": 137876,
+      "sha256": "ce5cbda068d9132ced92e0d4fe3f76c3497a8d99280f916b90b2d07bfdfafb73",
+      "retrieved_at": "2026-11-11T08:47:33Z"
+    },
+    {
+      "doc_id": "commercial-banks-credit-cards-and-debit-cards-issuance-and-c",
+      "title": "Reserve Bank of India (Commercial Banks \u2013 Credit Cards and Debit Cards: Issuance and Conduct) Directions, 2025 (Updated as on October 1, 2026)",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13155",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/155MD.PDF",
+      "bytes": 250099,
+      "sha256": "0ee019d2ee861d999b9f5fe22e14d93c94dc3e13843dd470cbddbd8053b876fe",
+      "retrieved_at": "2026-11-11T08:47:35Z"
+    },
+    {
+      "doc_id": "commercial-banks-credit-information-reporting-directions-202",
+      "title": "Reserve Bank of India (Commercial Banks \u2013 Credit Information Reporting) Directions, 2025 (Updated as on July 01, 2026)",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13154",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/156MD.PDF",
+      "bytes": 219825,
+      "sha256": "901eb1d7818f23e9d5b1c9963e3d7fff50fb24062f77da51bc1514887ba2cdb1",
+      "retrieved_at": "2026-11-11T08:47:38Z"
+    },
+    {
+      "doc_id": "commercial-banks-know-your-customer-directions-2025",
+      "title": "Reserve Bank of India (Commercial Banks \u2013 Know Your Customer) Directions, 2025 (Updated as on October 1, 2026)",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13141",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/169MD.PDF",
+      "bytes": 439008,
+      "sha256": "1fb5771291b9fd6df5c32d00054f5959e72b6eccf0170290f7b888983a9dcbb3",
+      "retrieved_at": "2026-11-11T08:47:41Z"
+    },
+    {
+      "doc_id": "commercial-banks-interest-rate-on-deposits-directions-2025",
+      "title": "Reserve Bank of India (Commercial Banks \u2013 Interest Rate on Deposits) Directions, 2025 (Updated as on October 01, 2026)",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13157",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/153MD.PDF",
+      "bytes": 199202,
+      "sha256": "ef5980be2e1f3e64c6b226fcedd8bb2e1821c4b8e89eeab7a0a2045816be029a",
+      "retrieved_at": "2026-11-11T08:47:44Z"
+    },
+    {
+      "doc_id": "commercial-banks-digital-payment-security-controls-direction",
+      "title": "Reserve Bank of India (Commercial Banks \u2013 Digital Payment Security Controls) Directions, 2026 (Updated as on October 01, 2026)",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13642",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/411MD1918998D1AD74F159D57664FB10E053F.PDF",
+      "bytes": 205007,
+      "sha256": "fdd1938b8d50e345690e617079c75f24b0eab76c9f4ce140d5189d474668e566",
+      "retrieved_at": "2026-11-11T08:47:46Z"
+    },
+    {
+      "doc_id": "digital-payments-e-mandate-framework-2026",
+      "title": "Digital Payments \u2013 E-mandate Framework, 2026",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13374",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/396MDD002E435ECA145509929FC3ACBCFD0E9.PDF",
+      "bytes": 95108,
+      "sha256": "2d9e72805fc39b323cd566c96f9e0e73f909e78d5b09a677a4093e51f63a0b8e",
+      "retrieved_at": "2026-11-11T08:47:49Z"
+    },
+    {
+      "doc_id": "authentication-mechanisms-for-digital-payment-transactions-d",
+      "title": "Reserve Bank of India (Authentication mechanisms for digital payment transactions) Directions, 2025",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12898",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/NT79258FF36ECA8F4886B3B01F55D166C2B2.PDF",
+      "bytes": 112150,
+      "sha256": "a1edd73303a0a3fb8b875cb7f8c60ae78109f6e76e022a2f5cbe30ce8eae592b",
+      "retrieved_at": "2026-11-11T08:47:51Z"
+    },
+    {
+      "doc_id": "on-prepaid-payment-instruments-ppis",
+      "title": "Master Directions on Prepaid Payment Instruments (PPIs) (Updated as on September 30, 2026)",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12156",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/82MDPPIS2708202181CF0A6FCD1B47B88CAE8E92A228B160.PDF",
+      "bytes": 338341,
+      "sha256": "c195c4f3a4c35147b37cf319f85a265233453a9f6253446d841cb47d10b193b2",
+      "retrieved_at": "2026-11-11T08:47:54Z"
+    },
+    {
+      "doc_id": "non-banking-financial-companies-account-aggregator-direction",
+      "title": "Reserve Bank of India (Non-Banking Financial Companies - Account Aggregator) Directions, 2025",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12936",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/368MDA3A72C813679452CB0A291E6B300DB59.PDF",
+      "bytes": 167934,
+      "sha256": "82391d013932b10a5daef1ba22e76f5249fc33e40a961874ac0c44550ac0eab7",
+      "retrieved_at": "2026-11-11T08:47:57Z"
+    },
+    {
+      "doc_id": "non-banking-financial-companies-peer-to-peer-lending-platfor",
+      "title": "Reserve Bank of India (Non-Banking Financial Companies \u2013 Peer to Peer Lending Platform) Directions, 2025",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12934",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/370MD60843CF99DE6468CA026BF367311796E.PDF",
+      "bytes": 174661,
+      "sha256": "fc4e7fc4def3ac1ab40a4ac3de205b7da619c963378c7ad463f70fc9dc24b340",
+      "retrieved_at": "2026-11-11T08:48:00Z"
+    },
+    {
+      "doc_id": "non-banking-financial-companies-responsible-business-conduct",
+      "title": "Reserve Bank of India (Non-Banking Financial Companies \u2013 Responsible Business Conduct) Directions, 2025 (Updated as on July 1, 2026)",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12942",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/362MD26CA543937BA439A97E1BCFC08CF5808.PDF",
+      "bytes": 245718,
+      "sha256": "5a902af9bbb20ab1790b1af735d218accc89a105e47abd2440c7d4226358f34e",
+      "retrieved_at": "2026-11-11T08:48:02Z"
+    },
+    {
+      "doc_id": "commercial-banks-internal-ombudsman-directions-2026",
+      "title": "Reserve Bank of India (Commercial Banks - Internal Ombudsman) Directions, 2026",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=13271",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/380MD14012026DAD56B73DC944F02AEA4530EC779AD7F.PDF",
+      "bytes": 138094,
+      "sha256": "25d7b3f6ef8d2bfc382d640b51a70280e0af69b40d2959f560e39e2510548130",
+      "retrieved_at": "2026-11-11T08:48:05Z"
+    },
+    {
+      "doc_id": "non-banking-financial-companies-credit-cards-issuance-and-co",
+      "title": "Reserve Bank of India (Non-Banking Financial Companies \u2013 Credit Cards: Issuance and Conduct) Directions, 2025",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12956",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/348MD993245D8570047299D1814811F20AFEE.PDF",
+      "bytes": 234491,
+      "sha256": "1ecd309db73632e1651f1fa2e287e0a8a064498011882f3e07bae0b95d2f87b0",
+      "retrieved_at": "2026-11-11T08:48:08Z"
+    },
+    {
+      "doc_id": "priority-sector-lending-psl-targets-and-classification-dated",
+      "title": "Master Directions \u2013 Priority Sector Lending (PSL) \u2013 Targets and Classification dated September 04, 2020 [superseded by Master Directions - Reserve Bank of India (Priority Sector Lending \u2013 Targets and Classification) Directions, 2025]",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=11959",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/MDPSL803EE903174E4C85AFA14C335A5B0909.PDF",
+      "bytes": 439163,
+      "sha256": "772323430da71de62a231fd846aa043013032c58e5d97de4d87e61afa72b0245",
+      "retrieved_at": "2026-11-11T08:48:11Z"
+    },
+    {
+      "doc_id": "deposits-and-accounts",
+      "title": "Master Direction - Deposits and Accounts (Updated as on September 02, 2026)",
+      "issuer": "RBI",
+      "url": "https://rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=10198",
+      "pdf_url": "https://rbidocs.rbi.org.in/rdocs/notification/PDFs/09MDD593B2F2D48648C8AB3D37625C9F245D.PDF",
+      "bytes": 371318,
+      "sha256": "4062f990dc112ef00fe6dcd6bc74912a8cb91b0ae7133a3977df89910c269a52",
+      "retrieved_at": "2026-11-11T08:48:13Z"
+    }
+  ]
+}

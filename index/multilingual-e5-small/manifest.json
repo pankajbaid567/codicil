@@ -1,0 +1,9 @@
+{
+ "schema": 1,
+ "sha256": "44820762e91c3dd12f83b14edbf4e786c494a1c347d4cfc0373797c8fa6010f6",
+ "embedder": "multilingual-e5-small",
+ "dim": 384,
+ "n_chunks": 2277,
+ "n_parents": 1675,
+ "n_docs": 17
+}

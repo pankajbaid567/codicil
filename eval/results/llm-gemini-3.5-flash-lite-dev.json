@@ -1,0 +1,156 @@
+[
+ {
+  "id": "h01",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": true,
+  "hit": true,
+  "ms": 2302.2157920058817,
+  "answer": "A customer’s entitlement to zero liability shall arise where the unauthorised transaction occurs in the following events: (1) Contributory fraud / negligence / deficiency on the part of the bank (irrespective of whether the transaction is reported by the customer or not). (2) Third party breach where the deficiency lies neither with the bank nor with the customer but lies elsewhere in the system, and the customer notifies the bank within three working days of receiving the communication from the bank regarding the unauthorised transaction."
+ },
+ {
+  "id": "h02",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": false,
+  "hit": false,
+  "ms": 1681.8848330294713,
+  "answer": "The bank shall ensure that the recovery agents are properly trained to handle with care and sensitivity, their responsibilities particularly aspects like hours of calling, privacy of customer information, etc."
+ },
+ {
+  "id": "h05",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": false,
+  "hit": false,
+  "ms": 1687.5056670396589,
+  "answer": "Cumulatively, the delay of all the defaulting banks put together is 32 days (5+7+9+11 days). (ii) Rule 20 (3) (c) of CIC Rules, 2006 provides that the CI shall forward the corrected particulars of the credit information to the CIC or complainant within a period of 21 days from the date when the CI was informed of the inaccuracy in the credit information. (i) Section 21 (3) of CICRA, 2005 provides that a complainant may request a CIC or CI to update the credit information by making an appropriate correction, addition or otherwise, and on such request the CI or CIC shall take steps to update the credit information within 30 days after being requested to do so."
+ },
+ {
+  "id": "h06",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": false,
+  "hit": false,
+  "ms": 1413.3920829626732,
+  "answer": "All recurring transactions may be authorised without AFA up to ₹15,000/- per transaction."
+ },
+ {
+  "id": "h10",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": true,
+  "hit": true,
+  "ms": 1482.4890000163577,
+  "answer": "The maturity of the loans shall not exceed 36 months."
+ },
+ {
+  "id": "h14",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": true,
+  "hit": true,
+  "ms": 1862.0404159883037,
+  "answer": "A bank shall settle a claim in respect of deposit accounts of a deceased customer within a period not exceeding 15 calendar days from the date of receipt of all the required documents associated with the claim."
+ },
+ {
+  "id": "h18",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": false,
+  "hit": false,
+  "ms": 1936.3177079940215,
+  "answer": "Bank Holidays\nBanking Glossary\nCitizen's Charter\nComplaints\nContact Us\nCOVID-19 Measures\nE-LMS\nEvents\nFAQs\nFinancial Education\nForms\nIFSC/MICR Codes\nImportant Websites\nOpportunities@RBI\nRBI Clarifications\nRBI Kehta Hai\nRBI’s Vision and Values (652 kb)\nRight to Information Act\nTenders"
+ },
+ {
+  "id": "h19",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": true,
+  "hit": true,
+  "ms": 1658.8087920099497,
+  "answer": "In case, a cardholder protests any bill, the card-issuer shall provide explanation and, wherever applicable, documentary evidence shall be provided to the cardholder within a maximum period of 30 days from the date of complaint."
+ },
+ {
+  "id": "h20",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": true,
+  "hit": true,
+  "ms": 1688.54291603202,
+  "answer": "Unsolicited loans or other credit facilities shall not be offered to the credit cardholders without seeking explicit consent."
+ },
+ {
+  "id": "h21",
+  "language": "hinglish",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": true,
+  "hit": true,
+  "ms": 1954.2205409961753,
+  "answer": "A bank shall invariably offer passbook facility to all its savings bank account holders (individuals) and in case the bank offers the facility of sending statement of account and the customer chooses to get statement of account, the bank shall issue monthly statement of accounts."
+ },
+ {
+  "id": "d02",
+  "language": "hi",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": true,
+  "hit": true,
+  "ms": 1891.7693329858594,
+  "answer": "PPI issuer shall caution the PPI holder at reasonable intervals, during the 45 days’ period prior to expiry of the validity period of the PPI."
+ },
+ {
+  "id": "d03",
+  "language": "hi",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": false,
+  "hit": true,
+  "ms": 2135.0229579838924,
+  "answer": "The bank shall ensure device binding of the mobile application."
+ },
+ {
+  "id": "d05",
+  "language": "hi",
+  "mode": "llm",
+  "abstained": false,
+  "why": "",
+  "base_hit": false,
+  "hit": false,
+  "ms": 1561.010957986582,
+  "answer": "(ii) Illustrative Repayment Schedule under Equated Periodic Instalment for the above-mentioned hypothetical loan: The aggregate loans taken by a borrower at any point of time, across all NBFC-P2Ps, shall be subject to a cap of ₹10,00,000/-. A bank shall charge interest on its loans and advances on the terms and conditions specified in these directions."
+ },
+ {
+  "id": "d06",
+  "language": "hi",
+  "mode": "llm",
+  "abstained": true,
+  "why": "",
+  "base_hit": true,
+  "hit": false,
+  "ms": 1812.598959018942,
+  "answer": ""
+ }
+]
