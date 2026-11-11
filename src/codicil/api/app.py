@@ -14,7 +14,7 @@ from collections.abc import AsyncIterator
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, Response, StreamingResponse
@@ -33,6 +33,7 @@ STATIC = Path(__file__).parent / "static"
 class AskBody(BaseModel):
     question: str = Field(min_length=3)
     use_llm: bool = True
+    backend: Literal["local", "qdrant"] = "local"  # dense search: in-process matrix or Qdrant (falls back to local when unavailable)
     debug: bool = False
 
 
@@ -41,9 +42,9 @@ class SearchBody(BaseModel):
     top_k: int = Field(10, ge=1, le=30)
 
 
-def cache_key(index_sha: str, question: str, llm: bool) -> str:
+def cache_key(index_sha: str, question: str, llm: bool, backend: str = "local") -> str:
     """The index hash is part of the key, so an answer computed against an old corpus can never be served after a redeploy."""
-    return hashlib.sha256(f"{index_sha}|{question.strip().lower()}|{llm}".encode()).hexdigest()
+    return hashlib.sha256(f"{index_sha}|{question.strip().lower()}|{llm}|{backend}".encode()).hexdigest()
 
 
 class TokenBucket:
@@ -168,12 +169,13 @@ def create_app(settings: Settings | None = None, service: AnswerService | None =
         app.add_middleware(CORSMiddleware, allow_origins=s.cors_origins.split(","), allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 
     def run_ask(body: AskBody) -> Answer:
-        key = cache_key(svc.index.sha, body.question, body.use_llm and svc.generator is not None)
+        backend = body.backend if svc.vector_store is not None else "local"
+        key = cache_key(svc.index.sha, body.question, body.use_llm and svc.generator is not None, backend)
         hit = cache.get(key)
         if hit is not None:
             counters["cache_hits"] += 1
             return hit  # type: ignore[no-any-return]
-        a = svc.ask(body.question.strip(), cfg, use_llm=body.use_llm)
+        a = svc.ask(body.question.strip(), cfg, use_llm=body.use_llm, backend=backend)
         cache.put(key, a)
         return a
 
@@ -240,6 +242,7 @@ def create_app(settings: Settings | None = None, service: AnswerService | None =
             "documents": len(i.docs),
             "reranker": svc.reranker.model_id if svc.reranker else None,
             "llm": svc.generator.model_id if svc.generator else None,
+            "qdrant": svc.vector_store is not None,
         }
 
     @app.get("/healthz")

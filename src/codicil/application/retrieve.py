@@ -40,9 +40,10 @@ class Retriever:
             return None
         return {int(i) for i in np.flatnonzero(self._status_ok)}
 
-    def dense(self, qvec: np.ndarray, k: int, allowed: set[int] | None) -> list[tuple[int, float]]:
-        if self.store is not None:
-            return self.store.search(qvec, k, in_force_only=allowed is not None)
+    def dense(self, qvec: np.ndarray, k: int, allowed: set[int] | None, store: DenseStore | None = None) -> list[tuple[int, float]]:
+        store = store or self.store  # a per-call store (e.g. Qdrant) wins over the retriever's default; None means the in-process matrix
+        if store is not None:
+            return store.search(qvec, k, in_force_only=allowed is not None)
         sims = self.index.vectors @ qvec
         if allowed is not None:
             mask = np.full(len(sims), -np.inf, dtype=np.float32)
@@ -60,6 +61,7 @@ class Retriever:
         entity_hints: tuple[str, ...] = (),
         qvec: np.ndarray | None = None,
         language: str = "en",
+        store: DenseStore | None = None,
     ) -> list[Scored]:
         if cfg.mode == "hybrid" and language in cfg.dense_only_languages:
             cfg = replace(cfg, mode="dense")
@@ -72,7 +74,7 @@ class Retriever:
             weights.append(cfg.w_bm25)
         if cfg.mode in ("dense", "hybrid"):
             v = qvec if qvec is not None else self.embedder.embed_queries([query])[0]
-            d = self.dense(v, cfg.pool, allowed)
+            d = self.dense(v, cfg.pool, allowed, store)
             lists.append([i for i, _ in d])
             weights.append(cfg.w_dense)
         fused = rrf(lists, cfg.rrf_k, weights)

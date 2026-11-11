@@ -6,7 +6,7 @@ WORKDIR /app
 # dependencies first: this layer is cached until pyproject.toml changes
 COPY pyproject.toml ./
 RUN python - <<'PY' > requirements.txt
-import tomllib; print("\n".join(tomllib.load(open("pyproject.toml","rb"))["project"]["dependencies"]))
+import tomllib; p = tomllib.load(open("pyproject.toml","rb"))["project"]; print("\n".join(p["dependencies"] + p["optional-dependencies"]["qdrant"]))
 PY
 RUN pip install -r requirements.txt
 

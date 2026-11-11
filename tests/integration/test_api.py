@@ -115,3 +115,42 @@ async def test_ui_offers_both_modes_and_index_reports_llm_availability(make_app)
     assert 'value="extractive"' in page and 'value="llm"' in page and "use_llm" in page
     assert (await get(app, "/v1/index")).json()["llm"] is None  # the UI disables the LLM option in this case
     assert (await get(make_app(generator=DownLLM()), "/v1/index")).json()["llm"] == "down"
+
+
+class _StoreDown:
+    def search(self, qvec, k, in_force_only):
+        raise ConnectionError("cluster unreachable")
+
+
+class _StoreRecording:
+    def __init__(self):
+        self.calls = 0
+
+    def search(self, qvec, k, in_force_only):
+        self.calls += 1
+        return []
+
+
+def _app_with_store(tmp_path, store):
+    svc = AnswerService(mini_index(tmp_path / "idx"), HashingEmbedder(), None, None, store)
+    return create_app(Settings(rate_limit_per_min=100, min_dense=0.0), svc)
+
+
+async def test_qdrant_backend_is_opt_in_and_falls_back_when_down(tmp_path):
+    q = {"question": "how is interest on savings deposits calculated?", "debug": True}
+    rec = _StoreRecording()
+    app = _app_with_store(tmp_path, rec)
+    await post(app, "/v1/ask", json=q)  # default backend: the store is not touched
+    assert rec.calls == 0
+    await post(app, "/v1/ask", json={**q, "question": "interest on savings deposits daily product basis", "backend": "qdrant"})
+    assert rec.calls == 1
+    r = await post(_app_with_store(tmp_path, _StoreDown()), "/v1/ask", json={**q, "backend": "qdrant"})
+    j = r.json()
+    assert r.status_code == 200 and not j["abstained"] and any("qdrant failed" in t["note"] for t in j["timings_ms"] if t["stage"] == "backend")
+    assert (await get(app, "/v1/index")).json()["qdrant"] is True
+
+
+async def test_backend_choice_is_part_of_the_cache_key():
+    from codicil.api.app import cache_key
+
+    assert cache_key("s", "q", False, "local") != cache_key("s", "q", False, "qdrant")

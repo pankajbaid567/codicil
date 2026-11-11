@@ -31,6 +31,10 @@ details{font:.85rem system-ui,sans-serif;margin-top:10px}pre{overflow:auto;backg
 <label><input type="radio" name="mode" value="extractive" checked>Extractive</label>
 <label><input type="radio" name="mode" value="llm" id="llm" disabled>LLM</label>
 <small id="modehelp">Extractive quotes the best sentences straight from the cited clause. LLM rewrites them in plain words, and every sentence is still checked against the clause.</small></fieldset>
+<fieldset class="modes" id="backends" style="border:0;padding:0"><legend>Search backend</legend>
+<label><input type="radio" name="backend" value="local" checked>In-process</label>
+<label><input type="radio" name="backend" value="qdrant" id="qd" disabled>Qdrant</label>
+<small id="backendhelp">Dense search runs in this server (fast) or on a Qdrant vector database (a network hop). Qdrant falls back to in-process if it is unreachable.</small></fieldset>
 <form id="f"><label class="sr" for="q">Question</label><textarea id="q" maxlength="500" placeholder="e.g. How soon must a bank reverse an unauthorised electronic transaction?" required></textarea><button id="go">Ask</button></form>
 <div class="ex" id="ex"></div>
 <div id="out" aria-live="polite"></div>
@@ -42,8 +46,12 @@ const $=s=>document.querySelector(s),out=$("#out"),q=$("#q");
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const mode=()=>document.querySelector('input[name=mode]:checked').value;
 try{const m=localStorage.getItem("codicil-mode");if(m==="llm")$("#llm").checked=true}catch(e){}
+const backend=()=>document.querySelector('input[name=backend]:checked').value;
+try{if(localStorage.getItem("codicil-backend")==="qdrant")$("#qd").checked=true}catch(e){}
+document.querySelectorAll("input[name=backend]").forEach(r=>r.onchange=()=>{try{localStorage.setItem("codicil-backend",backend())}catch(e){}});
 document.querySelectorAll("input[name=mode]").forEach(r=>r.onchange=()=>{try{localStorage.setItem("codicil-mode",mode())}catch(e){}});
 fetch("/v1/index").then(r=>r.json()).then(i=>{const l=$("#llm");
+  if(i.qdrant){$("#qd").disabled=false}else{$("#qd").checked=false;document.querySelector("input[value=local]").checked=true;$("#backendhelp").textContent="Qdrant is not configured on this server, so dense search runs in-process."}
   if(i.llm){l.disabled=false;$("#modehelp").textContent+=" Model: "+i.llm+"."}
   else{l.checked=false;document.querySelector("input[value=extractive]").checked=true;$("#modehelp").textContent="LLM mode is not configured on this server, so answers are extractive. The server owner enables it by setting CODICIL_LLM_* environment variables."}
 }).catch(()=>{});
@@ -52,7 +60,7 @@ $("#f").onsubmit=e=>{e.preventDefault();ask()};
 async function ask(){
   const go=$("#go");go.disabled=true;out.innerHTML='<div class="card meta">Searching the Directions… (the free server may take ~30 s to wake up)</div>';
   try{
-    const r=await fetch("/v1/ask",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:q.value,debug:true,use_llm:mode()==='llm'})});
+    const r=await fetch("/v1/ask",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:q.value,debug:true,use_llm:mode()==='llm',backend:backend()})});
     const j=await r.json();
     if(!r.ok){out.innerHTML=`<div class="card abstain"><h2>${esc(j.title||"Error")}</h2>${esc(j.detail||"")}</div>`;return}
     render(j);
@@ -68,7 +76,7 @@ function render(j){
     h+=`<div class="card abstain"><h2>Not found in these Directions</h2>${esc(j.reason||"")}. Nothing below is an answer; these are the closest passages.</div>`;
     h+=(j.closest||[]).map((c,i)=>`<div class="card cite"><b>${esc(c.document)}</b><span class="path">${esc(c.path)}</span><blockquote>${esc(c.quote)}</blockquote></div>`).join("");
   }else{
-    h+='<div class="card ans">'+j.answer.map(s=>`<p>${esc(s.text)}${s.citations.map(id=>`<sup><a href="#c${idx[id]}">[${idx[id]+1}]</a></sup>`).join("")}</p>`).join("")+`<div class="meta">mode: ${esc(j.mode)}${fell(j)} · index ${esc(j.index_sha)}</div></div>`;
+    h+='<div class="card ans">'+j.answer.map(s=>`<p>${esc(s.text)}${s.citations.map(id=>`<sup><a href="#c${idx[id]}">[${idx[id]+1}]</a></sup>`).join("")}</p>`).join("")+`<div class="meta">mode: ${esc(j.mode)}${fell(j)} · search: ${esc(((j.timings_ms||[]).find(t=>t.stage==='backend')||{}).note||'local')} · index ${esc(j.index_sha)}</div></div>`;
     h+=j.citations.map(cite).join("");
   }
   if(j.timings_ms)h+=`<details><summary>How this was answered</summary><pre>${esc(j.timings_ms.map(t=>t.stage.padEnd(10)+String(t.ms).padStart(8)+" ms  "+t.note).join("\n")+"\n\nsignals "+JSON.stringify(j.signals))}</pre></details>`;

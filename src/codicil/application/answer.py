@@ -46,16 +46,17 @@ class AnswerService:
         self, index: Index, embedder: Embedder, reranker: Reranker | None = None, generator: Generator | None = None, store: DenseStore | None = None
     ) -> None:
         self.index, self.embedder, self.reranker, self.generator = index, embedder, reranker, generator
-        self.retriever = Retriever(index, embedder, store)
+        self.retriever = Retriever(index, embedder)
+        self.vector_store = store  # optional, used only when a request asks for it (backend="qdrant"); the in-process index is the default
 
     # -- stages -------------------------------------------------------------------------------------------------------------------
-    def retrieve(self, q: Query, cfg: AnswerConfig) -> tuple[list[Scored], float]:
+    def retrieve(self, q: Query, cfg: AnswerConfig, store: DenseStore | None = None) -> tuple[list[Scored], float]:
         qvec = None
         top_dense = 0.0
         if cfg.retrieve.mode in ("dense", "hybrid"):
             qvec = self.embedder.embed_queries([q.normalised])[0]
             top_dense = float(np.max(self.index.vectors @ qvec))
-        hits = self.retriever.search(q.normalised, cfg.retrieve, cfg.top_k, q.entity_hints, qvec, q.language)
+        hits = self.retriever.search(q.normalised, cfg.retrieve, cfg.top_k, q.entity_hints, qvec, q.language, store)
         return hits, top_dense
 
     def rerank(self, q: Query, hits: list[Scored], cfg: AnswerConfig) -> list[Scored]:
@@ -114,7 +115,7 @@ class AnswerService:
         return chosen
 
     # -- orchestration ------------------------------------------------------------------------------------------------------------
-    def ask(self, question: str, cfg: AnswerConfig = AnswerConfig(), use_llm: bool = True) -> Answer:
+    def ask(self, question: str, cfg: AnswerConfig = AnswerConfig(), use_llm: bool = True, backend: str = "local") -> Answer:
         timings: list[StageTiming] = []
 
         def timed(stage: str, fn: Callable[[], Any], note: str = "") -> Any:
@@ -124,7 +125,21 @@ class AnswerService:
             return r
 
         q = timed("normalise", lambda: normalise_query(question) if cfg.use_normaliser else Query(question, question, "en"))
-        hits, top_dense = timed("retrieve", lambda: self.retrieve(q, cfg))
+        used = "local"
+
+        def fetch() -> tuple[list[Scored], float]:
+            nonlocal used
+            if backend == "qdrant" and self.vector_store is not None:
+                try:
+                    out = self.retrieve(q, cfg, self.vector_store)
+                    used = "qdrant"
+                    return out
+                except Exception as e:  # any client or network failure: the demo must keep answering from the in-process index
+                    used = f"local (qdrant failed: {type(e).__name__})"
+            return self.retrieve(q, cfg)
+
+        hits, top_dense = timed("retrieve", fetch)
+        timings.append(StageTiming("backend", 0.0, used))
         hits = timed("rerank", lambda: self.rerank(q, hits, cfg), "skipped" if self.reranker is None or q.language != "en" else "")
         evid = timed("pack", lambda: self.pack(hits, cfg))
         closest = tuple(self._citation(e) for e in evid[:3])
