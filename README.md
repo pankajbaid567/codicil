@@ -57,6 +57,8 @@ Rebuild everything: `make corpus` (polite fetch of the RBI HTML pages, hashes in
 
 ## Deploy (free)
 
+**Live demo:** https://codicil.onrender.com (Render free plan, Singapore). After the tokenizer change it started and stayed up through the checks on 2026-11-12: an English question answered with a citation, a Hinglish question answered with the right clause, and an out-of-scope question (repo rate) abstained. On the 0.1 CPU free plan English questions that go through the cross-encoder took 8 to 10 s in those first calls (cold), Hinglish under 1 s; these are single observations, not a benchmark.
+
 `Dockerfile` and `render.yaml` are provided (one container, models baked in at build, index committed). The first build on Render's free 512 MB plan compiled fine but was killed for memory at startup (about 568 MB peak); replacing the e5 tokenizer (ADR-023) brought the peak to about 402 MB. Whether the free plan then stays up under load is checked after redeploy and noted in `docs/deployment.md`. The free plan sleeps after about 15 minutes idle, so the first request after a pause takes tens of seconds.
 
 ## Limits
