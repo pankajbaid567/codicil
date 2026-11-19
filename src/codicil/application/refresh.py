@@ -142,6 +142,20 @@ def new_manifest_entries(
     return updated
 
 
+def seed_missing_pages(report: Report, raw_dir: Path) -> int:
+    """Store the pages of unchanged and baseline documents that are not on disk yet (a check never overwrites anything).
+
+    A later rebuild needs every document's page, not only the changed ones, and the next check needs the old text to show a diff."""
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    n = 0
+    for r in report.results:
+        path = raw_dir / f"{r.doc_id}.html"
+        if r.status in ("unchanged", "baseline") and r.html and not path.exists():
+            path.write_bytes(r.html)
+            n += 1
+    return n
+
+
 def write_pages(report: Report, raw_dir: Path) -> None:
     """Store the pages of changed and new documents. Unchanged and baseline pages are only stored if missing, so the next check can show a readable diff."""
     raw_dir.mkdir(parents=True, exist_ok=True)

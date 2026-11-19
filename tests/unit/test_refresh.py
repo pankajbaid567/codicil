@@ -114,3 +114,13 @@ def test_write_json_is_atomic_and_readable(tmp_path):
 def test_empty_or_tiny_pages_are_rejected(tmp_path, bad):
     rep = run({"d": bad}, {"d": entry("d", BODY)}, tmp_path, ["d"])
     assert rep.results[0].status == "rejected"
+
+
+def test_a_check_seeds_missing_pages_but_never_overwrites_or_stores_changes(tmp_path):
+    changed = [*BODY[:5], "6. Changed.", *BODY[6:]]
+    manifest = {"a": entry("a", BODY), "b": entry("b", BODY), "c": entry("c", BODY)}
+    (tmp_path / "c.html").write_text("kept")
+    rep = run({"a": page(*BODY), "b": page(*changed), "c": page(*BODY)}, manifest, tmp_path, ["a", "b", "c"])
+    assert refresh.seed_missing_pages(rep, tmp_path) == 1
+    assert (tmp_path / "a.html").exists() and (tmp_path / "c.html").read_text() == "kept"
+    assert not (tmp_path / "b.html").exists()  # a change is only stored when it is applied

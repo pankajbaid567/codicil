@@ -77,6 +77,7 @@ def main() -> int:
         print(f"{r.status:9s} {r.doc_id}{extra}")
         for ex in (r.diff.examples if r.diff else ())[:3]:
             print(f"            {ex}")
+    refresh.seed_missing_pages(report, raw)  # a check stores pages it has not seen yet; it never overwrites one
     snapshot = max(str(d.get("retrieved_at", "")) for d in man["documents"])
     refresh.write_json(corpus / "freshness.json", refresh.freshness_summary(report, snapshot, applied=False))
     problems = report.of("failed", "rejected")
