@@ -55,8 +55,8 @@ Regulatory text is a tree: Chapter > Section > numbered paragraph (`12.3.1`) > l
 6. **Pack**: expand children to parents, then fill a token budget (default 1,500 tokens) in rank order, merging overlapping parents.
 
 ## 7. Generation
-- **Extractive mode (default, no key)**: select the evidence sentences that best match the question (cross-encoder or lexical score), return them verbatim with citations. Deterministic, free, and the baseline every LLM answer must beat.
-- **LLM mode (optional)**: any OpenAI-compatible endpoint (Groq, OpenRouter, Gemini's compatible endpoint, a local Ollama). Temperature 0, a strict JSON contract `{answer_sentences: [{text, cited_chunk_ids}], abstain: bool}`, evidence passed inside delimiters with an instruction that it is data, never instructions.
+- **Extractive mode (the default only when no LLM is configured; always selectable)**: select the evidence sentences that best match the question (cross-encoder or lexical score), return them verbatim with citations. Deterministic, free, and the baseline every LLM answer must beat.
+- **LLM mode (optional; the default answer mode on a server that has one)**: any OpenAI-compatible endpoint (Groq, OpenRouter, Gemini's compatible endpoint, a local Ollama) or Amazon Bedrock through the Converse API (instance role, no key). Temperature 0, a strict JSON contract `{answer_sentences: [{text, cited_chunk_ids}], abstain: bool}`, evidence passed inside delimiters with an instruction that it is data, never instructions.
 - **Resilience**: timeout, bounded retry with jitter, circuit breaker; on failure degrade to extractive and say so.
 
 ## 8. Verification and abstention

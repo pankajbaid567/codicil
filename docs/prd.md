@@ -15,7 +15,7 @@ RBI consolidated its rulebook in 2025-26 into entity-wise "Directions" (Commerci
 ## Goals
 1. **Grounded**: every sentence of an answer is tied to a cited clause; unsupported sentences are removed; if nothing survives the answer is an explicit abstention.
 2. **Measured**: retrieval (recall@k, MRR, nDCG), abstention (precision/recall), citation support and latency are reported with confidence intervals on a labelled set, with an ablation of every pipeline stage.
-3. **Free to run and deploy**: works with no API key (extractive mode); an optional free-tier LLM only improves phrasing. Deploys on a free web tier within 512 MB.
+3. **Free to run and deploy**: works with no API key (extractive mode); an optional LLM (a free-tier endpoint or Amazon Bedrock) is the default answer mode where configured and was preferred by an AI judge in the pairwise evaluation (`docs/results.md`). Deploys on a free web tier within 512 MB.
 4. **Engineered**: hexagonal architecture, immutable versioned index, typed code, property and contract tests, and a mutation check.
 
 ## Non-goals

@@ -1,3 +1,5 @@
+import json
+
 import httpx
 import pytest
 
@@ -7,6 +9,21 @@ from codicil.application.answer import AnswerService
 from codicil.application.ports import GenerationError
 from codicil.settings import Settings
 from tests.fixtures.mini import mini_index
+
+
+class EchoLLM:
+    """A working generator: answers with the first sentence of the first passage, as the real prompt asks for JSON."""
+
+    model_id = "echo"
+
+    def generate(self, request):
+        import re
+
+        from codicil.application.ports import GenerationResult
+
+        m = re.search(r"\[0\] \([^)]*\) (.+?)(?:\n\n|$)", request.user, re.S)
+        first = re.split(r"(?<=[.;:])\s", m.group(1).strip())[0] if m else ""
+        return GenerationResult(json.dumps({"sentences": [{"text": first, "cite": [0]}]}), "echo", 1, 1)
 
 
 class DownLLM:
@@ -62,6 +79,14 @@ async def test_rate_limit(make_app):
     assert codes[:2] == [200, 200] and 429 in codes[2:]
 
 
+async def test_llm_is_the_default_when_configured_and_extractive_stays_available(make_app):
+    app = make_app(generator=EchoLLM())
+    q = {"question": "within how many days must a bank credit an unauthorised electronic transaction?"}
+    assert (await post(app, "/v1/ask", json=q)).json()["mode"] == "llm"  # use_llm omitted
+    assert (await post(app, "/v1/ask", json={**q, "use_llm": False})).json()["mode"] == "extractive"
+    assert (await post(make_app(), "/v1/ask", json=q)).json()["mode"] == "extractive"  # no LLM configured: nothing to default to
+
+
 async def test_llm_failure_degrades_to_extractive(make_app):
     r = await post(
         make_app(generator=DownLLM()),
@@ -113,6 +138,7 @@ async def test_ui_offers_both_modes_and_index_reports_llm_availability(make_app)
     app = make_app()
     page = (await get(app, "/")).text
     assert 'value="extractive"' in page and 'value="llm"' in page and "use_llm" in page
+    assert 'if(m!=="extractive")l.checked=true' in page  # LLM is preselected when the server has one, unless the visitor chose extractive
     assert (await get(app, "/v1/index")).json()["llm"] is None  # the UI disables the LLM option in this case
     assert (await get(make_app(generator=DownLLM()), "/v1/index")).json()["llm"] == "down"
 

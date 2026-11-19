@@ -89,6 +89,8 @@ MUTANTS = [
         "                if code and code not in _RETRYABLE:",
         "                if False:",
     ),
+    ("api: LLM no longer the default answer mode", "src/codicil/api/app.py", "    use_llm: bool = True", "    use_llm: bool = False"),
+    ("ui: LLM not preselected when available", "src/codicil/api/static/index.html", 'if(m!=="extractive")l.checked=true', "if(false)l.checked=true"),
 ]
 
 

@@ -30,7 +30,7 @@ details{font:.85rem system-ui,sans-serif;margin-top:10px}pre{overflow:auto;backg
 <fieldset class="modes" id="modes" style="border:0;padding:0"><legend>Answer mode</legend>
 <label><input type="radio" name="mode" value="extractive" checked>Extractive</label>
 <label><input type="radio" name="mode" value="llm" id="llm" disabled>LLM</label>
-<small id="modehelp">Extractive quotes the best sentences straight from the cited clause. LLM rewrites them in plain words, and every sentence is still checked against the clause.</small></fieldset>
+<small id="modehelp">LLM answers the question in plain words, and every sentence is still checked against the cited clause. Extractive quotes the best sentences straight from the clause, word for word.</small></fieldset>
 <fieldset class="modes" id="backends" style="border:0;padding:0"><legend>Search backend</legend>
 <label><input type="radio" name="backend" value="local" checked>In-process</label>
 <span id="bk"></span>
@@ -45,7 +45,6 @@ const EX=["How soon must a bank reverse an unauthorised electronic transaction?"
 const $=s=>document.querySelector(s),out=$("#out"),q=$("#q");
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const mode=()=>document.querySelector('input[name=mode]:checked').value;
-try{const m=localStorage.getItem("codicil-mode");if(m==="llm")$("#llm").checked=true}catch(e){}
 const backend=()=>document.querySelector('input[name=backend]:checked').value;
 $("#backends").addEventListener("change",()=>{try{localStorage.setItem("codicil-backend",backend())}catch(e){}});
 const BK={qdrant:"Qdrant",s3vectors:"Amazon S3 Vectors"};
@@ -55,7 +54,7 @@ fetch("/v1/index").then(r=>r.json()).then(i=>{const l=$("#llm");
   extra.forEach(b=>{const l=document.createElement("label");const x=document.createElement("input");x.type="radio";x.name="backend";x.value=b;l.append(x,BK[b]||b);$("#bk").append(l)});
   if(!extra.length)$("#backendhelp").textContent="No managed vector database is configured on this server, so dense search runs in-process.";
   try{const sv=localStorage.getItem("codicil-backend");const r=[...document.querySelectorAll("input[name=backend]")].find(e=>e.value===sv);if(r)r.checked=true}catch(e){}
-  if(i.llm){l.disabled=false;$("#modehelp").textContent+=" Model: "+i.llm+"."}
+  if(i.llm){l.disabled=false;$("#modehelp").textContent+=" Model: "+i.llm+". If the model fails or times out, you get the extractive answer instead.";let m=null;try{m=localStorage.getItem("codicil-mode")}catch(e){}if(m!=="extractive")l.checked=true}
   else{l.checked=false;document.querySelector("input[value=extractive]").checked=true;$("#modehelp").textContent="LLM mode is not configured on this server, so answers are extractive. The server owner enables it by setting CODICIL_LLM_* environment variables."}
 }).catch(()=>{});
 EX.forEach(t=>{const b=document.createElement("button");b.type="button";b.textContent=t.length>48?t.slice(0,46)+"…":t;b.onclick=()=>{q.value=t;ask()};$("#ex").append(b)});
