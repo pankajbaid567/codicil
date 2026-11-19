@@ -156,11 +156,11 @@ def main() -> None:
             sub = judged if name == "all" else [r for r in judged if name in (r["split"], r["language"])]
             if not sub:
                 continue
-            w, l, t_ = (sum(r["verdict"] == k for r in sub) for k in ("llm", "ext", "tie"))
+            wins, losses, ties = (sum(r["verdict"] == k for r in sub) for k in ("llm", "ext", "tie"))
             net = [(r["verdict"] == "llm") - (r["verdict"] == "ext") for r in sub]
             lo, hi = bootstrap_ci([float(x) for x in net]) if len(sub) > 1 else (0.0, 0.0)
             print(
-                f"  {name:9s} n={len(sub):3d}  LLM wins {w}, ties {t_}, extractive wins {l}   net (wins-losses)/n = {st.fmean(net):+.2f} (95% CI {lo:+.2f} to {hi:+.2f})"
+                f"  {name:9s} n={len(sub):3d}  LLM wins {wins}, ties {ties}, extractive wins {losses}   net (wins-losses)/n = {st.fmean(net):+.2f} (95% CI {lo:+.2f} to {hi:+.2f})"
             )
         order = sum(r["verdict_1"] != r["verdict_2"] for r in judged)
         print(f"judge disagreed with itself when the order was swapped on {order}/{len(judged)} pairs (counted as ties)")

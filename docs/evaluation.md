@@ -42,4 +42,6 @@ Any stage whose removal does not hurt is flagged for removal.
 `make eval-gate` runs the dev split on **cached vectors** (so CI needs no model download) and fails if recall@10 or nDCG@10 drop by more than 0.02 from the committed baseline, or abstention precision falls below its floor.
 
 ## Threats to validity (listed so they are not discovered later)
+The LLM answer mode is compared with the extractive mode by an AI judge (a different model than the generator, run in both answer orders; `eval/run_llm_judge.py`); this is a relative preference, not an absolute quality score, and it is not human-graded.
+
 Small n (CIs will be wide on the unanswerable and Hinglish slices); labels drafted by the same system builder; the near-miss unanswerable questions are my guess at what confuses the pipeline; one corpus and one issuer; lexical support checking can pass a sentence that rearranges true words into a false meaning; LLM-mode answer quality is not measured unless a key is supplied (`make eval-llm`), and no LLM numbers are claimed otherwise; free-tier latency is not a benchmark.

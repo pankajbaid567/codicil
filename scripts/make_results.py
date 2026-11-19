@@ -133,7 +133,51 @@ def main() -> None:
             )
         o.append(
             "\nA difference of one question is noise at this size. The coverage proxy rewards verbatim text, so it cannot show whether LLM phrasing reads better; "
-            "no improvement is claimed. Free-tier rate limits (HTTP 429) and provider overload (503) were seen during these runs, which is why the service falls back to extractive.\n"
+            "no improvement is claimed from this older sample; the AI-graded comparison in the next section is the better evidence. Free-tier rate limits (HTTP 429) and provider overload (503) were seen during these runs, which is why the service falls back to extractive.\n"
+        )
+    judged_file = R / "judged-bedrock.json"
+    if judged_file.exists():
+        import random
+        import statistics
+
+        jd = json.loads(judged_file.read_text())
+        recs = [dict(zip(jd["cols"], r, strict=True)) for r in jd["rows"]]
+        judged = [r for r in recs if r["verdict"]]
+
+        def net_ci(sub: list[dict]) -> str:
+            vals = [float((r["verdict"] == "llm") - (r["verdict"] == "ext")) for r in sub]
+            rng = random.Random(0)
+            means = sorted(statistics.fmean(rng.choices(vals, k=len(vals))) for _ in range(4000))
+            return f"{statistics.fmean(vals):+.2f} ({means[100]:+.2f} to {means[3900]:+.2f})"
+
+        o.append("## LLM answer mode against extractive (Amazon Bedrock, AI-graded)\n")
+        o.append(
+            f"Generator `{jd['generator']}` (low reasoning effort), judge `{jd['judge']}` (a different model), run {jd['date']} with `eval/run_llm_judge.py` on all {len(recs)} answerable "
+            f"dev and test questions. Each question is answered twice from the same retrieval (extractive and LLM). The judge sees the question, the authoritative clause text and both answers, "
+            "once in each order; a win needs both orders to agree, otherwise the pair is a tie. **These are AI grades from one judge, not human grades**, and no threshold or prompt was tuned on them.\n"
+        )
+        o.append("| group | judged pairs | LLM wins | ties | extractive wins | net (wins - losses) / n, 95% CI |\n|---|---|---|---|---|---|")
+        for name, key in (("all", None), ("dev", "split"), ("test", "split"), ("English", "language"), ("Hinglish", "language"), ("Hindi", "language")):
+            want = {"all": None, "dev": "dev", "test": "test", "English": "en", "Hinglish": "hinglish", "Hindi": "hi"}[name]
+            sub = judged if key is None else [r for r in judged if r[key] == want]
+            c = {k: sum(r["verdict"] == k for r in sub) for k in ("llm", "tie", "ext")}
+            o.append(f"| {name} | {len(sub)} | {c['llm']} | {c['tie']} | {c['ext']} | {net_ci(sub)} |")
+        swapped = sum(r["verdict_1"] != r["verdict_2"] for r in judged)
+        mean = lambda k: statistics.fmean(r[k] for r in judged)  # noqa: E731
+        o.append(
+            f"\nThe judge disagreed with itself when the order was swapped on {swapped} of {len(judged)} pairs (counted as ties). "
+            f"Judged correct against the clause: LLM {mean('llm_correct'):.2f}, extractive {mean('ext_correct'):.2f}. "
+            f"Judged to say something the clause does not support: LLM {mean('llm_unsupported'):.2f}, extractive {mean('ext_unsupported'):.2f} (means over both orders). "
+            f"Median answer length: LLM {statistics.median(r['llm_chars'] for r in judged):.0f} characters, extractive {statistics.median(r['ext_chars'] for r in judged):.0f}. "
+            f"All {sum(r['llm_mode'] == 'llm' for r in recs)} answers were served by the LLM with no fallback; {sum(1 for r in recs if not r['verdict'])} pairs were not judged (identical text or an empty answer). "
+            f"Under the production abstention settings, {jd['unanswerable']['extractive_answered']} of {jd['unanswerable']['n']} unanswerable questions got an answer in extractive mode and "
+            f"{jd['unanswerable']['llm_answered']} in LLM mode: the LLM does not make abstention worse (abstention happens before generation).\n"
+        )
+        o.append(
+            "How to read it: the LLM mostly wins because it answers the question in the clause's own terms and stops, while the extractive mode quotes up to three loosely related sentences. "
+            "'Unsupported' is measured against the gold clause only, so an extractive answer that quotes a different but real clause is counted against it; that number overstates the difference and is "
+            "not a hallucination rate. The 7 pairs the extractive mode won include answers where the LLM left out the list items, picked a neighbouring clause, or dropped a qualification. "
+            "The LLM is judged on text it rewrote, so it can also introduce errors that the grounding check (every sentence supported by its cited passage, numbers included) does not catch.\n"
         )
     listing = subprocess.run([sys.executable, "-m", "pytest", "--co", "-q"], check=False, capture_output=True, text=True, cwd=ROOT).stdout
     n_tests = sum(int(m.group(1)) for m in re.finditer(r": (\d+)$", listing, flags=re.M))
