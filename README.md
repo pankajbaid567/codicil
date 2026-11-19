@@ -16,7 +16,7 @@ All numbers come from `docs/results.md`, which is generated from raw files in `e
 
 - **Abstention works for English, not for Hinglish.** English uses the cross-encoder score with a threshold chosen on dev only: test precision 1.00, recall 0.81 on 16 unanswerable questions (the first version, a dense-cosine threshold, scored 0.71 / 0.31 and missed the targets). Hinglish has no usable threshold (AUC 0.63 to 0.76), so it never abstains on score; Hindi has 4 unanswerable questions per split. Unanswerable Hinglish and Hindi questions are translations of English ones. Details and caveats in `docs/results.md`.
 - **Extractive answers** contain the gold sentence in about 77% of served answerable test questions (88% on dev, where list completion was developed). When a quoted sentence introduces a list ("...in the following events:"), the items that follow are quoted too, so answers no longer stop at a colon; on dev this cut cut-off answers from 13 of 51 to 2 of 51, on test the gain is one question and within noise. The cited clause is always shown in full.
-- **Local latency** (Apple M3, closed loop, quiet machine, measured before the tokenizer change below): p50 338 ms, p95 432 ms. **Memory**: peak 402 MB maximum resident after loading and answering (was 568 MB at startup until the 290 MB Hugging Face tokenizer of e5 was replaced by SentencePiece, which gives identical token ids; ADR-023). Free-tier hosting speed is not benchmarked.
+- **Latency**: on the EC2 demo host, p50 1.35 s and p95 1.55 s end to end over HTTPS (30 questions, see Deploy). Locally on an Apple M3 (closed loop, quiet machine, measured before the tokenizer change below): p50 338 ms, p95 432 ms. **Memory**: peak 402 MB maximum resident after loading and answering (was 568 MB at startup until the 290 MB Hugging Face tokenizer of e5 was replaced by SentencePiece, which gives identical token ids; ADR-023). Free-tier hosting speed is not benchmarked.
 - **Tests**: 79 tests, `mypy --strict` and `ruff` clean, and a mutation check where 18 of 18 injected bugs are caught (10 of 14 on the first run; the survivors exposed test gaps that were then closed).
 
 Confidence intervals are wide (n is small); differences under about 0.05 nDCG are ties. See `docs/evaluation.md` for threats to validity.
@@ -55,11 +55,13 @@ Endpoints: `POST /v1/ask` (JSON or `Accept: text/event-stream`), `POST /v1/searc
 
 Rebuild everything: `make corpus` (polite fetch of the RBI HTML pages, hashes in `data/corpus/manifest.json`), `make index`, `make eval`, `make results`, `make mutation`.
 
-## Deploy (free)
+## Deploy
 
-**Live demo:** https://codicil.onrender.com (Render free plan, Singapore). After the tokenizer change it started and stayed up through the checks on 2026-11-12: an English question answered with a citation, a Hinglish question answered with the right clause, and an out-of-scope question (repo rate) abstained. On the 0.1 CPU free plan English questions that go through the cross-encoder took 8 to 10 s in those first calls (cold), Hinglish under 1 s; these are single observations, not a benchmark.
+**Live demo (primary):** https://codicil.3-109-36-90.sslip.io: one container on an AWS EC2 `t4g.small` (2 GB, Graviton, Mumbai) behind Caddy with a Let's Encrypt certificate, extractive mode (no LLM key on this host). Measured on 2026-11-19 from a laptop in India, 30 distinct dev questions one after another through the HTTPS API (so network time is included): **p50 1.35 s, p95 1.55 s, max 1.77 s**, container memory about 300 MB. One run on one machine; not a load test.
 
-`Dockerfile` and `render.yaml` are provided (one container, models baked in at build, index committed). The first build on Render's free 512 MB plan compiled fine but was killed for memory at startup (about 568 MB peak); replacing the e5 tokenizer (ADR-023) brought the peak to about 402 MB. Whether the free plan then stays up under load is checked after redeploy and noted in `docs/deployment.md`. The free plan sleeps after about 15 minutes idle, so the first request after a pause takes tens of seconds.
+**Earlier host:** https://codicil.onrender.com (Render free plan, Singapore, with the optional Gemini LLM mode). It runs on 0.1 CPU and sleeps after about 15 minutes idle, so English questions took 5 to 15 s in the checks of 2026-11-12 and 2026-11-19 (single observations, not a benchmark).
+
+The `Dockerfile` builds one container (models baked in at build, index committed). To run it on a small host: `docker build -t codicil .` then `docker run -d --restart unless-stopped --network host --memory 800m -e PORT=8001 codicil`, and proxy a hostname to `127.0.0.1:8001`. The first Render build on a 512 MB plan was killed for memory at startup (about 568 MB peak); replacing the e5 tokenizer (ADR-023) brought the peak to about 402 MB, which is why a 1 GB instance was too small to share with another app and a 2 GB one was used.
 
 ## Limits
 
