@@ -1,7 +1,9 @@
 # Deployment
 
 ## Current: AWS EC2 `t4g.small` (2026-11-19)
-One Docker container (`docker build`, models baked in) on the same instance as another app, Caddy in front (`codicil.<ip-with-dashes>.sslip.io`, automatic Let's Encrypt), `--memory 800m`, port 8001 on the host network, extractive mode. A 1 GB `t4g.micro` could not hold both apps (about 400 MB available), so the instance was resized to 2 GB (about 6 to 7 USD per month more, paid from AWS credits). Measured: p50 1.35 s, p95 1.55 s over 30 distinct questions through the public HTTPS endpoint, about 300 MB resident. After a corpus rebuild: `git pull`, `docker build`, recreate the container; a Qdrant collection from an older index is refused by the sha check and must be re-uploaded.
+One Docker container (`docker build`, models baked in) on the same instance as another app, Caddy in front (`codicil.<ip-with-dashes>.sslip.io`, automatic Let's Encrypt), `--memory 800m`, port 8001 on the host network, extractive mode. A 1 GB `t4g.micro` could not hold both apps (about 400 MB available), so the instance was resized to 2 GB (about 6 to 7 USD per month more, paid from AWS credits). Measured: p50 1.3 s, p95 1.5 to 1.7 s for English questions through the public HTTPS endpoint (rerank about 1.2 s of it), about 300 to 350 MB resident.
+
+**Amazon S3 Vectors** is connected as an optional dense backend: vector bucket `codicil-vectors` in `ap-south-1` (SSE-S3), vector index `codicil-<sha12>` (cosine, 384 dimensions, 2,223 vectors), read-only IAM permissions on that bucket for the instance role (the write permission used for the upload was removed afterwards), and `CODICIL_S3VECTORS_BUCKET` / `CODICIL_S3VECTORS_REGION` in the container environment. After a corpus rebuild: build the image, run `scripts/upload_s3vectors.py` once (it creates the new `codicil-<sha12>` index), recreate the container. The UI is served by the same container, so there is no separate frontend deployment. After a corpus rebuild: `git pull`, `docker build`, recreate the container; a Qdrant collection from an older index is refused by the sha check and must be re-uploaded.
 
 ## Earlier: Render free
 
