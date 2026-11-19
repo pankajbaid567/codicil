@@ -31,5 +31,5 @@ def build_service(s: Settings) -> AnswerService:
     if s.qdrant_url:
         from codicil.adapters.qdrant_store import QdrantDenseStore  # optional dependency, imported only when configured
 
-        store = QdrantDenseStore.connect(s.qdrant_url, s.qdrant_api_key.get_secret_value(), s.qdrant_collection)
+        store = QdrantDenseStore.connect(s.qdrant_url, s.qdrant_api_key.get_secret_value(), s.qdrant_collection, expected_sha=index.sha)
     return AnswerService(index, embedder, reranker, generator, store)

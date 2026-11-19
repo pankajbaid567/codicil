@@ -173,8 +173,11 @@ class _Collector(HTMLParser):
             self._cur.append(data)
 
 
+_CHROME_MAX_CHARS = 40
+
+
 def parse_blocks(html: str) -> list[RawBlock]:
-    """All blocks from the first centred heading (the first chapter) onwards; the table of contents and page chrome before it are dropped."""
+    """Blocks from the first centred heading (the first chapter) up to the site footer; the contents list and page chrome around the body are dropped."""
     scan = _LayoutScan()
     scan.feed(html)
     scan.close()
@@ -183,7 +186,12 @@ def parse_blocks(html: str) -> list[RawBlock]:
     c.close()
     blocks = c.blocks
     start = next((i for i, b in enumerate(blocks) if b.kind is BlockKind.CHAPTER), 0)
-    return blocks[start:]
+    # the site footer ("More Links": Bank Holidays, Glossary, Tenders...) follows the body on every page; it is navigation, not regulation
+    end = next((i for i, b in enumerate(blocks) if i > start and b.text.strip().lower() == "more links"), len(blocks))
+    # what is left of the footer is a run of short link labels (archive years, "Archives", social networks)
+    while end > start + 1 and blocks[end - 1].kind is not BlockKind.TABLE and len(blocks[end - 1].text.strip()) < _CHROME_MAX_CHARS:
+        end -= 1
+    return blocks[start:end]
 
 
 _ENTITY = [

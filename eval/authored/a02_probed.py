@@ -106,7 +106,9 @@ ITEMS = [
         "da",
         "A resident individual can open a foreign currency account with a bank outside India for the purpose of sending remittances under the Liberalized Remittance Scheme",
     ),
-    ("q043", "What is the priority sector lending target for agriculture?", "psl", "18 per cent of ANBC or CEOBE, whichever is higher"),
+    # Only the superseded 2020 PSL Direction states this; the in-force 2025 Directions are not in the corpus, and retrieval
+    # serves in-force text only, so the right behaviour is to abstain (relabelled 2026-11-19; was answerable).
+    ("q043", "What is the priority sector lending target for agriculture?", None, None),
     (
         "q044",
         "What compensation does a complainant get if a credit report error is not fixed within thirty days?",

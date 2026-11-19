@@ -62,3 +62,25 @@ def test_real_corpus_is_lossless():
         chunks, _ = build_chunks(parse_meta(d["doc_id"], d["title"], d["url"], html), root)
         src = {w for n in root.walk() for w in words(n.text)}
         assert src <= {w for c in chunks for w in words(c.text)}, d["doc_id"]
+
+
+def test_site_footer_is_not_indexed():
+    from codicil.adapters.rbi_html import parse_blocks
+
+    html = (
+        '<html><body><p class="head" align="center">CHAPTER I</p><p>1 A bank shall publish its charges on its website.</p>'
+        "<h3>More Links</h3><li>Bank Holidays</li><li>Tenders</li>"
+        "<p>2026</p><p>2025</p><h3>Archives</h3><p>RSS</p><p>LinkedIn</p></body></html>"
+    )
+    texts = [b.text for b in parse_blocks(html)]
+    assert texts[-1] == "1 A bank shall publish its charges on its website."
+    assert not {"More Links", "Bank Holidays", "2026", "Archives", "LinkedIn"} & set(texts)
+
+
+@pytest.mark.skipif(not RAW.exists() or not any(RAW.glob("*.html")), reason="corpus not fetched")
+def test_real_pages_end_before_the_footer():
+    from codicil.adapters.rbi_html import parse_blocks
+
+    for f in RAW.glob("*.html"):
+        texts = [b.text for b in parse_blocks(f.read_text(encoding="utf-8"))]
+        assert not any(t in {"More Links", "Bank Holidays", "Archives", "LinkedIn"} for t in texts), f.name

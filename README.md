@@ -6,18 +6,18 @@ Ask about Indian banking rules in English, Hindi or Hinglish. Codicil answers fr
 
 ## Measured results
 
-All numbers come from `docs/results.md`, which is generated from raw files in `eval/results/`. 148 questions (author-labelled, AI-drafted, not yet reviewed by the author), 17 documents, 2,277 chunks.
+All numbers come from `docs/results.md`, which is generated from raw files in `eval/results/`. 148 questions (author-labelled, AI-drafted, not yet reviewed by the author), 17 documents, 2,223 chunks. The test split has been run twice (second look after a corpus fix; see `docs/results.md`).
 
 | | Held-out test split (46 answerable) |
 |---|---|
 | BM25 only | nDCG@10 0.663, R@10 0.804 |
-| Dense only (multilingual-e5-small) | nDCG@10 0.682, R@10 0.870 |
-| Hybrid (RRF) + English cross-encoder rerank (final) | **nDCG@10 0.787, R@10 0.957** |
+| Dense only (multilingual-e5-small) | nDCG@10 0.698, R@10 0.913 |
+| Hybrid (RRF) + English cross-encoder rerank (final) | **nDCG@10 0.800, R@10 0.978** |
 
 - **Abstention works for English, not for Hinglish.** English uses the cross-encoder score with a threshold chosen on dev only: test precision 1.00, recall 0.81 on 16 unanswerable questions (the first version, a dense-cosine threshold, scored 0.71 / 0.31 and missed the targets). Hinglish has no usable threshold (AUC 0.63 to 0.76), so it never abstains on score; Hindi has 4 unanswerable questions per split. Unanswerable Hinglish and Hindi questions are translations of English ones. Details and caveats in `docs/results.md`.
-- **Extractive answers** contain the gold sentence in about 77% of served answerable test questions; the cited clause is always shown in full.
+- **Extractive answers** contain the gold sentence in about 77% of served answerable test questions (88% on dev, where list completion was developed). When a quoted sentence introduces a list ("...in the following events:"), the items that follow are quoted too, so answers no longer stop at a colon; on dev this cut cut-off answers from 13 of 51 to 2 of 51, on test the gain is one question and within noise. The cited clause is always shown in full.
 - **Local latency** (Apple M3, closed loop, quiet machine, measured before the tokenizer change below): p50 338 ms, p95 432 ms. **Memory**: peak 402 MB maximum resident after loading and answering (was 568 MB at startup until the 290 MB Hugging Face tokenizer of e5 was replaced by SentencePiece, which gives identical token ids; ADR-023). Free-tier hosting speed is not benchmarked.
-- **Tests**: 63 tests, `mypy --strict` and `ruff` clean, and a mutation check where 15 of 15 injected bugs are caught (10 of 14 on the first run; the 4 survivors exposed test gaps that were then closed).
+- **Tests**: 79 tests, `mypy --strict` and `ruff` clean, and a mutation check where 18 of 18 injected bugs are caught (10 of 14 on the first run; the survivors exposed test gaps that were then closed).
 
 Confidence intervals are wide (n is small); differences under about 0.05 nDCG are ties. See `docs/evaluation.md` for threats to validity.
 
@@ -32,7 +32,7 @@ corpus ─► clause-tree parser ─► small-to-big chunks ─► immutable ind
 ```
 
 - **Structure-aware chunking.** RBI text is a tree (chapter, section, numbered paragraph, `(1)`, `(a)`, `(i)`, provisos). The parser rebuilds it, chunks follow clauses, children repeat their stem, and retrieval ranks small chunks but shows the enclosing paragraph. Chunking is lossless on all 17 documents (tested).
-- **Hybrid retrieval.** Own BM25 with a header field, `multilingual-e5-small` vectors (exact search; 2,277 vectors), Reciprocal Rank Fusion. Devanagari queries skip BM25; the English-only reranker skips non-English queries. Both rules come from the ablation, not taste.
+- **Hybrid retrieval.** Own BM25 with a header field, `multilingual-e5-small` vectors (exact search; 2,223 vectors), Reciprocal Rank Fusion. Devanagari queries skip BM25; the English-only reranker skips non-English queries. Both rules come from the ablation, not taste.
 - **Grounding is checked, not requested.** Each answer sentence must be supported by its cited chunk (numbers must match exactly). Unsupported sentences are dropped; none left means abstain.
 - **Immutable, content-addressed index.** The service is stateless; every response and cache key carries the index hash; a tampered index refuses to load; an index built with another embedder refuses to serve.
 - **Optional LLM.** Any OpenAI-compatible endpoint (Groq, OpenRouter, Gemini, Ollama) via `CODICIL_LLM_*`, with timeout, retry and a circuit breaker. If it fails the service degrades to extractive mode. LLM answer quality is **not** measured and no claim is made about it.

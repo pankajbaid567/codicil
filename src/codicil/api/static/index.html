@@ -11,7 +11,7 @@
 main{max-width:760px;margin:0 auto;padding:28px 16px 80px}
 h1{font-size:1.7rem;margin:0 0 4px;letter-spacing:-.01em}h1 span{color:var(--accent)}
 .sub{color:var(--muted);margin:0 0 20px;font-family:system-ui,sans-serif;font-size:.95rem}
-form{display:flex;gap:8px}textarea{flex:1;min-height:64px;padding:10px 12px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);resize:vertical}
+form{display:flex;gap:8px}.ans p,blockquote{white-space:pre-line}textarea{flex:1;min-height:64px;padding:10px 12px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);resize:vertical}
 button{font:600 .95rem system-ui,sans-serif;padding:0 18px;border:0;border-radius:8px;background:var(--accent);color:#fff;cursor:pointer}button:disabled{opacity:.5}
 .ex{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 18px}.ex button{background:transparent;color:var(--fg);border:1px solid var(--line);padding:4px 10px;font-weight:400;font-size:.85rem}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
@@ -57,6 +57,7 @@ fetch("/v1/index").then(r=>r.json()).then(i=>{const l=$("#llm");
 }).catch(()=>{});
 EX.forEach(t=>{const b=document.createElement("button");b.type="button";b.textContent=t.length>48?t.slice(0,46)+"…":t;b.onclick=()=>{q.value=t;ask()};$("#ex").append(b)});
 $("#f").onsubmit=e=>{e.preventDefault();ask()};
+$("#q").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();$("#f").requestSubmit()}});
 async function ask(){
   const go=$("#go");go.disabled=true;out.innerHTML='<div class="card meta">Searching the Directions… (the free server may take ~30 s to wake up)</div>';
   try{

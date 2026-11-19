@@ -48,7 +48,8 @@ def collect(split: str) -> list[dict]:
         ms = (time.perf_counter() - t) * 1000
         sig = dict(a.signals)
         gold = [(g["doc_id"], g["quote"]) for g in q["gold_evidence"]]
-        top = [(c.doc_id, c.quote) for c in a.closest]
+        # judge the closest passages on their full chunk text: a citation's display quote is cut at 400 characters
+        top = [(c.doc_id, svc.index.chunks[svc.index.by_id[c.chunk_id]].text) for c in a.closest]
         text = " ".join(s.text for s in a.sentences)
         rows.append(
             {

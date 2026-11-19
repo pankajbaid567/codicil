@@ -14,6 +14,7 @@ from codicil.application.index import Index
 from codicil.application.ports import Embedder, GenerationError, GenerationRequest, Generator, Reranker
 from codicil.application.retrieve import DenseStore, RetrieveConfig, Retriever
 from codicil.domain.glossary import normalise_query
+from codicil.domain.lists import complete_list
 from codicil.domain.models import Answer, AnswerSentence, Chunk, Citation, Query, Scored, StageTiming
 from codicil.domain.tokens import analyse, count_tokens, sentences
 from codicil.domain.verify import query_coverage, supported
@@ -110,8 +111,13 @@ class AnswerService:
             if score <= 0 or len(chosen) >= cfg.max_sentences:
                 break
             clean = re.sub(r"^\d+[A-Z]?(?:\.\d+)*\.?\s+", "", s)  # drop a leading paragraph number; the citation carries the path
-            if all(clean != c[0] for c in chosen):
-                chosen.append((clean, ev))
+            if any(clean == c[0] or clean in c[0] for c in chosen):
+                continue  # already quoted, possibly as an item of a completed list
+            # a sentence ending "...the following events:" carries no answer on its own: quote the items that follow it
+            full = complete_list(clean, ev.context)
+            if full == clean:
+                full = complete_list(clean, ev.chunk.text)
+            chosen.append((full, ev))
         return chosen
 
     # -- orchestration ------------------------------------------------------------------------------------------------------------

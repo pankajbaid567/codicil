@@ -8,15 +8,24 @@ from qdrant_client import QdrantClient, models
 from codicil.application.index import Index
 
 
-class QdrantDenseStore:
-    """Point id = chunk position in the index, so results map straight back to `Index.chunks`."""
+class StaleCollectionError(RuntimeError):
+    """The collection was uploaded from a different index build, so point ids no longer match chunk positions."""
 
-    def __init__(self, client: QdrantClient, collection: str) -> None:
-        self.client, self.collection = client, collection
+
+class QdrantDenseStore:
+    """Point id = chunk position in the index, so results map straight back to `Index.chunks`.
+
+    Positions are only meaningful for the index build that was uploaded. Each point carries that build's
+    `index_sha`; when `expected_sha` is given, a hit from another build raises StaleCollectionError instead of
+    silently returning the wrong chunks (the answer service then falls back to the in-process index).
+    """
+
+    def __init__(self, client: QdrantClient, collection: str, expected_sha: str | None = None) -> None:
+        self.client, self.collection, self.expected_sha = client, collection, expected_sha
 
     @classmethod
-    def connect(cls, url: str, api_key: str, collection: str) -> QdrantDenseStore:
-        return cls(QdrantClient(url=url, api_key=api_key or None, timeout=10), collection)
+    def connect(cls, url: str, api_key: str, collection: str, expected_sha: str | None = None) -> QdrantDenseStore:
+        return cls(QdrantClient(url=url, api_key=api_key or None, timeout=10), collection, expected_sha)
 
     def upload(self, index: Index, batch: int = 256) -> None:
         dim = int(index.vectors.shape[1])
@@ -42,7 +51,14 @@ class QdrantDenseStore:
 
     def search(self, qvec: np.ndarray, k: int, in_force_only: bool) -> list[tuple[int, float]]:
         flt = models.Filter(must=[models.FieldCondition(key="status", match=models.MatchValue(value="in_force"))]) if in_force_only else None
-        res = self.client.query_points(self.collection, query=qvec.tolist(), limit=k, query_filter=flt, with_payload=False)
+        check = self.expected_sha is not None
+        res = self.client.query_points(self.collection, query=qvec.tolist(), limit=k, query_filter=flt, with_payload=["index_sha"] if check else False)
+        if check:
+            stale = {str((p.payload or {}).get("index_sha")) for p in res.points} - {self.expected_sha}
+            if stale:
+                raise StaleCollectionError(
+                    f"collection {self.collection!r} holds index {sorted(stale)}, server has {self.expected_sha}; re-run scripts/upload_qdrant.py"
+                )
         return [(int(p.id), float(p.score)) for p in res.points]
 
     def count(self) -> int:

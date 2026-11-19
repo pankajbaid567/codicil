@@ -63,7 +63,8 @@ def main() -> None:
         "for its Hindi behaviour; BM25 is dropped for Devanagari queries because it cannot match them; the English cross-encoder helps English and hurts Hinglish and Hindi, so it is applied to English only.\n"
     )
     o.append(
-        "## Held-out test split (run once, final configuration frozen on dev)\n"
+        "## Held-out test split (thresholds and ranking configuration frozen on dev)\n"
+        "**The test split has been run twice.** The first run (2026-11-11) was on the original index; the second (2026-11-19) followed a corpus fix (site-footer links removed from the index, 2,277 to 2,223 chunks), a fix to how gold quotes are cut from the pages, relabelling two questions whose only evidence is in the superseded PSL Direction (q043, d05: now unanswerable), and list completion in extractive answers. None of these changes used a test-split result, and no threshold was re-tuned, but the test labels were regenerated and the split is no longer untouched, so read test numbers as a second look, not a clean hold-out.\n\n"
         + table(test, "ALL", list(test))
         + "\nSingle-clause English:\n\n"
         + table(test, "single", list(test))

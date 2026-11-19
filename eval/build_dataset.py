@@ -47,8 +47,9 @@ def norm(s: str) -> str:
 
 
 def load_text(doc_id: str) -> str:
+    """One normalised line per block, so a gold quote never runs a heading into the paragraph after it."""
     blocks = parse_blocks((ROOT / "data/raw" / f"{doc_id}.html").read_text(encoding="utf-8"))
-    return norm(" ".join(b.text for b in blocks))
+    return "\n".join(norm(b.text) for b in blocks)
 
 
 def resolve(key: str) -> str:
@@ -59,9 +60,13 @@ def resolve(key: str) -> str:
 
 
 def expand(text: str, phrase: str) -> str:
-    i = text.find(norm(phrase))
-    if i < 0:
+    """The sentence of `text` that contains `phrase`, looked up within the block (line) holding it."""
+    p = norm(phrase)
+    block = next((line for line in text.split("\n") if p in line), None)
+    if block is None:
         raise KeyError(phrase)
+    text = block
+    i = text.find(p)
     pos = 0
     for s in sentences(text):
         j = text.find(s, pos)
@@ -71,6 +76,11 @@ def expand(text: str, phrase: str) -> str:
         if j <= i < pos:
             return s
     return norm(phrase)
+
+
+def superseded_docs() -> set[str]:
+    docs = json.loads((ROOT / "data/corpus/manifest.json").read_text(encoding="utf-8"))["documents"]
+    return {d["doc_id"] for d in docs if re.search(r"superseded by", d["title"], re.I)}
 
 
 def split_of(qid: str) -> str:
@@ -87,6 +97,7 @@ def main() -> int:
     texts: dict[str, str] = {}
     out: dict[str, dict] = {}
     errors = 0
+    stale = superseded_docs()
     for it in items:
         qid, slice_, lang = it["id"], it["slice"] or "single", it["lang"] or "en"
         rec = {
@@ -110,6 +121,11 @@ def main() -> int:
             docs = it["doc"] if isinstance(it["doc"], list) else [(it["doc"], it["phrase"])]
             for key, phrase in docs:
                 doc_id = resolve(key)
+                if doc_id in stale:
+                    # retrieval serves in-force Directions only (DESIGN.md), so evidence in a superseded one cannot be the answer
+                    print(f"SUPERSEDED [{qid}] gold evidence is in {doc_id}; make the question unanswerable or cite the in-force text")
+                    errors += 1
+                    continue
                 texts.setdefault(doc_id, load_text(doc_id))
                 try:
                     rec["gold_evidence"].append({"doc_id": doc_id, "quote": expand(texts[doc_id], phrase)})

@@ -1,11 +1,11 @@
 top 8 settings with abstain precision >= 0.8 (dev):
-  tau_d=0.84 tau_c=0.00  abstain_precision=0.900  abstain_recall=0.643  answerable_served=0.981  answer_hit_given_served=0.824
-  tau_d=0.83 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.429  answerable_served=1.000  answer_hit_given_served=0.808
-  tau_d=0.81 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.071  answerable_served=1.000  answer_hit_given_served=0.808
-  tau_d=0.82 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.071  answerable_served=1.000  answer_hit_given_served=0.808
-  tau_d=0.55 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.000  answerable_served=1.000  answer_hit_given_served=0.808
-  tau_d=0.56 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.000  answerable_served=1.000  answer_hit_given_served=0.808
-  tau_d=0.57 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.000  answerable_served=1.000  answer_hit_given_served=0.808
-  tau_d=0.58 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.000  answerable_served=1.000  answer_hit_given_served=0.808
-top_dense: answerable median 0.873  unanswerable median 0.833
-coverage: answerable median 0.600  unanswerable median 0.550
+  tau_d=0.84 tau_c=0.15  abstain_precision=0.824  abstain_recall=0.538  answerable_served=0.940  answer_hit_given_served=0.915
+  tau_d=0.85 tau_c=0.10  abstain_precision=0.824  abstain_recall=0.538  answerable_served=0.940  answer_hit_given_served=0.894
+  tau_d=0.84 tau_c=0.10  abstain_precision=0.867  abstain_recall=0.500  answerable_served=0.960  answer_hit_given_served=0.896
+  tau_d=0.85 tau_c=0.00  abstain_precision=0.867  abstain_recall=0.500  answerable_served=0.960  answer_hit_given_served=0.896
+  tau_d=0.85 tau_c=0.05  abstain_precision=0.812  abstain_recall=0.500  answerable_served=0.940  answer_hit_given_served=0.894
+  tau_d=0.84 tau_c=0.00  abstain_precision=1.000  abstain_recall=0.462  answerable_served=1.000  answer_hit_given_served=0.880
+  tau_d=0.84 tau_c=0.05  abstain_precision=0.857  abstain_recall=0.462  answerable_served=0.960  answer_hit_given_served=0.896
+  tau_d=0.83 tau_c=0.10  abstain_precision=0.833  abstain_recall=0.385  answerable_served=0.960  answer_hit_given_served=0.896
+top_dense: answerable median 0.874  unanswerable median 0.838
+coverage: answerable median 0.613  unanswerable median 0.348

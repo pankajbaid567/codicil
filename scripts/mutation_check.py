@@ -45,7 +45,7 @@ MUTANTS = [
         "            container().children.append(_B(NodeKind.PARAGRAPH, '', '', text, i))\n    return root.freeze()",
     ),
     ("embedder: passage prefix dropped for e5", "src/codicil/adapters/onnx_embedder.py", '("query: ", "passage: ", "mean")', '("query: ", "query: ", "mean")'),
-    ("cache key without index hash", "src/codicil/api/app.py", 'f"{index_sha}|{question.strip().lower()}|{llm}"', 'f"{question.strip().lower()}|{llm}"'),
+    ("cache key without index hash", "src/codicil/api/app.py", 'f"{index_sha}|{question.strip().lower()}|{llm}|{backend}"', 'f"{question.strip().lower()}|{llm}|{backend}"'),
     (
         "glossary: original words dropped from normalised query",
         "src/codicil/domain/glossary.py",
@@ -56,6 +56,9 @@ MUTANTS = [
     ("circuit breaker never opens", "src/codicil/adapters/openai_compat.py", "if self._fails >= self.threshold:", "if False:"),
     ("rate limiter always allows", "src/codicil/api/app.py", "ok = tokens >= 1.0", "ok = True"),
     ("index hash not verified on load", "src/codicil/application/index.py", '    if h.hexdigest() != man["sha256"]:', "    if False:"),
+    ("lists: item run does not stop at the next paragraph", "src/codicil/domain/lists.py", "        if not is_item(line):\n            break\n", "        if not is_item(line):\n            continue\n"),
+    ("rbi_html: footer link labels left in the body", "src/codicil/adapters/rbi_html.py", "< _CHROME_MAX_CHARS", "< 0"),
+    ("qdrant: stale collection accepted", "src/codicil/adapters/qdrant_store.py", "            if stale:", "            if False:"),
 ]
 
 
