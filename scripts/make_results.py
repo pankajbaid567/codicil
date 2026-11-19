@@ -135,6 +135,44 @@ def main() -> None:
             "\nA difference of one question is noise at this size. The coverage proxy rewards verbatim text, so it cannot show whether LLM phrasing reads better; "
             "no improvement is claimed from this older sample; the AI-graded comparison in the next section is the better evidence. Free-tier rate limits (HTTP 429) and provider overload (503) were seen during these runs, which is why the service falls back to extractive.\n"
         )
+    from codicil.domain import review as review_lib
+
+    log = ROOT / "eval/reviews/reviews.jsonl"
+    qs = [json.loads(line) for line in (ROOT / "eval/questions.jsonl").read_text(encoding="utf-8").splitlines() if line]
+    reviews = review_lib.latest(review_lib.read_log(log.read_text(encoding="utf-8").splitlines())) if log.exists() else {}
+    o.append("## Label review (author)\n")
+    if not reviews:
+        o.append(
+            f"None of the {len(qs)} labels has been reviewed by the author yet: all were drafted by an AI assistant from the clause text. Review them with `make review` "
+            "(a local page: it shows each question with its evidence, or for an unanswerable question the closest passages), then `make review-report`. "
+            "Until then, read every number in this file as measured against unreviewed labels.\n"
+        )
+    else:
+        rs = review_lib.summarise(qs, reviews)
+        bv = rs["by_verdict"]
+        o.append(
+            f"The author has reviewed {rs['reviewed']} of {rs['total']} labels: {bv['ok']} correct, {bv['wrong_evidence']} with wrong evidence, "
+            f"{bv['bad_question']} bad questions, {bv['unsure']} unsure; {rs['total'] - rs['reviewed']} not yet reviewed.\n"
+        )
+        flagged = [(i, r) for i, r in reviews.items() if r.verdict != "ok"]
+        if flagged:
+            o.append("Labels the author flagged (to fix in `eval/authored/`):\n")
+            o += [f"- `{i}` ({r.verdict}){': ' + r.note if r.note else ''}" for i, r in sorted(flagged)]
+            o.append("")
+        sens = R / "review-sensitivity.json"
+        if sens.exists():
+            sj = json.loads(sens.read_text())
+            o.append(
+                f"Do the headline numbers depend on unconfirmed labels? Final configuration `{sj['config']}`, all labels against only the labels the author marked correct:\n"
+            )
+            o.append("| | all labels | confirmed only |\n|---|---|---|")
+            ra, rc = sj["retrieval"]["all"], sj["retrieval"]["confirmed_only"]
+            for m in ("ndcg@10", "recall@10", "mrr@10"):
+                o.append(f"| retrieval {m} (n = {ra['n']} / {rc['n']}) | {ra.get(m, '')} | {rc.get(m, '')} |")
+            aa, ac = sj["abstention_english"]["all"], sj["abstention_english"]["confirmed_only"]
+            for m in ("abstain_precision", "abstain_recall", "answerable_served"):
+                o.append(f"| English {m.replace('_', ' ')} (n = {aa['n']} / {ac['n']}) | {aa.get(m, '')} | {ac.get(m, '')} |")
+            o.append("")
     judged_file = R / "judged-bedrock.json"
     if judged_file.exists():
         import random

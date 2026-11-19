@@ -16,7 +16,7 @@ Each record: `id, question, language, slice, answerable, gold_evidence: [{doc_id
 
 **Gold = evidence quotes, not chunk ids.** A retrieved chunk counts as a hit if, after whitespace and case normalisation, it contains the gold quote, or the quote contains most of the chunk (overlap above 0.5). This lets the same dataset score fixed windows, sentence windows and clause chunks fairly. A script verifies that every gold quote exists verbatim in the extracted corpus text, so a typo cannot silently become an impossible question.
 
-**Provenance, stated plainly.** Questions were drafted by an AI assistant reading the extracted clause text; they have not yet been reviewed by the author (see `eval/README.md`). This is author-labelled data, not independent annotation, and the Hinglish slice is written by non-native-speaker conventions. These are limits of the result and are repeated in the README.
+**Provenance, stated plainly.** Questions were drafted by an AI assistant reading the extracted clause text; they have not yet been reviewed by the author (see `eval/README.md`; the review tool and the confirmed-labels comparison are described in the README). This is author-labelled data, not independent annotation, and the Hinglish slice is written by non-native-speaker conventions. These are limits of the result and are repeated in the README.
 
 **Split.** 50% dev, 50% test, assigned once by hashing the question id; paraphrases follow their source question so a question and its paraphrase never straddle the split. Thresholds (`tau`, fusion weights, BM25 parameters) are tuned on dev only. Test is run once per release.
 

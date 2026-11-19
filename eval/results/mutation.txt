@@ -1,31 +1,36 @@
-CAUGHT   RRF: rank offset off by one (3s) tests/unit/test_bm25_fusion.py:43: AssertionError
-CAUGHT   RRF: duplicate ids in one list counted twice (3s) tests/unit/test_bm25_fusion.py:64: AssertionError
-CAUGHT   BM25: idf sign flipped (3s) tests/integration/test_api.py:58: AssertionError
-CAUGHT   verify: numbers no longer checked (7s) E       AssertionError: assert not True
+CAUGHT   RRF: rank offset off by one (7s) tests/unit/test_bm25_fusion.py:43: AssertionError
+CAUGHT   RRF: duplicate ids in one list counted twice (6s) tests/unit/test_bm25_fusion.py:64: AssertionError
+CAUGHT   BM25: idf sign flipped (2s) tests/integration/test_api.py:58: AssertionError
+CAUGHT   verify: numbers no longer checked (11s) E       AssertionError: assert not True
 CAUGHT   abstention threshold ignored (3s) tests/integration/test_api.py:128: AssertionError
-CAUGHT   rerank abstention ignored (6s) E       AssertionError: assert (False)
-CAUGHT   chunker: last child group never flushed (4s) E           AssertionError: commercial-banks-responsible-business-conduct-directions-202
-CAUGHT   structure: unlabelled text starts a new paragraph instead of joining the clause (7s) E       ValueError: too many values to unpack (expected 2)
+CAUGHT   rerank abstention ignored (9s) E       AssertionError: assert (False)
+CAUGHT   chunker: last child group never flushed (7s) E           AssertionError: commercial-banks-responsible-business-conduct-directions-202
+CAUGHT   structure: unlabelled text starts a new paragraph instead of joining the clause (10s) E       ValueError: too many values to unpack (expected 2)
 CAUGHT   embedder: passage prefix dropped for e5 (2s) E       AssertionError: assert not True
 CAUGHT   cache key without index hash (2s) E       AssertionError: assert '8e0d572e74c16c9123256218280c1cd0f57e3bd96846a89ce54bc3439ae61ae1' != '8e0d572e
-CAUGHT   glossary: original words dropped from normalised query (6s) E       AssertionError: assert 'permission' in 'unauthorised my account se paise debited'
-CAUGHT   retrieval: superseded documents not filtered (2s) E       AssertionError: assert [Scored(chunk...urce='fused')] == []
-CAUGHT   circuit breaker never opens (2s)         with pytest.raises(GenerationError, match="empty"):
-CAUGHT   rate limiter always allows (3s) tests/integration/test_api.py:79: AssertionError
-CAUGHT   index hash not verified on load (3s) >       with pytest.raises(IndexMismatchError, match="hash"):
-CAUGHT   lists: item run does not stop at the next paragraph (4s) E       AssertionError: assert ['Intro:', '(...paragraph 69'] == ['Intro:', '(... '(2) second']
-CAUGHT   rbi_html: footer link labels left in the body (3s) E           AssertionError: non-banking-financial-companies-credit-cards-issuance-and-co.html
-CAUGHT   qdrant: stale collection accepted (6s) >       with pytest.raises(StaleCollectionError):
-CAUGHT   s3vectors: distance returned as if it were similarity (6s) tests/unit/test_s3_vectors_store.py:76: AssertionError
-CAUGHT   s3vectors: in-force filter never sent (7s) E       AssertionError: assert None == {'status': {'$eq': 'in_force'}}
-CAUGHT   s3vectors: stale build accepted (6s) >       with pytest.raises(StaleCollectionError):
-CAUGHT   bedrock: inline reasoning left in the answer (3s) tests/unit/test_bedrock_converse.py:35: AssertionError
-CAUGHT   bedrock: permanent errors are retried (2s)         fake = _Fake(_ClientError("ThrottlingException"), _ok("fine"))
-CAUGHT   api: LLM no longer the default answer mode (3s) E       AssertionError: assert 'extractive' == 'llm'
+CAUGHT   glossary: original words dropped from normalised query (10s) E       AssertionError: assert 'permission' in 'unauthorised my account se paise debited'
+CAUGHT   retrieval: superseded documents not filtered (3s) E       AssertionError: assert [Scored(chunk...urce='fused')] == []
+CAUGHT   circuit breaker never opens (6s)         with pytest.raises(GenerationError, match="empty"):
+CAUGHT   rate limiter always allows (2s) tests/integration/test_api.py:79: AssertionError
+CAUGHT   index hash not verified on load (2s) >       with pytest.raises(IndexMismatchError, match="hash"):
+CAUGHT   lists: item run does not stop at the next paragraph (7s) E       AssertionError: assert ['Intro:', '(...paragraph 69'] == ['Intro:', '(... '(2) second']
+CAUGHT   rbi_html: footer link labels left in the body (7s) E           AssertionError: non-banking-financial-companies-credit-cards-issuance-and-co.html
+CAUGHT   qdrant: stale collection accepted (9s) >       with pytest.raises(StaleCollectionError):
+CAUGHT   s3vectors: distance returned as if it were similarity (9s) tests/unit/test_s3_vectors_store.py:76: AssertionError
+CAUGHT   s3vectors: in-force filter never sent (11s) E       AssertionError: assert None == {'status': {'$eq': 'in_force'}}
+CAUGHT   s3vectors: stale build accepted (11s) >       with pytest.raises(StaleCollectionError):
+CAUGHT   bedrock: inline reasoning left in the answer (7s) tests/unit/test_bedrock_converse.py:35: AssertionError
+CAUGHT   bedrock: permanent errors are retried (6s)         fake = _Fake(_ClientError("ThrottlingException"), _ok("fine"))
+CAUGHT   api: LLM no longer the default answer mode (2s) E       AssertionError: assert 'extractive' == 'llm'
 CAUGHT   ui: LLM not preselected when available (2s) tests/integration/test_api.py:141: AssertionError
-CAUGHT   freshness: whitespace changes count as content changes (3s) E       AssertionError: assert 'fa33e574f7eb...48a6960cbf1a1' == '40ece824a136...74ea78f759a9a'
-CAUGHT   refresh: a page with far fewer blocks is trusted (6s) E       AssertionError: assert 'changed' == 'rejected'
-CAUGHT   refresh: a missing baseline is reported as a change (5s) E       AssertionError: assert ('changed' == 'baseline'
-CAUGHT   index: vectors reused across embedders (4s) tests/unit/test_incremental_index.py:47: AssertionError
+CAUGHT   freshness: whitespace changes count as content changes (7s) E       AssertionError: assert 'fa33e574f7eb...48a6960cbf1a1' == '40ece824a136...74ea78f759a9a'
+CAUGHT   refresh: a page with far fewer blocks is trusted (10s) E       AssertionError: assert 'changed' == 'rejected'
+CAUGHT   refresh: a missing baseline is reported as a change (10s) E       AssertionError: assert ('changed' == 'baseline'
+CAUGHT   index: vectors reused across embedders (8s) tests/unit/test_incremental_index.py:47: AssertionError
+CAUGHT   review: the first verdict wins instead of the last (4s) E       AssertionError: assert 'wrong_evidence' == 'ok'
+CAUGHT   review: any verdict accepted (5s) E       AssertionError: assert 200 == 400
+CAUGHT   review server: Host header not checked (6s) E       AssertionError: assert 200 == 403
+CAUGHT   review server: X-Review header not required (4s) E       AssertionError: assert 200 == 403
+CAUGHT   refresh: a check overwrites stored pages (10s) E       AssertionError: assert 2 == 1
 
-29/29 mutants caught
+34/34 mutants caught

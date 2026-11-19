@@ -1,5 +1,5 @@
 PY := .venv/bin/python
-.PHONY: setup corpus models index test lint type eval results mutation bench all
+.PHONY: setup corpus models index test lint type eval results mutation bench review review-report refresh all
 setup:
 	uv venv --python 3.12 .venv && uv pip install -e . --group dev
 corpus:
@@ -27,4 +27,11 @@ mutation:
 	$(PY) scripts/mutation_check.py | tee eval/results/mutation.txt
 bench:
 	$(PY) scripts/bench_latency.py | tee eval/results/latency.json
+review:
+	$(PY) scripts/review_labels.py
+review-report:
+	$(PY) eval/review_sensitivity.py
+	$(PY) scripts/make_results.py
+refresh:
+	$(PY) scripts/refresh_corpus.py
 all: lint type test

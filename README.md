@@ -6,7 +6,7 @@ Ask about Indian banking rules in English, Hindi or Hinglish. Codicil answers fr
 
 ## Measured results
 
-All numbers come from `docs/results.md`, which is generated from raw files in `eval/results/`. 148 questions (author-labelled, AI-drafted, not yet reviewed by the author), 17 documents, 2,223 chunks. The test split has been run twice (second look after a corpus fix; see `docs/results.md`).
+All numbers come from `docs/results.md`, which is generated from raw files in `eval/results/`. 148 questions (AI-drafted; a review tool is in `make review`, and no label has been reviewed yet), 17 documents, 2,223 chunks. The test split has been run twice (second look after a corpus fix; see `docs/results.md`).
 
 | | Held-out test split (46 answerable) |
 |---|---|
@@ -17,7 +17,7 @@ All numbers come from `docs/results.md`, which is generated from raw files in `e
 - **Abstention works for English, not for Hinglish.** English uses the cross-encoder score with a threshold chosen on dev only: test precision 1.00, recall 0.81 on 16 unanswerable questions (the first version, a dense-cosine threshold, scored 0.71 / 0.31 and missed the targets). Hinglish has no usable threshold (AUC 0.63 to 0.76), so it never abstains on score; Hindi has 4 unanswerable questions per split. Unanswerable Hinglish and Hindi questions are translations of English ones. Details and caveats in `docs/results.md`.
 - **Extractive answers** contain the gold sentence in about 77% of served answerable test questions (88% on dev, where list completion was developed). When a quoted sentence introduces a list ("...in the following events:"), the items that follow are quoted too, so answers no longer stop at a colon; on dev this cut cut-off answers from 13 of 51 to 2 of 51, on test the gain is one question and within noise. The cited clause is always shown in full.
 - **Latency**: on the EC2 demo host, p50 about 1.3 s and p95 1.5 to 1.7 s end to end over HTTPS for English questions (see Deploy). Locally on an Apple M3 (closed loop, quiet machine, measured before the tokenizer change below): p50 338 ms, p95 432 ms. **Memory**: peak 402 MB maximum resident after loading and answering (was 568 MB at startup until the 290 MB Hugging Face tokenizer of e5 was replaced by SentencePiece, which gives identical token ids; ADR-023). Free-tier hosting speed is not benchmarked.
-- **Tests**: 88 tests, `mypy --strict` and `ruff` clean, and a mutation check where 25 of 25 injected bugs are caught (10 of 14 on the first run; the survivors exposed test gaps that were then closed).
+- **Tests**: 127 tests, `mypy --strict` and `ruff` clean, and a mutation check where 34 of 34 injected bugs are caught (10 of 14 on the first run; the survivors exposed test gaps that were then closed).
 
 Confidence intervals are wide (n is small); differences under about 0.05 nDCG are ties. See `docs/evaluation.md` for threats to validity.
 
@@ -67,8 +67,18 @@ Rebuild everything: `make corpus` (polite fetch of the RBI HTML pages, hashes in
 
 The `Dockerfile` builds one container (models baked in at build, index committed). To run it on a small host: `docker build -t codicil .` then `docker run -d --restart unless-stopped --network host --memory 800m -e PORT=8001 codicil`, and proxy a hostname to `127.0.0.1:8001`. The first Render build on a 512 MB plan was killed for memory at startup (about 568 MB peak); replacing the e5 tokenizer (ADR-023) brought the peak to about 402 MB, which is why a 1 GB instance was too small to share with another app and a 2 GB one was used.
 
+## Keeping the corpus current
+
+A weekly job (`scripts/refresh_corpus.py`, run by a systemd timer on the demo host) re-fetches every selected RBI page and compares the **hash of the parsed text** with the recorded snapshot (RBI's raw HTML differs by about 80 bytes on every request, so a raw hash would always report a change). For a changed page it records a block-level diff in `corpus-changelog.md`. With `--apply` it rebuilds the index incrementally: chunks whose text is unchanged keep their vectors and only new or changed chunks are embedded (an unchanged corpus gives the identical index hash). It refuses to apply when more than 4 documents changed at once (a person should look), when a refreshed page parses to under half its previous size (a bot-challenge or layout change must never replace good text), or when the new index is much smaller than the old one. The previous index directory is kept and the `current` pointer moves atomically; on the host the job also uploads the new vectors to S3 Vectors, restarts the service on the new index and rolls back if it does not come up healthy.
+
+The web page footer shows when the corpus was last checked and whether anything has changed at the source since the snapshot (`/v1/index` returns the same under `corpus`). Checked on 2026-11-19: all 17 documents unchanged since the snapshot of 2026-11-11. Not verified in production yet: a real change at the source (the whole apply path, including the upload, the restart and the rebuild with an unchanged corpus, was exercised on the host by a drill that made one document look changed). What the check cannot see: a clause whose meaning changes through a document it does not fetch (for example a circular that amends a Direction), and the one Direction that is only published as a PDF behind a bot challenge.
+
+## Reviewing the labels
+
+All 148 eval labels were drafted by an AI assistant and have not been reviewed by the author yet. `make review` starts a local page (127.0.0.1 only, nothing leaves the machine) that shows each question with its evidence, or for an unanswerable question the three passages the system finds closest, and takes a verdict (correct, wrong evidence, bad question, unsure) with an optional note or better quote, using the keyboard. Verdicts are appended to `eval/reviews/reviews.jsonl`; stop and continue any time. `make review-report` then recomputes retrieval and English abstention on the confirmed labels alone and `docs/results.md` shows both next to each other, so it is visible whether unreviewed labels drive the headline numbers.
+
 ## Limits
 
-One issuer, 17 documents, 148 author-labelled questions; abstention thresholds rest on 30 English negatives (12 Hinglish, 8 Hindi, translated from English); extractive sentence selection is crude; Hindi has 8 questions in total; the corpus is a snapshot (`manifest.json` has the dates) and is not kept current automatically; one Direction (Commercial Banks, Credit Facilities) is excluded because RBI publishes it only as a PDF behind a bot challenge, which this project does not try to bypass.
+One issuer, 17 documents, 148 author-labelled questions; abstention thresholds rest on 30 English negatives (12 Hinglish, 8 Hindi, translated from English); extractive sentence selection is crude; Hindi has 8 questions in total; the corpus is a snapshot (`manifest.json` has the dates) that a weekly job checks against rbi.org.in (below), but a change of meaning that the text diff cannot see is not detected; one Direction (Commercial Banks, Credit Facilities) is excluded because RBI publishes it only as a PDF behind a bot challenge, which this project does not try to bypass.
 
 Source documents © Reserve Bank of India; see `NOTICE.md`. Code: MIT.

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Codicil label review</title>
+<style>
+:root{--bg:#161614;--card:#1f1f1c;--fg:#ece9e1;--mut:#a7a39a;--line:#34332e;--acc:#d9826a;--ok:#6fbf8b;--bad:#e0766b;--warn:#d9b45a;--mark:#4a3f1d;--on-acc:#1a1209}
+@media (prefers-color-scheme:light){:root{--bg:#f6f3ec;--card:#fff;--fg:#1f1d19;--mut:#6b675e;--line:#ddd8cc;--acc:#b9563d;--ok:#2f8a55;--bad:#b83f35;--warn:#9a7410;--mark:#fff0b8;--on-acc:#fff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 Georgia,serif}
+main{max-width:920px;margin:0 auto;padding:16px}
+header{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:12px}
+h1{font-size:20px;margin:0}
+.bar{flex:1 1 220px;height:10px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--ok);width:0}
+select,button,textarea{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+button{cursor:pointer}
+button:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.meta{color:var(--mut);font:13px system-ui,sans-serif;display:flex;flex-wrap:wrap;gap:6px 14px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:1px 10px}
+.q{font-size:22px;margin:8px 0 4px}
+.para{color:var(--mut);font-size:14px}
+h2{font:600 13px system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);margin:14px 0 6px}
+.ev{border-left:3px solid var(--acc);padding:2px 0 2px 12px;margin:8px 0}
+.ev .doc{font:13px system-ui,sans-serif;color:var(--mut)}
+.clause{white-space:pre-wrap;font-size:15px;max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:10px;margin-top:6px}
+mark{background:var(--mark);color:inherit;padding:0 2px}
+.warn{color:var(--warn);font:14px system-ui,sans-serif}
+.verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin:12px 0}
+.verdicts button{text-align:left;padding:10px 12px}
+.verdicts button[aria-pressed=true]{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset}
+.verdicts kbd{font:12px ui-monospace,monospace;border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-right:6px;color:var(--mut)}
+textarea{width:100%;min-height:64px;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.primary{background:var(--acc);border-color:var(--acc);color:var(--on-acc);font-weight:600}
+.status{font:14px system-ui,sans-serif;color:var(--mut)}
+.help{font:13px system-ui,sans-serif;color:var(--mut)}
+.done{border-color:var(--ok)}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Codicil label review</h1>
+  <div class="bar" role="progressbar" aria-label="Review progress" id="bar"><i id="barfill"></i></div>
+  <span class="status" id="progress">…</span>
+  <label class="status">Show
+    <select id="filter">
+      <option value="unreviewed">unreviewed</option>
+      <option value="all">all</option>
+      <option value="flagged">flagged (wrong, bad, unsure)</option>
+      <option value="answerable">answerable only</option>
+      <option value="unanswerable">unanswerable only</option>
+      <option value="hinglish">Hinglish</option>
+      <option value="hi">Hindi</option>
+    </select>
+  </label>
+</header>
+
+<p class="help">Keys: <kbd>1</kbd> correct · <kbd>2</kbd> wrong evidence · <kbd>3</kbd> bad question · <kbd>4</kbd> unsure · <kbd>Enter</kbd> save and next · <kbd>←</kbd> <kbd>→</kbd> move without saving. Your verdicts are saved to <code>eval/reviews/reviews.jsonl</code> on this machine.</p>
+
+<section class="card" id="card" aria-live="polite">Loading…</section>
+</main>
+
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+const V = {ok: "Correct", wrong_evidence: "Wrong evidence", bad_question: "Bad question", unsure: "Unsure"};
+const KEYS = {"1": "ok", "2": "wrong_evidence", "3": "bad_question", "4": "unsure"};
+let items = [], reviews = {}, list = [], pos = 0, chosen = null;
+
+const el = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) { if (k === "class") e.className = v; else e.setAttribute(k, v); }
+  for (const k of kids) e.append(k);
+  return e;
+};
+
+async function api(path, opts) {
+  const r = await fetch(path, opts);
+  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || r.statusText);
+  return r.json();
+}
+
+function applyFilter() {
+  const f = $("#filter").value;
+  list = items.filter(it => {
+    const r = reviews[it.id];
+    switch (f) {
+      case "unreviewed": return !r;
+      case "flagged": return r && r.verdict !== "ok";
+      case "answerable": return it.answerable;
+      case "unanswerable": return !it.answerable;
+      case "hinglish": return it.language === "hinglish";
+      case "hi": return it.language === "hi";
+      default: return true;
+    }
+  });
+  pos = Math.min(pos, Math.max(0, list.length - 1));
+}
+
+function progress() {
+  const n = items.length, done = items.filter(i => reviews[i.id]).length;
+  const ok = items.filter(i => reviews[i.id] && reviews[i.id].verdict === "ok").length;
+  $("#progress").textContent = `${done} of ${n} reviewed · ${ok} correct`;
+  $("#barfill").style.width = `${n ? (100 * done / n) : 0}%`;
+  $("#bar").setAttribute("aria-valuenow", String(done));
+  $("#bar").setAttribute("aria-valuemax", String(n));
+}
+
+function highlight(container, text, quote) {
+  const i = quote ? text.indexOf(quote) : -1;
+  if (i < 0) { container.textContent = text; return; }
+  container.append(text.slice(0, i), el("mark", {}, quote), text.slice(i + quote.length));
+}
+
+function render() {
+  progress();
+  const card = $("#card");
+  card.replaceChildren();
+  card.classList.remove("done");
+  if (!list.length) {
+    card.textContent = $("#filter").value === "unreviewed" ? "Nothing left to review. Switch the filter to see everything." : "No questions match this filter.";
+    if ($("#filter").value === "unreviewed" && items.length) card.classList.add("done");
+    return;
+  }
+  const it = list[pos], prev = reviews[it.id];
+  chosen = prev ? prev.verdict : null;
+  card.append(el("div", {class: "meta"},
+    el("span", {class: "pill"}, `${pos + 1} of ${list.length} in this view`),
+    el("span", {class: "pill"}, it.id), el("span", {class: "pill"}, it.split),
+    el("span", {class: "pill"}, it.language), el("span", {class: "pill"}, it.slice),
+    el("span", {class: "pill"}, it.answerable ? "should be answerable" : "should NOT be answerable"),
+    prev ? el("span", {class: "pill"}, `reviewed: ${V[prev.verdict]}`) : ""));
+  card.append(el("p", {class: "q", lang: it.language === "hi" ? "hi" : "en"}, it.question));
+  if (it.paraphrase_of) card.append(el("p", {class: "para"}, `Paraphrase of ${it.paraphrase_of.id}: "${it.paraphrase_of.question}". Check that it asks the same thing.`));
+
+  if (it.answerable) {
+    card.append(el("h2", {}, "Evidence that is supposed to answer it"));
+    for (const g of it.gold) {
+      const box = el("div", {class: "ev"});
+      box.append(el("div", {class: "doc"}, `${g.document}${g.path ? " › " + g.path : ""}`));
+      box.append(el("div", {}, g.quote));
+      if (!g.found) box.append(el("div", {class: "warn"}, "This quote was not found verbatim in one chunk; check it against the source."));
+      else { const c = el("div", {class: "clause", tabindex: "0", role: "region", "aria-label": "Full clause"}); highlight(c, g.clause, g.quote); box.append(c); }
+      card.append(box);
+    }
+  } else {
+    card.append(el("h2", {}, "Should NOT be answerable. The closest passages the system finds:"));
+    if (!it.nearest.length) card.append(el("p", {class: "help"}, "Started with --no-retrieval, so no passages are shown."));
+    for (const n of it.nearest) {
+      const box = el("div", {class: "ev"});
+      box.append(el("div", {class: "doc"}, `${n.document} › ${n.path}`));
+      box.append(el("div", {class: "clause", tabindex: "0", role: "region", "aria-label": "Passage"}, n.text));
+      card.append(box);
+    }
+    card.append(el("p", {class: "help"}, "Mark it Correct only if none of these (and nothing else in the 17 Directions) answers the question."));
+  }
+
+  const vs = el("div", {class: "verdicts", role: "group", "aria-label": "Verdict"});
+  Object.entries(KEYS).forEach(([k, v]) => {
+    const b = el("button", {type: "button", "data-v": v, "aria-pressed": String(chosen === v)}, el("kbd", {}, k), V[v]);
+    b.onclick = () => choose(v);
+    vs.append(b);
+  });
+  card.append(vs);
+  card.append(el("label", {for: "note", class: "help"}, "Note (optional)"));
+  const note = el("textarea", {id: "note", placeholder: "What is wrong, or why you are unsure"}); note.value = prev ? prev.note : "";
+  card.append(note);
+  card.append(el("label", {for: "better", class: "help"}, "Better evidence quote (optional; for wrong evidence, paste the sentence that really answers it)"));
+  const better = el("textarea", {id: "better"}); better.value = prev ? prev.better_quote : "";
+  card.append(better);
+  const save = el("button", {type: "button", class: "primary", id: "save"}, "Save and next (Enter)");
+  save.onclick = saveAndNext;
+  const back = el("button", {type: "button"}, "← Previous"), fwd = el("button", {type: "button"}, "Next →");
+  back.onclick = () => move(-1); fwd.onclick = () => move(1);
+  card.append(el("div", {class: "row"}, save, back, fwd, el("span", {class: "status", id: "msg"})));
+}
+
+function choose(v) {
+  chosen = v;
+  document.querySelectorAll(".verdicts button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === v)));
+}
+
+function move(d) { if (!list.length) return; pos = (pos + d + list.length) % list.length; render(); }
+
+async function saveAndNext() {
+  if (!list.length) return;
+  const it = list[pos];
+  if (!chosen) { $("#msg").textContent = "Pick a verdict first (1 to 4)."; return; }
+  try {
+    const r = await api("/api/review", {method: "POST", headers: {"Content-Type": "application/json", "X-Review": "1"},
+      body: JSON.stringify({id: it.id, verdict: chosen, note: $("#note").value, better_quote: $("#better").value})});
+    reviews[it.id] = r.review;
+    const f = $("#filter").value;
+    if (f === "unreviewed") { applyFilter(); } else { pos = Math.min(pos + 1, list.length - 1); }
+    render();
+  } catch (e) { $("#msg").textContent = "Not saved: " + e.message; }
+}
+
+document.addEventListener("keydown", e => {
+  const typing = e.target && (e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT");
+  if (typing && !(e.key === "Enter" && (e.metaKey || e.ctrlKey))) return;
+  if (KEYS[e.key]) { choose(KEYS[e.key]); e.preventDefault(); }
+  else if (e.key === "Enter") { saveAndNext(); e.preventDefault(); }
+  else if (e.key === "ArrowRight") { move(1); e.preventDefault(); }
+  else if (e.key === "ArrowLeft") { move(-1); e.preventDefault(); }
+});
+
+$("#filter").onchange = () => { pos = 0; applyFilter(); render(); };
+
+(async () => {
+  try {
+    [items, reviews] = await Promise.all([api("/api/items"), api("/api/reviews")]);
+    applyFilter(); render();
+  } catch (e) { $("#card").textContent = "Could not load: " + e.message; }
+})();
+</script>
+</body>
+</html>

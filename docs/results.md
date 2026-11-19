@@ -158,6 +158,10 @@ In-process pipeline time over the 148 eval questions: p50 324 ms, p95 427 ms. Mo
 
 A difference of one question is noise at this size. The coverage proxy rewards verbatim text, so it cannot show whether LLM phrasing reads better; no improvement is claimed from this older sample; the AI-graded comparison in the next section is the better evidence. Free-tier rate limits (HTTP 429) and provider overload (503) were seen during these runs, which is why the service falls back to extractive.
 
+## Label review (author)
+
+None of the 148 labels has been reviewed by the author yet: all were drafted by an AI assistant from the clause text. Review them with `make review` (a local page: it shows each question with its evidence, or for an unanswerable question the closest passages), then `make review-report`. Until then, read every number in this file as measured against unreviewed labels.
+
 ## LLM answer mode against extractive (Amazon Bedrock, AI-graded)
 
 Generator `openai.gpt-oss-120b-1:0` (low reasoning effort), judge `qwen.qwen3-32b-v1:0` (a different model), run 2026-11-19 with `eval/run_llm_judge.py` on all 96 answerable dev and test questions. Each question is answered twice from the same retrieval (extractive and LLM). The judge sees the question, the authoritative clause text and both answers, once in each order; a win needs both orders to agree, otherwise the pair is a tie. **These are AI grades from one judge, not human grades**, and no threshold or prompt was tuned on them.
@@ -176,4 +180,4 @@ The judge disagreed with itself when the order was swapped on 18 of 91 pairs (co
 How to read it: the LLM mostly wins because it answers the question in the clause's own terms and stops, while the extractive mode quotes up to three loosely related sentences. 'Unsupported' is measured against the gold clause only, so an extractive answer that quotes a different but real clause is counted against it; that number overstates the difference and is not a hallucination rate. The 7 pairs the extractive mode won include answers where the LLM left out the list items, picked a neighbouring clause, or dropped a qualification. The LLM is judged on text it rewrote, so it can also introduce errors that the grounding check (every sentence supported by its cited passage, numbers included) does not catch.
 
 ## Tests
-88 tests; mutation check: **25/25 mutants caught** (the first run caught 10 of 14; the four survivors exposed gaps in the tests, which were then closed, and the table is from the rerun). See `scripts/mutation_check.py`.
+127 tests; mutation check: **34/34 mutants caught** (the first run caught 10 of 14; the four survivors exposed gaps in the tests, which were then closed, and the table is from the rerun). See `scripts/mutation_check.py`.

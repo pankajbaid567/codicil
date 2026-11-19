@@ -19,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from codicil.adapters.rbi_html import parse_blocks  # noqa: E402
+from codicil.domain import review as R  # noqa: E402
 from codicil.domain.tokens import sentences  # noqa: E402
 
 DOCS = {
@@ -83,6 +84,12 @@ def superseded_docs() -> set[str]:
     return {d["doc_id"] for d in docs if re.search(r"superseded by", d["title"], re.I)}
 
 
+def load_reviews() -> dict[str, R.Review]:
+    """The author's verdicts, if any (eval/reviews/reviews.jsonl, written by scripts/review_labels.py). Without them the dataset is unchanged."""
+    log = ROOT / "eval/reviews/reviews.jsonl"
+    return R.latest(R.read_log(log.read_text(encoding="utf-8").splitlines())) if log.exists() else {}
+
+
 def split_of(qid: str) -> str:
     return "dev" if int(hashlib.sha256(qid.encode()).hexdigest(), 16) % 2 == 0 else "test"
 
@@ -98,6 +105,7 @@ def main() -> int:
     out: dict[str, dict] = {}
     errors = 0
     stale = superseded_docs()
+    reviews = load_reviews()
     for it in items:
         qid, slice_, lang = it["id"], it["slice"] or "single", it["lang"] or "en"
         rec = {
@@ -135,6 +143,10 @@ def main() -> int:
             rec["split"] = split_of(qid)
         else:
             rec["split"] = split_of(qid)
+        if qid in reviews:
+            rv = reviews[qid]
+            rec["review"] = {"verdict": rv.verdict, "at": rv.at[:10]}
+            rec["provenance"] = f"drafted by an AI assistant from the clause text; reviewed by the author on {rv.at[:10]}: {rv.verdict}"
         out[qid] = rec
     if errors:
         return 1

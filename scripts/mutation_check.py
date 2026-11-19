@@ -105,6 +105,26 @@ MUTANTS = [
     ),
     ("refresh: a missing baseline is reported as a change", "src/codicil/application/refresh.py", "        elif not old_hash:", "        elif False:"),
     ("index: vectors reused across embedders", "src/codicil/application/index.py", "reuse.embedder_id == embedder.model_id and ", ""),
+    ("review: the first verdict wins instead of the last", "src/codicil/domain/review.py", "        out[r.id] = r", "        out.setdefault(r.id, r)"),
+    ("review: any verdict accepted", "src/codicil/domain/review.py", "    if verdict not in VERDICTS:", "    if False:"),
+    (
+        "review server: Host header not checked",
+        "scripts/review_labels.py",
+        'return self.headers.get("Host", "") in (f"127.0.0.1:{port}", f"localhost:{port}")',
+        "return True",
+    ),
+    (
+        "review server: X-Review header not required",
+        "scripts/review_labels.py",
+        'if not self._local() or self.headers.get("X-Review") != "1":',
+        "if not self._local():",
+    ),
+    (
+        "refresh: a check overwrites stored pages",
+        "src/codicil/application/refresh.py",
+        '        if r.status in ("unchanged", "baseline") and r.html and not path.exists():',
+        '        if r.status in ("unchanged", "baseline") and r.html:',
+    ),
 ]
 
 
