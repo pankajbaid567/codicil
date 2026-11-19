@@ -31,6 +31,7 @@ class Index:
     embedder_id: str
     sha: str
     by_id: dict[str, int] = field(default_factory=dict)
+    build_stats: dict[str, int] = field(default_factory=dict)  # set by build_index: chunks embedded vs vectors reused
 
     def __post_init__(self) -> None:
         self.by_id = {c.chunk_id: i for i, c in enumerate(self.chunks)}
@@ -98,9 +99,20 @@ def _chunk_from(j: dict[str, object]) -> Chunk:
     return Chunk(str(j["id"]), str(j["doc"]), tuple(j["path"]), str(j["header"]), str(j["text"]), j["parent"], int(j["n"]), am)  # type: ignore[arg-type,call-overload]
 
 
+def _text_key(text: str) -> str:
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
 def build_index(
-    metas_and_html: list[tuple[DocumentMeta, str]], embedder: Embedder, out_dir: Path, cfg: ChunkingConfig = ChunkingConfig(), bm25: BM25Params = BM25Params()
+    metas_and_html: list[tuple[DocumentMeta, str]],
+    embedder: Embedder,
+    out_dir: Path,
+    cfg: ChunkingConfig = ChunkingConfig(),
+    bm25: BM25Params = BM25Params(),
+    reuse: Index | None = None,
 ) -> Index:
+    """Chunk, embed and write an index. With `reuse` (an index built with the same embedder), a chunk whose indexed text is
+    unchanged keeps its old vector and only new or changed chunks are embedded, so refreshing one document costs one document."""
     from codicil.adapters.rbi_html import parse_blocks
 
     docs: dict[str, DocumentMeta] = {}
@@ -111,7 +123,18 @@ def build_index(
         c, p = build_chunks(meta, build_tree(parse_blocks(html), meta.title), cfg)
         chunks += c
         parents.update({x.parent_id: x for x in p})
-    vectors = embedder.embed_passages([c.indexed_text for c in chunks]).astype(np.float16)
+    texts = [c.indexed_text for c in chunks]
+    known: dict[str, np.ndarray] = {}
+    if reuse is not None and reuse.embedder_id == embedder.model_id and reuse.vectors.shape[1] == embedder.dim:
+        known = {_text_key(c.indexed_text): reuse.vectors[i].astype(np.float16) for i, c in enumerate(reuse.chunks)}
+    missing = [i for i, t in enumerate(texts) if _text_key(t) not in known]
+    fresh = embedder.embed_passages([texts[i] for i in missing]).astype(np.float16) if missing else np.zeros((0, embedder.dim), dtype=np.float16)
+    vectors = np.zeros((len(texts), embedder.dim), dtype=np.float16)
+    for i, t in enumerate(texts):
+        if _text_key(t) in known:
+            vectors[i] = known[_text_key(t)]
+    for k, i in enumerate(missing):
+        vectors[i] = fresh[k]
     bm = BM25Index.build([c.header for c in chunks], [c.text for c in chunks], bm25)
     out_dir.mkdir(parents=True, exist_ok=True)
     files = {
@@ -143,7 +166,9 @@ def build_index(
             indent=1,
         )
     )
-    return Index(docs, chunks, parents, bm, vectors.astype(np.float32), embedder.model_id, sha)
+    idx = Index(docs, chunks, parents, bm, vectors.astype(np.float32), embedder.model_id, sha)
+    idx.build_stats = {"chunks": len(chunks), "embedded": len(missing), "reused": len(chunks) - len(missing)}
+    return idx
 
 
 def load_index(path: Path) -> Index:

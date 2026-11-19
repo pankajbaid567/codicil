@@ -40,6 +40,7 @@ details{font:.85rem system-ui,sans-serif;margin-top:10px}pre{overflow:auto;backg
 <div class="ex" id="ex"></div>
 <div id="out" aria-live="polite"></div>
 <p class="notice">Informational only; not legal or financial advice. Check the cited RBI text. Built from 17 RBI Directions fetched from rbi.org.in.</p>
+<p class="notice" id="fresh" hidden></p>
 </main>
 <script>
 const EX=["How soon must a bank reverse an unauthorised electronic transaction?","recurring payment mein kitne rupaye tak AFA ke bina auto debit ho sakta hai?","क्रेडिट कार्ड के रिफंड को देय राशि में कैसे समायोजित किया जाता है?","What is the maximum maturity of a peer-to-peer loan?","What is the current repo rate?"];
@@ -51,6 +52,7 @@ $("#backends").addEventListener("change",()=>{try{localStorage.setItem("codicil-
 const BK={qdrant:"Qdrant",s3vectors:"Amazon S3 Vectors"};
 document.querySelectorAll("input[name=mode]").forEach(r=>r.onchange=()=>{try{localStorage.setItem("codicil-mode",mode())}catch(e){}});
 fetch("/v1/index").then(r=>r.json()).then(i=>{const l=$("#llm");
+  if(i.corpus&&i.corpus.checked_at){const d=t=>String(t||"").slice(0,10),c=i.corpus,n=(c.changed_upstream||[]).length,f=$("#fresh");f.hidden=false;f.textContent="Corpus: snapshot of "+d(c.snapshot_retrieved_at)+", checked against rbi.org.in on "+d(c.checked_at)+(n?"; "+n+" document"+(n>1?"s have":" has")+" changed at the source and will be applied by the next refresh.":"; nothing has changed since.")+(c.failed&&c.failed.length?" ("+c.failed.length+" could not be checked.)":"")}
   const extra=(i.backends||[]).filter(b=>b!=="local");
   extra.forEach(b=>{const l=document.createElement("label");const x=document.createElement("input");x.type="radio";x.name="backend";x.value=b;l.append(x,BK[b]||b);$("#bk").append(l)});
   if(!extra.length)$("#backendhelp").textContent="No managed vector database is configured on this server, so dense search runs in-process.";

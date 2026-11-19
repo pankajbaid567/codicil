@@ -15,3 +15,5 @@ build/
 eval/work/*
 !eval/work/candidates.json
 !eval/work/probe.py
+data/corpus/freshness.json
+data/corpus-changelog.md

@@ -44,6 +44,15 @@ class SearchBody(BaseModel):
     top_k: int = Field(10, ge=1, le=30)
 
 
+def _corpus_freshness(path: Path) -> dict[str, Any] | None:
+    """What the weekly refresh job last saw: when it looked, when the snapshot was taken, and which documents have changed at the source since."""
+    try:
+        j = json.loads(path.read_text())
+        return {k: j.get(k) for k in ("checked_at", "snapshot_retrieved_at", "documents", "changed_upstream", "failed", "applied_at")}
+    except (OSError, ValueError):
+        return None
+
+
 def cache_key(index_sha: str, question: str, llm: bool, backend: str = "local") -> str:
     """The index hash is part of the key, so an answer computed against an old corpus can never be served after a redeploy."""
     return hashlib.sha256(f"{index_sha}|{question.strip().lower()}|{llm}|{backend}".encode()).hexdigest()
@@ -245,6 +254,7 @@ def create_app(settings: Settings | None = None, service: AnswerService | None =
             "reranker": svc.reranker.model_id if svc.reranker else None,
             "llm": svc.generator.model_id if svc.generator else None,
             "backends": ["local", *svc.stores],
+            "corpus": _corpus_freshness(s.freshness_file),
             "qdrant": "qdrant" in svc.stores,
         }
 

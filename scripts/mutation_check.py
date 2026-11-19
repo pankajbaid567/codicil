@@ -91,6 +91,20 @@ MUTANTS = [
     ),
     ("api: LLM no longer the default answer mode", "src/codicil/api/app.py", "    use_llm: bool = True", "    use_llm: bool = False"),
     ("ui: LLM not preselected when available", "src/codicil/api/static/index.html", 'if(m!=="extractive")l.checked=true', "if(false)l.checked=true"),
+    (
+        "freshness: whitespace changes count as content changes",
+        "src/codicil/domain/freshness.py",
+        '(_WS.sub(" ", x).strip() for x in texts)',
+        "(x for x in texts)",
+    ),
+    (
+        "refresh: a page with far fewer blocks is trusted",
+        "src/codicil/application/refresh.py",
+        "if n < MIN_BLOCKS or (old_n and n < MIN_KEEP_RATIO * old_n):",
+        "if n < MIN_BLOCKS:",
+    ),
+    ("refresh: a missing baseline is reported as a change", "src/codicil/application/refresh.py", "        elif not old_hash:", "        elif False:"),
+    ("index: vectors reused across embedders", "src/codicil/application/index.py", "reuse.embedder_id == embedder.model_id and ", ""),
 ]
 
 

@@ -15,7 +15,6 @@ from __future__ import annotations
 import hashlib
 import html
 import json
-import re
 import sys
 import time
 from datetime import UTC, datetime
@@ -23,27 +22,13 @@ from pathlib import Path
 
 import httpx
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+from codicil.adapters.rbi_source import BASE, LISTING, PAUSE_S, UA, listing_index
+
 ROOT = Path(__file__).resolve().parent.parent
 SELECTION = ROOT / "data" / "corpus" / "selection.json"
 MANIFEST = ROOT / "data" / "corpus" / "manifest.json"
 RAW = ROOT / "data" / "raw"
-BASE = "https://rbi.org.in/Scripts/"
-LISTING = BASE + "BS_ViewMasDirections.aspx"
-UA = "codicil-research/0.1 (student project; +https://github.com/pankajbaid567/codicil)"
-PAUSE_S = 2.0
-
-
-def listing_index(client: httpx.Client) -> dict[str, str]:
-    """Map PDF file stem -> detail page id, pairing the two links that share a table row of the listing page."""
-    page = client.get(LISTING)
-    page.raise_for_status()
-    pairs: dict[str, str] = {}
-    for row in re.findall(r"<tr>.*?</tr>", page.text, flags=re.S):
-        detail = re.search(r"BS_ViewMasDirections\.aspx\?id=(\d+)", row)
-        pdf = re.search(r"/PDFs/([^'\"/]+)\.PDF", row, flags=re.I)
-        if detail and pdf:
-            pairs[pdf.group(1).upper()] = detail.group(1)
-    return pairs
 
 
 def main(force: bool) -> int:

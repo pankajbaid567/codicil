@@ -28,6 +28,7 @@ class Settings(BaseSettings):
     qdrant_url: str = ""  # empty = in-process file index
     qdrant_api_key: SecretStr = SecretStr("")
     qdrant_collection: str = "codicil"
+    freshness_file: Path = Path("data/corpus/freshness.json")  # written by scripts/refresh_corpus.py; shown in the UI when present
     s3vectors_bucket: str = ""  # empty = Amazon S3 Vectors off; credentials come from the AWS chain (instance role on EC2)
     s3vectors_index: str = ""  # empty = codicil-<first 12 chars of the index sha>
     s3vectors_region: str = ""  # empty = the AWS default region

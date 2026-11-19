@@ -16,6 +16,8 @@ COPY data/models.lock.json data/models.lock.json
 RUN python scripts/fetch_models.py
 
 COPY src ./src
+COPY scripts/refresh_corpus.py scripts/upload_s3vectors.py ./scripts/
+COPY data/corpus/selection.json data/corpus/manifest.json ./data/corpus/
 COPY pyproject.toml ./
 RUN pip install --no-deps .
 # fail the build if the web UI did not make it into the installed package (it once did not)

@@ -183,3 +183,24 @@ async def test_backend_choice_is_part_of_the_cache_key():
     from codicil.api.app import cache_key
 
     assert cache_key("s", "q", False, "local") != cache_key("s", "q", False, "qdrant")
+
+
+async def test_index_reports_corpus_freshness_when_the_refresh_job_has_run(make_app, tmp_path):
+    f = tmp_path / "freshness.json"
+    assert (await get(make_app(freshness_file=f), "/v1/index")).json()["corpus"] is None  # no job has run yet
+    f.write_text(
+        json.dumps(
+            {
+                "checked_at": "2026-11-19T12:00:00Z",
+                "snapshot_retrieved_at": "2026-11-11T08:00:00Z",
+                "documents": 17,
+                "changed_upstream": ["a"],
+                "failed": [],
+                "secret": "x",
+            }
+        )
+    )
+    c = (await get(make_app(freshness_file=f), "/v1/index")).json()["corpus"]
+    assert c["checked_at"] == "2026-11-19T12:00:00Z" and c["changed_upstream"] == ["a"] and c["documents"] == 17 and "secret" not in c
+    f.write_text("not json")
+    assert (await get(make_app(freshness_file=f), "/v1/index")).json()["corpus"] is None  # a corrupt file must not break the endpoint

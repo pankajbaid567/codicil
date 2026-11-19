@@ -1,0 +1,9 @@
+[Unit]
+Description=Codicil weekly corpus refresh
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/codicil-src/deploy/aws-ec2/codicil-refresh.sh
+TimeoutStartSec=3600
