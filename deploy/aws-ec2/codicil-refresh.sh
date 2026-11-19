@@ -23,7 +23,8 @@ case $code in
 esac
 
 echo "applied: uploading the new index to S3 Vectors"
-if ! docker run --rm --user root -v "$DATA":/data -e AWS_DEFAULT_REGION=ap-south-1 \
+# host network: the instance metadata service (IMDSv2, hop limit 1) is only reachable from the host network, which is where the role credentials come from
+if ! docker run --rm --network host --user root -v "$DATA":/data -e AWS_DEFAULT_REGION=ap-south-1 \
       -e CODICIL_INDEX_DIR=/data/index/current -e CODICIL_S3VECTORS_BUCKET=codicil-vectors -e CODICIL_S3VECTORS_REGION=ap-south-1 \
       "$IMG" python scripts/upload_s3vectors.py; then
   echo "S3 Vectors upload failed; the service will fall back to the in-process index for that backend" >&2
