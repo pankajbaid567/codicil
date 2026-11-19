@@ -159,4 +159,4 @@ In-process pipeline time over the 148 eval questions: p50 324 ms, p95 427 ms. Mo
 A difference of one question is noise at this size. The coverage proxy rewards verbatim text, so it cannot show whether LLM phrasing reads better; no improvement is claimed. Free-tier rate limits (HTTP 429) and provider overload (503) were seen during these runs, which is why the service falls back to extractive.
 
 ## Tests
-83 tests; mutation check: **21/21 mutants caught** (the first run caught 10 of 14; the four survivors exposed gaps in the tests, which were then closed, and the table is from the rerun). See `scripts/mutation_check.py`.
+87 tests; mutation check: **23/23 mutants caught** (the first run caught 10 of 14; the four survivors exposed gaps in the tests, which were then closed, and the table is from the rerun). See `scripts/mutation_check.py`.
