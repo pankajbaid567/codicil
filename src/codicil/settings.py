@@ -17,6 +17,8 @@ class Settings(BaseSettings):
     rerank: bool = True
     min_dense: float = Field(0.84, ge=0.0, le=1.0)  # abstain below this top cosine; tied to the embedder, fitted on dev (docs/results.md)
     min_rerank: float = -0.18  # English abstention on the cross-encoder score, chosen on the dev split only (docs/results.md)
+    llm_provider: str = "openai"  # "openai" (any OpenAI-compatible endpoint) or "bedrock" (Amazon Bedrock Converse, credentials from the AWS chain)
+    llm_region: str = ""  # bedrock only; empty = the AWS default region
     llm_base_url: str = ""
     llm_api_key: SecretStr = SecretStr("")
     llm_model: str = ""
@@ -37,4 +39,6 @@ class Settings(BaseSettings):
 
     @property
     def llm_enabled(self) -> bool:
+        if self.llm_provider == "bedrock":
+            return bool(self.llm_model)
         return bool(self.llm_base_url and self.llm_api_key.get_secret_value() and self.llm_model)

@@ -1,23 +1,25 @@
-CAUGHT   RRF: rank offset off by one (3s) tests/unit/test_bm25_fusion.py:43: AssertionError
-CAUGHT   RRF: duplicate ids in one list counted twice (2s) tests/unit/test_bm25_fusion.py:64: AssertionError
-CAUGHT   BM25: idf sign flipped (2s) tests/integration/test_api.py:41: AssertionError
-CAUGHT   verify: numbers no longer checked (6s) E       AssertionError: assert not True
-CAUGHT   abstention threshold ignored (2s) tests/integration/test_api.py:103: AssertionError
-CAUGHT   rerank abstention ignored (5s) E       AssertionError: assert (False)
-CAUGHT   chunker: last child group never flushed (2s) E           AssertionError: commercial-banks-responsible-business-conduct-directions-202
+CAUGHT   RRF: rank offset off by one (7s) tests/unit/test_bm25_fusion.py:43: AssertionError
+CAUGHT   RRF: duplicate ids in one list counted twice (7s) tests/unit/test_bm25_fusion.py:64: AssertionError
+CAUGHT   BM25: idf sign flipped (3s) tests/integration/test_api.py:41: AssertionError
+CAUGHT   verify: numbers no longer checked (8s) E       AssertionError: assert not True
+CAUGHT   abstention threshold ignored (3s) tests/integration/test_api.py:103: AssertionError
+CAUGHT   rerank abstention ignored (7s) E       AssertionError: assert (False)
+CAUGHT   chunker: last child group never flushed (3s) E           AssertionError: commercial-banks-responsible-business-conduct-directions-202
 CAUGHT   structure: unlabelled text starts a new paragraph instead of joining the clause (7s) E       ValueError: too many values to unpack (expected 2)
-CAUGHT   embedder: passage prefix dropped for e5 (2s) E       AssertionError: assert not True
-CAUGHT   cache key without index hash (2s) E       AssertionError: assert '8e0d572e74c16c9123256218280c1cd0f57e3bd96846a89ce54bc3439ae61ae1' != '8e0d572e
+CAUGHT   embedder: passage prefix dropped for e5 (3s) E       AssertionError: assert not True
+CAUGHT   cache key without index hash (3s) E       AssertionError: assert '8e0d572e74c16c9123256218280c1cd0f57e3bd96846a89ce54bc3439ae61ae1' != '8e0d572e
 CAUGHT   glossary: original words dropped from normalised query (7s) E       AssertionError: assert 'permission' in 'unauthorised my account se paise debited'
 CAUGHT   retrieval: superseded documents not filtered (3s) E       AssertionError: assert [Scored(chunk...urce='fused')] == []
-CAUGHT   circuit breaker never opens (4s)             with pytest.raises(GenerationError):
+CAUGHT   circuit breaker never opens (3s)         with pytest.raises(GenerationError, match="empty"):
 CAUGHT   rate limiter always allows (3s) tests/integration/test_api.py:62: AssertionError
-CAUGHT   index hash not verified on load (3s) >       with pytest.raises(IndexMismatchError, match="hash"):
+CAUGHT   index hash not verified on load (2s) >       with pytest.raises(IndexMismatchError, match="hash"):
 CAUGHT   lists: item run does not stop at the next paragraph (4s) E       AssertionError: assert ['Intro:', '(...paragraph 69'] == ['Intro:', '(... '(2) second']
-CAUGHT   rbi_html: footer link labels left in the body (3s) E           AssertionError: non-banking-financial-companies-credit-cards-issuance-and-co.html
+CAUGHT   rbi_html: footer link labels left in the body (4s) E           AssertionError: non-banking-financial-companies-credit-cards-issuance-and-co.html
 CAUGHT   qdrant: stale collection accepted (6s) >       with pytest.raises(StaleCollectionError):
 CAUGHT   s3vectors: distance returned as if it were similarity (6s) tests/unit/test_s3_vectors_store.py:76: AssertionError
 CAUGHT   s3vectors: in-force filter never sent (6s) E       AssertionError: assert None == {'status': {'$eq': 'in_force'}}
 CAUGHT   s3vectors: stale build accepted (6s) >       with pytest.raises(StaleCollectionError):
+CAUGHT   bedrock: inline reasoning left in the answer (3s) tests/unit/test_bedrock_converse.py:35: AssertionError
+CAUGHT   bedrock: permanent errors are retried (2s)         fake = _Fake(_ClientError("ThrottlingException"), _ok("fine"))
 
-21/21 mutants caught
+23/23 mutants caught

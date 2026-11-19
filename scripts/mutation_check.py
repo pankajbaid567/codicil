@@ -72,6 +72,8 @@ MUTANTS = [
     ("s3vectors: distance returned as if it were similarity", "src/codicil/adapters/s3_vectors_store.py", "1.0 - float(h[\"distance\"])", "float(h[\"distance\"])"),
     ("s3vectors: in-force filter never sent", "src/codicil/adapters/s3_vectors_store.py", "        if in_force_only:\n            args[\"filter\"]", "        if False:\n            args[\"filter\"]"),
     ("s3vectors: stale build accepted", "src/codicil/adapters/s3_vectors_store.py", "            if stale:", "            if False:"),
+    ("bedrock: inline reasoning left in the answer", "src/codicil/adapters/bedrock_converse.py", "return _REASONING.sub(\"\", text).strip()", "return text.strip()"),
+    ("bedrock: permanent errors are retried", "src/codicil/adapters/bedrock_converse.py", "                if code and code not in _RETRYABLE:", "                if False:"),
 ]
 
 
