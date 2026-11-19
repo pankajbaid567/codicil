@@ -14,7 +14,7 @@ from collections.abc import AsyncIterator
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, Response, StreamingResponse
@@ -33,7 +33,9 @@ STATIC = Path(__file__).parent / "static"
 class AskBody(BaseModel):
     question: str = Field(min_length=3)
     use_llm: bool = True
-    backend: Literal["local", "qdrant"] = "local"  # dense search: in-process matrix or Qdrant (falls back to local when unavailable)
+    backend: str = Field(
+        "local", max_length=20
+    )  # dense search: "local" (in-process matrix) or a configured remote store; unknown or unreachable falls back to local
     debug: bool = False
 
 
@@ -169,7 +171,7 @@ def create_app(settings: Settings | None = None, service: AnswerService | None =
         app.add_middleware(CORSMiddleware, allow_origins=s.cors_origins.split(","), allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 
     def run_ask(body: AskBody) -> Answer:
-        backend = body.backend if svc.vector_store is not None else "local"
+        backend = body.backend if body.backend in svc.stores else "local"
         key = cache_key(svc.index.sha, body.question, body.use_llm and svc.generator is not None, backend)
         hit = cache.get(key)
         if hit is not None:
@@ -242,7 +244,8 @@ def create_app(settings: Settings | None = None, service: AnswerService | None =
             "documents": len(i.docs),
             "reranker": svc.reranker.model_id if svc.reranker else None,
             "llm": svc.generator.model_id if svc.generator else None,
-            "qdrant": svc.vector_store is not None,
+            "backends": ["local", *svc.stores],
+            "qdrant": "qdrant" in svc.stores,
         }
 
     @app.get("/healthz")

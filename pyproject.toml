@@ -21,9 +21,10 @@ dependencies = [
 
 [project.optional-dependencies]
 qdrant = ["qdrant-client>=1.12"]
+aws = ["boto3>=1.40"]
 
 [dependency-groups]
-dev = ["qdrant-client>=1.12", "pytest>=8", "pytest-cov>=5", "hypothesis>=6.100", "ruff>=0.7", "mypy>=1.13", "pytest-asyncio>=0.24"]
+dev = ["qdrant-client>=1.12", "boto3>=1.40", "pytest>=8", "pytest-cov>=5", "hypothesis>=6.100", "ruff>=0.7", "mypy>=1.13", "pytest-asyncio>=0.24"]
 
 [build-system]
 requires = ["setuptools>=68"]
@@ -52,6 +53,10 @@ python_version = "3.12"
 strict = true
 plugins = ["pydantic.mypy"]
 mypy_path = "src"
+
+[[tool.mypy.overrides]]
+module = ["boto3", "boto3.*", "botocore", "botocore.*"]
+ignore_missing_imports = true  # optional AWS dependency; the client object is typed Any in the adapter
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -26,6 +26,9 @@ class Settings(BaseSettings):
     qdrant_url: str = ""  # empty = in-process file index
     qdrant_api_key: SecretStr = SecretStr("")
     qdrant_collection: str = "codicil"
+    s3vectors_bucket: str = ""  # empty = Amazon S3 Vectors off; credentials come from the AWS chain (instance role on EC2)
+    s3vectors_index: str = ""  # empty = codicil-<first 12 chars of the index sha>
+    s3vectors_region: str = ""  # empty = the AWS default region
     rate_limit_per_min: int = Field(30, ge=1)
     cors_origins: str = ""
     max_question_chars: int = Field(500, ge=20)

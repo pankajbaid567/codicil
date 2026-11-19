@@ -33,8 +33,8 @@ details{font:.85rem system-ui,sans-serif;margin-top:10px}pre{overflow:auto;backg
 <small id="modehelp">Extractive quotes the best sentences straight from the cited clause. LLM rewrites them in plain words, and every sentence is still checked against the clause.</small></fieldset>
 <fieldset class="modes" id="backends" style="border:0;padding:0"><legend>Search backend</legend>
 <label><input type="radio" name="backend" value="local" checked>In-process</label>
-<label><input type="radio" name="backend" value="qdrant" id="qd" disabled>Qdrant</label>
-<small id="backendhelp">Dense search runs in this server (fast) or on a Qdrant vector database (a network hop). Qdrant falls back to in-process if it is unreachable.</small></fieldset>
+<span id="bk"></span>
+<small id="backendhelp">Dense search runs in this server (fast). Other backends, when this server has them, run it on a managed vector database (a network hop) and fall back to in-process if it is unreachable.</small></fieldset>
 <form id="f"><label class="sr" for="q">Question</label><textarea id="q" maxlength="500" placeholder="e.g. How soon must a bank reverse an unauthorised electronic transaction?" required></textarea><button id="go">Ask</button></form>
 <div class="ex" id="ex"></div>
 <div id="out" aria-live="polite"></div>
@@ -47,11 +47,14 @@ const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const mode=()=>document.querySelector('input[name=mode]:checked').value;
 try{const m=localStorage.getItem("codicil-mode");if(m==="llm")$("#llm").checked=true}catch(e){}
 const backend=()=>document.querySelector('input[name=backend]:checked').value;
-try{if(localStorage.getItem("codicil-backend")==="qdrant")$("#qd").checked=true}catch(e){}
-document.querySelectorAll("input[name=backend]").forEach(r=>r.onchange=()=>{try{localStorage.setItem("codicil-backend",backend())}catch(e){}});
+$("#backends").addEventListener("change",()=>{try{localStorage.setItem("codicil-backend",backend())}catch(e){}});
+const BK={qdrant:"Qdrant",s3vectors:"Amazon S3 Vectors"};
 document.querySelectorAll("input[name=mode]").forEach(r=>r.onchange=()=>{try{localStorage.setItem("codicil-mode",mode())}catch(e){}});
 fetch("/v1/index").then(r=>r.json()).then(i=>{const l=$("#llm");
-  if(i.qdrant){$("#qd").disabled=false}else{$("#qd").checked=false;document.querySelector("input[value=local]").checked=true;$("#backendhelp").textContent="Qdrant is not configured on this server, so dense search runs in-process."}
+  const extra=(i.backends||[]).filter(b=>b!=="local");
+  extra.forEach(b=>{const l=document.createElement("label");const x=document.createElement("input");x.type="radio";x.name="backend";x.value=b;l.append(x,BK[b]||b);$("#bk").append(l)});
+  if(!extra.length)$("#backendhelp").textContent="No managed vector database is configured on this server, so dense search runs in-process.";
+  try{const sv=localStorage.getItem("codicil-backend");const r=[...document.querySelectorAll("input[name=backend]")].find(e=>e.value===sv);if(r)r.checked=true}catch(e){}
   if(i.llm){l.disabled=false;$("#modehelp").textContent+=" Model: "+i.llm+"."}
   else{l.checked=false;document.querySelector("input[value=extractive]").checked=true;$("#modehelp").textContent="LLM mode is not configured on this server, so answers are extractive. The server owner enables it by setting CODICIL_LLM_* environment variables."}
 }).catch(()=>{});

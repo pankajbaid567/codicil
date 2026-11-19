@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 import time
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -44,11 +44,18 @@ class Evidence:
 
 class AnswerService:
     def __init__(
-        self, index: Index, embedder: Embedder, reranker: Reranker | None = None, generator: Generator | None = None, store: DenseStore | None = None
+        self,
+        index: Index,
+        embedder: Embedder,
+        reranker: Reranker | None = None,
+        generator: Generator | None = None,
+        stores: Mapping[str, DenseStore] | None = None,
     ) -> None:
         self.index, self.embedder, self.reranker, self.generator = index, embedder, reranker, generator
         self.retriever = Retriever(index, embedder)
-        self.vector_store = store  # optional, used only when a request asks for it (backend="qdrant"); the in-process index is the default
+        self.stores: dict[str, DenseStore] = dict(
+            stores or {}
+        )  # optional remote dense stores by name, used only when a request asks for one; the in-process index is the default
 
     # -- stages -------------------------------------------------------------------------------------------------------------------
     def retrieve(self, q: Query, cfg: AnswerConfig, store: DenseStore | None = None) -> tuple[list[Scored], float]:
@@ -135,13 +142,14 @@ class AnswerService:
 
         def fetch() -> tuple[list[Scored], float]:
             nonlocal used
-            if backend == "qdrant" and self.vector_store is not None:
+            store = self.stores.get(backend)
+            if store is not None:
                 try:
-                    out = self.retrieve(q, cfg, self.vector_store)
-                    used = "qdrant"
+                    out = self.retrieve(q, cfg, store)
+                    used = backend
                     return out
                 except Exception as e:  # any client or network failure: the demo must keep answering from the in-process index
-                    used = f"local (qdrant failed: {type(e).__name__})"
+                    used = f"local ({backend} failed: {type(e).__name__})"
             return self.retrieve(q, cfg)
 
         hits, top_dense = timed("retrieve", fetch)

@@ -132,7 +132,7 @@ class _StoreRecording:
 
 
 def _app_with_store(tmp_path, store):
-    svc = AnswerService(mini_index(tmp_path / "idx"), HashingEmbedder(), None, None, store)
+    svc = AnswerService(mini_index(tmp_path / "idx"), HashingEmbedder(), None, None, {"qdrant": store})
     return create_app(Settings(rate_limit_per_min=100, min_dense=0.0), svc)
 
 
@@ -147,7 +147,10 @@ async def test_qdrant_backend_is_opt_in_and_falls_back_when_down(tmp_path):
     r = await post(_app_with_store(tmp_path, _StoreDown()), "/v1/ask", json={**q, "backend": "qdrant"})
     j = r.json()
     assert r.status_code == 200 and not j["abstained"] and any("qdrant failed" in t["note"] for t in j["timings_ms"] if t["stage"] == "backend")
-    assert (await get(app, "/v1/index")).json()["qdrant"] is True
+    info = (await get(app, "/v1/index")).json()
+    assert info["qdrant"] is True and info["backends"] == ["local", "qdrant"]
+    r = await post(app, "/v1/ask", json={**q, "backend": "nonexistent"})  # an unknown backend is served from the in-process index
+    assert r.status_code == 200 and rec.calls == 1
 
 
 async def test_backend_choice_is_part_of_the_cache_key():
